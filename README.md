@@ -14,7 +14,7 @@
 <おすすめのサウナや穴場のサウナを知りたい時や自分のサウナ情報を共有したい時>
 
 ## 実装機能リストURL
-< https://docs.google.com/spreadsheets/d/1mWsS3Yp8osmIIrzZ7W8EmFsDlabrbILo2fBEVb07DHg/edit#gid=885378170 >
+https://docs.google.com/spreadsheets/d/1mWsS3Yp8osmIIrzZ7W8EmFsDlabrbILo2fBEVb07DHg/edit#gid=885378170
 
 ## 設計書
 <...>
