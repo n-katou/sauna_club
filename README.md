@@ -41,6 +41,10 @@ https://docs.google.com/spreadsheets/d/1mWsS3Yp8osmIIrzZ7W8EmFsDlabrbILo2fBEVb07
 
 ## 設計書
 
+- 詳細設計書 https://docs.google.com/spreadsheets/d/1G-5JD-ayaYuQUcBmbBTW6AiW2s29PFHtsFEany0fPTM/edit#gid=549108681
+- テーブル定義書 https://docs.google.com/spreadsheets/d/1GkrLM9rimf508EU_rZXbJ6qhoASQgoWD4GTCLWV15zk/edit#gid=634542038
+- ER図 
+
 
 ## 開発環境
 
