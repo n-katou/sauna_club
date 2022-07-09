@@ -1,1 +1,19 @@
-会員の会員一覧
+<div class="container">
+  <h1>会員</h1>
+  <div class="row">
+    <% @customers.each do |customer| %>
+      <table class="table">
+        <tbody>
+          <tr>
+              <%= link_to customer_path(customer.id) do %>
+              <%= image_tag customer.get_profile_image(100,100) %><br>
+              <% end %>
+              <%= customer.account_name %><br>
+              <%= customer.introduction %><br>
+              <%#= フォローする%>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+  </div>
+</div>

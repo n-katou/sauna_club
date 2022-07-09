@@ -1,1 +1,10 @@
-会員退会確認ページ
+<div class="container text-center">
+  <br><br><br><br><br>
+  <h1><strong>本当に退会しますか？</strong></h1>
+  <br><br>
+  <p>退会すると、会員情報や</p>
+  <p>これまでの投稿履歴が閲覧できなくなります。</p>
+  <p>退会する場合は、「退会する」をクリックしてください。</p>
+  <br><br>
+  <%= link_to "退会しない" , mypage_path(current_customer),class: "btn btn-primary" %> <%= link_to "退会する" , withdraw_path(current_customer) ,method: :patch, "data-confirm" => "本当に退会しますか？",class: "btn btn-danger" %>
+</div>

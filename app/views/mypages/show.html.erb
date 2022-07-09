@@ -1,1 +1,47 @@
-会員のマイページ（自分の投稿一覧も表示）
+<div class="container">
+  <div class="row">
+    <div>
+      <h1>登録情報    <%= link_to "編集する", edit_customer_path(current_customer),class: "btn btn-success" %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class= "col-8">
+      <table>
+        <tbody>
+          <tr>
+            <br><br>
+            <td><h3>アカウント画像</h3></td>
+            <td><%= image_tag @customer.get_profile_image(100,100)%></td>
+          </tr>
+          <tr>
+            <td><br><br><h3>アカウント名</h3></td>
+            <td><br><br><%= @customer.account_name %></td>
+          </tr>
+          <tr>
+            <td><br><br><h3>メールアドレス</h3></td>
+            <td><br><br><%= @customer.email %></td>
+          </tr>
+          <tr>
+            <td><br><br><h3>生年月日</h3></td>
+            <td><br><br><%= @customer.birth_date %></td>
+          </tr>
+          <tr>
+            <td><br><br><h3>自己紹介</h3></td>
+            <td><br><br><%= @customer.introduction %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <p><%= link_to "新規登録する", new_post_path, class: "btn" %></p>
+      <p><%= link_to "フォローした会員一覧",followings_path, class: "btn" %></p>
+      <p><%= link_to "いいねした投稿一覧",favorites_path, class: "btn" %></p>
+    </div>
+  </div>
+  <div class="row">
+    <h1>自分の投稿一覧</h1>
+  </div>
+  <div class="row">
+
+  </div>
+</div>

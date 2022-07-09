@@ -1,1 +1,35 @@
-会員の会員情報詳細
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <table>
+        <tbody>
+          <tr>
+            <td><h2>アカウント画像</h2></td>
+            <td><%= image_tag @customer.get_profile_image(100,100) %></td>
+          </tr>
+          <tr>
+            <td><h2>アカウント名</h2></td>
+            <td><%= @customer.account_name %></td>
+          </tr>
+          <tr>
+            <td><h2>自己紹介</h2></td>
+            <td><%= @customer.introduction %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto">
+      <p>フォローする</p>
+    </div>
+  </div>
+
+    <div class="row">
+      <h1><%= @customer.account_name %>投稿一覧</h1>
+    </div>
+
+    <div class="row">
+
+    </div>
+</div>

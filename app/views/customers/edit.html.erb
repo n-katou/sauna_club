@@ -1,1 +1,38 @@
-会員の登録情報編集ページ
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <h1>会員情報編集</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class= "mx-auto">
+    <%= form_with model: @customer,url: customer_path(current_customer), method: :patch do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <td><h3>アカウント画像</h3></td>
+            <td><%= f.file_field :profile_image %></td>
+          </tr>
+          <tr>
+            <td><h3>アカウント名</h3></td>
+            <td><%= f.text_field :account_name %></td>
+          </tr>
+          <tr>
+            <td><h3>メールアドレス</h3></td>
+            <td><%= f.text_field :email %></td>
+          </tr>
+          <tr>
+            <td><h3>生年月日</h3></td>
+            <td><%= f.date_field :birth_date %></td>
+          </tr>
+          <tr>
+            <td><h3>自己紹介</h3></td>
+            <td><%= f.text_area :introduction %></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-center"><%= f.submit "編集内容を保存",class: "btn btn-success" %>     <%= link_to "退会する",unsubscribe_path(current_customer),class: "btn btn-danger" %></p>
+    <% end %>
+    </div>
+  </div>
+</div>
