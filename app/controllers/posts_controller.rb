@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   def index
+    @posts = Post.all
   end
 
   def new
@@ -29,7 +30,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:post_image,:title,:post_content)
+    params.require(:post).permit(:post_image, :title, :post_content, tag_ids: [])
   end
 
 end

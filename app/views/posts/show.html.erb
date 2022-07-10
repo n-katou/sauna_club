@@ -7,19 +7,21 @@
         <tr>
           <td>
             <% if @post.post_image.attached? %>
-              <%= image_tag @post.post_image,size: "300x300" %>
+              <%= image_tag @post.post_image, size: "150x150" %>
             <% end %>
           </td>
         </tr>
         <tr>
           <td><%= @post.post_content %></td>
         </tr>
-        <tr>
-          <td><%#= @post.tag.tag_name %></td>
-        </tr>
+        <% @post.tags.each do |tag| %>
+          <tr>
+            <td><%= tag.tag_name %></td>
+          </tr>
+        <% end %>
       </table>
   </div>
-  <%= link_to "編集する" , edit_post_path(@post.id),class: "btn btn-success" %>
+  <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-success" %>
   <div class ="row">
 
   </div>

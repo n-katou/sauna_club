@@ -1,8 +1,14 @@
 class Post < ApplicationRecord
   belongs_to :customer
-  has_many :comments,dependent: :destroy
-  has_many :favorites,dependent: :destroy
-  has_many :taggings,dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings #上にスルーするtaggingsが来ないとエラーになる。
+  
+  # post = Post.new
+  # post.tags　#これで紐づいたタグを簡単に持ってこれる。
+  
+  # tags = post.taggings.map {|tagging| tagging.tags }.flatten #throughを使わない場合はこうやってビューに記述しないといけない。
 
   has_one_attached :post_image
 
