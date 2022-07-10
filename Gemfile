@@ -57,3 +57,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'search_cop'
 gem 'cocoon'
+
+gem 'jquery-rails'
+gem 'select2-rails'

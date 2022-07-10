@@ -1,1 +1,10 @@
-タグ編集ページ
+<div class="container">
+  <h1>タグ編集</h1>
+  <div class="row">
+    <%= form_with model: @tag,url: admin_tag_path(@tag.id),method: :patch do |f| %>
+    <a>タグ名</a>  <%= f.text_field :tag_name %>
+    <p><a><%= link_to "削除",admin_tag_path(@tag.id),method: :delete, class: "btn btn-danger","data-confirm" => "本当に削除しますか？" %></a><a><%= f.submit "変更を保存" ,class: "btn btn-success" %></a></p>
+    <% end %>
+  </div>
+
+</div>

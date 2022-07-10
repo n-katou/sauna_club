@@ -1,1 +1,26 @@
-会員投稿詳細
+<div class="container">
+  <div class="row text-center">
+      <table>
+        <tr>
+          <td><%= @post.title %></td>
+        </tr>
+        <tr>
+          <td>
+            <% if @post.post_image.attached? %>
+              <%= image_tag @post.post_image,size: "300x300" %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= @post.post_content %></td>
+        </tr>
+        <tr>
+          <td><%#= @post.tag.tag_name %></td>
+        </tr>
+      </table>
+  </div>
+  <%= link_to "編集する" , edit_post_path(@post.id),class: "btn btn-success" %>
+  <div class ="row">
+
+  </div>
+</div>

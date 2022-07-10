@@ -1,1 +1,22 @@
-タグ管理画面（一覧・追加機能を兼ねる）
+
+<h1>タグ一覧・追加</h1>
+<%= form_with model: @tag,url: admin_tags_path,method: :post do |f| %>
+<a>タグ名</a>  <%= f.text_field :tag_name %>   <%= f.submit "新規登録" ,class: "btn btn-success" %>
+<% end %>
+<br><br><br>
+
+<table class="table table-hover table-inverse">
+  <thead>
+    <th>タグ</th>
+    <th></th>
+    <th colspan="2"></th>
+  </thead>
+  <tbody>
+    <% @tags.each do |tag| %>
+    <tr>
+      <td class="text-center"><%= tag.tag_name %></td>
+      <td> <%= link_to "編集する", edit_admin_tag_path(tag.id),class: "btn btn-success"  %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
