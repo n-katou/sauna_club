@@ -21,7 +21,7 @@ class Post < ApplicationRecord
   end
 
   def favorited_by?(customer)
-    favorites.exists?(customer_id: customer.id)
+    favorites.exists?(customer_id: customer.id) #これの意味もいまいちわからない
   end
 
 end
