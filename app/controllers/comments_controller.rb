@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   def edit
+    @comment = Comment.find(params[:id])
   end
 
   def create
@@ -11,9 +12,15 @@ class CommentsController < ApplicationController
   end
 
   def update
+    comment = Comment.find(params[:id])
+    comment.update(comment_params)
+    redirect_to post_path(post.id) #coment.post_idか？
   end
 
   def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    redirect_to post_path(post.id) #coment.post_idか？
   end
 
   private

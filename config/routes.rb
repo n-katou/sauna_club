@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/about' => "homes#about", as: "about"
 
   resources :posts do
-    resources :favorites, only: [:destroy,:create]
+    resource :favorites, only: [:destroy,:create] #なぜリソース
     resources :comments, only: [:edit,:create,:update,:destroy]
   end
   get "/favorites" => "favorites#index",as: "favorites"

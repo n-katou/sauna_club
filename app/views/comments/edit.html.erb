@@ -1,1 +1,10 @@
-会員のコメント編集ページ
+<div class="container">
+  <h1>コメント編集</h1>
+  <div class="row">
+    <%= form_with model: @comment ,url: post_comment_path(@comment.id),method: :patch do |f| %>
+    <a>コメント</a>  <%= f.text_field :comment_content %>
+    <p><a><%= link_to "削除",post_comment_path(@comment.id),method: :delete, class: "btn btn-danger","data-confirm" => "本当に削除しますか？" %></a><a><%= f.submit "変更を保存" ,class: "btn btn-success" %></a></p>
+    <% end %>
+  </div>
+
+</div>

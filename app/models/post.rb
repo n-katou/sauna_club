@@ -4,10 +4,10 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings #上にスルーするtaggingsが来ないとエラーになる。
-  
+
   # post = Post.new
   # post.tags　#これで紐づいたタグを簡単に持ってこれる。
-  
+
   # tags = post.taggings.map {|tagging| tagging.tags }.flatten #throughを使わない場合はこうやってビューに記述しないといけない。
 
   has_one_attached :post_image
@@ -18,6 +18,10 @@ class Post < ApplicationRecord
       post_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     post_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def favorited_by?(customer)
+    favorites.exists?(customer_id: customer.id)
   end
 
 end
