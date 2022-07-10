@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row text-center">
+  <div class="row mx-auto">
       <table>
         <tr>
           <td><%= @post.title %></td>
@@ -23,6 +23,23 @@
   </div>
   <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-success" %>
   <div class ="row">
-
+    <p><%= @post.comments.count %>件</p>
+  </div>
+  <div class ="row">
+    <% @comments.each do |comment| %>
+      <%= image_tag comment.customer.get_post_image %>
+      <%= comment.created_at.strftime('%Y%m/%d') %>
+      <%= comment.comment_content %>
+      <%= link_to "編集する", edit_post_comment_path(comment.id),class: "btn btn-success"%>
+    <% end %>
+  </div>
+  <div class="row">
+    <p>コメントする</p>
+  </div>
+  <div class= "row">
+    <%= form_with model: [@post,@comment] do |f| %>
+     <%= f.text_area :comment,rows: "5", placeholder: "コメントをここに" %>
+     <%= f.submit "投稿する",class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
