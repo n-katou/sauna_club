@@ -40,10 +40,10 @@
   </div>
   <div class ="row">
     <% @comments.each do |comment| %>
-      <%= image_tag comment.customer.get_post_image %>
+      <%= image_tag comment.customer.get_profile_image(100,100) %>
       <%= comment.created_at.strftime('%Y%m/%d') %>
       <%= comment.comment_content %>
-      <%= link_to "編集する", edit_post_comment_path(comment.id),class: "btn btn-success"%>
+      <p><%= link_to "編集する", edit_post_comment_path(comment.id),class: "btn btn-success"%></p>
     <% end %>
   </div>
   <div class="row">
@@ -51,7 +51,7 @@
   </div>
   <div class= "row">
     <%= form_with model: [@post,@comment] do |f| %>
-     <%= f.text_area :comment,rows: "5", placeholder: "コメントをここに" %>
+     <%= f.text_area :comment_content,rows: "5", placeholder: "コメントをここに" %>
      <%= f.submit "投稿する",class: "btn btn-primary" %>
     <% end %>
   </div>
