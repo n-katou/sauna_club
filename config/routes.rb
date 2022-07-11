@@ -17,9 +17,12 @@ Rails.application.routes.draw do
 
   get "/customers/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
   patch "/customers/withdraw" => "customer#withdraw", as: "withdraw"
-  resources :customers, only: [:index,:show,:edit,:update]
+  resources :customers, only: [:index,:show,:edit,:update] do
 
   resource :relationships,only: [:create,:destroy]
+  get "followings" => "relationships#followings", as: "followings"
+  get "followers" => "relationships#followers", as: "followers"
+  end
 
   get "/mypage" => "mypages#show"
 
