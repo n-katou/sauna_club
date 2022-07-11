@@ -1,1 +1,22 @@
 いいねした投稿一覧
+<div class="container">
+  <div class="row">
+    <% @favorites.each do |favorite| %>
+    <div>
+      <p><%= image_tag favorite.customer.profile_image,size: "100x100" %> <%= link_to favorite.post.title,post_path(favorite.post.id) %></p>
+    </div>
+    <div>
+      <p><%= favorite.customer.account_name %></p>
+    </div>
+    <div>
+      <p><%= favorite.post.created_at.strftime('%Y%m/%d')%> | <%= favorite.post.comments.count %>件 |  <%= favorite.post.favorites.count %>いいね  </p>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <p class="text-center">
+      <%= link_to "新規投稿する",new_post_path,class: "btn btn-primary" %>
+    </p>
+  </div>
+</div>
