@@ -31,18 +31,24 @@
     <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-success" %>
   <% end %>
   <%= @post.created_at.strftime('%Y%m/%d')%> | <%= @post.comments.count %>件 |
-    <% if @post.favorited_by?(current_customer) %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :delete do %>
+  <% unless @post.customer == current_customer %>
+      <% if @post.favorited_by?(current_customer) %>
+      <p>
+        <%= link_to post_favorites_path(@post), method: :delete do %>
+          ♥<%= @post.favorites.count %> いいね
+        <% end %>
+      </p>
+      <% else %>
+      <p>
+        <%= link_to post_favorites_path(@post), method: :post do %>
+          ♡<%= @post.favorites.count %> いいね
+        <% end %>
+      </p>
+    <% end %>
+  <% else %>
+      <p>
         ♥<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :post do %>
-        ♡<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
+      </p>
   <% end %>
   <div class ="row">
     <p><%= @post.comments.count %>件コメント</p>

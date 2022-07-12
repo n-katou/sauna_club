@@ -2,6 +2,7 @@ class FavoritesController < ApplicationController
   def index
     favorites = Favorite.all
     @favorites= current_customer.favorites
+    # @favorites = Favorite.where.not(customer_id: current_customer.id).group(:post_id)
   end
 
   def create

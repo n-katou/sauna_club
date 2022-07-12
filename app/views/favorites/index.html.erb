@@ -3,7 +3,7 @@
   <div class="row">
     <% @favorites.each do |favorite| %>
     <div>
-      <p><%= image_tag favorite.customer.profile_image,size: "100x100" %> <%= link_to favorite.post.title,post_path(favorite.post.id) %></p>
+      <p><%= image_tag favorite.post.customer.profile_image,size: "100x100" %> <%= link_to favorite.post.title,post_path(favorite.post.id) %></p>
     </div>
     <div>
       <p><%= favorite.customer.account_name %></p>
