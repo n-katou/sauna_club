@@ -1,1 +1,46 @@
-管理者投稿詳細
+<div class="container">
+  <div class="row mx-auto">
+      <table>
+        <tr>
+          <td><%= image_tag @post.customer.get_profile_image(100,100) %></td>
+        </tr>
+        <tr>
+          <td><%= @post.customer.account_name %></td>
+        </tr>
+        <tr>
+          <td><%= @post.title %></td>
+        </tr>
+        <tr>
+          <td>
+            <% if @post.post_image.attached? %>
+              <%= image_tag @post.post_image, size: "150x150" %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= @post.post_content %></td>
+        </tr>
+        <% @post.tags.each do |tag| %>
+          <tr>
+            <td><%= tag.tag_name %></td>
+          </tr>
+        <% end %>
+      </table>
+  </div>
+    <%= link_to "編集する", edit_admin_post_path(@post.id), class: "btn btn-success" %>
+  <%= @post.created_at.strftime('%Y%m/%d')%> | <%= @post.comments.count %>件 |
+      <p>
+        ♥<%= @post.favorites.count %> いいね
+      </p>
+  <div class ="row">
+    <p><%= @post.comments.count %>件コメント</p>
+  </div>
+  <div class ="row">
+    <% @comments.each do |comment| %>
+      <%= image_tag comment.customer.get_profile_image(100,100) %>
+      <%= comment.created_at.strftime('%Y%m/%d') %>
+      <%= comment.comment_content %>
+        <p><%= link_to "削除", admin_comment_path(comment.id),method: :delete,class: "btn btn-danger","data-confirm" => "本当に削除しますか？"%></p>
+    <% end %>
+  </div>
+</div>

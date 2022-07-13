@@ -41,6 +41,8 @@ Rails.application.routes.draw do
     resources :tags, only: [:index,:create,:edit,:destroy,:update]
 
     resources :customers, only: [:index,:show,:edit,:update]
+    
+    resources :comments, only: [:destroy]
   end
 
 

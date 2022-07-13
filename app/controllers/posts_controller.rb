@@ -33,7 +33,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @comments = Comment.all
+    @comments = Comment.all #投稿ごとにコメントを表示させたい　記述方法を知りたい。
   end
 
   private
