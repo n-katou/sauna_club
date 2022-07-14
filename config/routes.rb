@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-  root to: "homes#top"
+
 
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "customer/registrations",
   sessions: 'customer/sessions'
   }
-
-  get '/' => "homes#top", as: "home"
+  root to: "homes#top"
   get '/about' => "homes#about", as: "about"
 
   resources :posts do
@@ -16,7 +15,7 @@ Rails.application.routes.draw do
   get "/favorites" => "favorites#index",as: "favorites"
 
   get "/customers/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
-  patch "/customers/withdraw" => "customer#withdraw", as: "withdraw"
+  patch "/customers/withdraw" => "customers#withdraw", as: "withdraw"
   resources :customers, only: [:index,:show,:edit,:update] do
 
   resource :relationships,only: [:create,:destroy]
@@ -41,7 +40,7 @@ Rails.application.routes.draw do
     resources :tags, only: [:index,:create,:edit,:destroy,:update]
 
     resources :customers, only: [:index,:show,:edit,:update]
-    
+
     resources :comments, only: [:destroy]
   end
 

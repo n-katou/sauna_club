@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2022_07_09_180043) do
     t.string "account_name"
     t.date "birth_date"
     t.text "introduction"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true

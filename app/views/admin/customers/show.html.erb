@@ -1,1 +1,60 @@
 管理者会員詳細
+<div class="container">
+  <div class="row">
+    <div>
+      <h1>登録情報    <%= link_to "編集する", edit_admin_customer_path(@customer.id),class: "btn btn-success" %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class= "col-8">
+      <table>
+        <tbody>
+          <tr>
+            <br><br>
+            <td><h3>アカウント画像</h3></td>
+            <td><%= image_tag @customer.get_profile_image(100,100)%></td>
+          </tr>
+          <tr>
+            <td><br><br><h3>アカウント名</h3></td>
+            <td><br><br><%= @customer.account_name %></td>
+          </tr>
+          <tr>
+            <td><br><br><h3>メールアドレス</h3></td>
+            <td><br><br><%= @customer.email %></td>
+          </tr>
+          <tr>
+            <td><br><br><h3>生年月日</h3></td>
+            <td><br><br><%= @customer.birth_date %></td>
+          </tr>
+          <tr>
+            <td><br><br><h3>自己紹介</h3></td>
+            <td><br><br><%= @customer.introduction %></td>
+          </tr>
+          <tr>
+            <td><br><br><h3>ステータス</h3></td>
+            <td><br><br>
+               <% if @customer.is_active == true %>
+                <p>有効</p>
+              <% elsif @customer.is_active == false %>
+                <p>退会</p>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  <div class="row">
+     <h1>投稿一覧</h1>
+    <% @customer.posts.each do |post| %>
+      <p><%= image_tag post.customer.get_profile_image(100,100) %></p>
+      <%= link_to post.title,admin_post_path(post.id) %>
+      <%= post.created_at.strftime('%Y%m/%d') %> |
+      <%= post.comments.count %>コメント |
+      <%= post.favorites.count %>いいね
+    <% end %>
+  </div>
+  <div class="row">
+
+  </div>
+</div>

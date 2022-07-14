@@ -1,1 +1,25 @@
 管理者会員一覧
+<div class="container">
+  <h1>会員</h1>
+  <div class="row">
+    <% @customers.each do |customer| %>
+      <table class="table">
+        <tbody>
+          <tr>
+              <%= link_to admin_customer_path(customer.id) do %>
+                <%= image_tag customer.get_profile_image(100,100) %><br>
+              <% end %>
+              <%= customer.id %><br>
+              <%= customer.account_name %><br>
+              <%= customer.email %><br>
+              <% if customer.is_active == true %>
+                <p>有効</p>
+              <% elsif customer.is_active == false %>
+                <p>退会</p>
+              <% end %>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+  </div>
+</div>
