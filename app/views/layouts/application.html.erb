@@ -71,7 +71,7 @@
                     <%= link_to "会員ログイン",  new_customer_session_path,class: "btn btn-secondary" %>
                   </td>
                   <td>
-                    <%#= link_to  "ゲストログイン",new_customer_session_path,class: "btn btn-secondary" %>
+                    <%= link_to 'ゲストログイン', customer_guest_sign_in_path, method: :post, class: "btn btn-secondary" %>
                   </td>
                  </tr>
               </table>

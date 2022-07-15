@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   registrations: "customer/registrations",
   sessions: 'customer/sessions'
   }
+  devise_scope :customer do
+    post 'customer/guest_sign_in', to: 'customer/sessions#new_guest' #ゲストログイン
+  end
+
   root to: "homes#top"
   get '/about' => "homes#about", as: "about"
 
@@ -43,8 +47,6 @@ Rails.application.routes.draw do
 
     resources :comments, only: [:destroy]
   end
-
-
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

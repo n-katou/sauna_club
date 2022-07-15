@@ -1,7 +1,12 @@
 <div class="container">
   <div class="row">
     <div>
-      <h1>登録情報    <%= link_to "編集する", edit_customer_path(current_customer),class: "btn btn-success" %></h1>
+      <h1>
+        登録情報
+        <% if  %>
+          <%= link_to "編集する", edit_customer_path(current_customer),class: "btn btn-success" %>
+        <% end %>
+      </h1>
     </div>
   </div>
   <div class="row">
