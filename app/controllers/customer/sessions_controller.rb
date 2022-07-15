@@ -31,9 +31,10 @@ class Customer::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
-  def reject_inactive_customer #退会メソッド
+#退会メソッド
+  def reject_inactive_customer
       @customer = Customer.find_by(email: params[:customer][:email])
-      # return if !@customer
+      return if !@customer #これがないと存在しないアカウントでログインを行おうとするとエラーが出る。
       if @customer.valid_password?(params[:customer][:password])
         if @customer.is_active == true
         else

@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   def index
-    @customers = Customer.all
+    @customers = Customer.where(is_active: true)
   end
 
   def show
