@@ -5,7 +5,7 @@ class Admin::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = Comment.all #投稿ごとのコメントを表示させたい
+    @comments = @post.comments
   end
 
   def edit

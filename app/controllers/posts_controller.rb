@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:post_image, :title, :post_content, tag_ids: [])
+    params.require(:post).permit(:post_image, :title, :post_content, tag_ids: []) #tag_ids: []は配列を取り出す記述。
   end
 
 end
