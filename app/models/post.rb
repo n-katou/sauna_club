@@ -26,11 +26,7 @@ class Post < ApplicationRecord
 
   #キーワード検索
   def self.posts_search(keyword)
-    where(["title like? OR post_content like?", "%#{keyword}%", "%#{keyword}%"])
+    Post.where(["title like? OR post_content like?", "%#{keyword}%", "%#{keyword}%"])
   end
 
-　#タグ検索
-  def self.tags_search(keyword)
-    where(["tag_name like?", "%#{keyword}%"])
-  end
 end

@@ -42,10 +42,11 @@ class PostsController < ApplicationController
     @keyword = params[:keyword]
     render "index"
   end
-  
-  #タグ
+
+  #タグ検索
   def tags_search
-    @posts = Tag.tags_search(params[:keyword])
+    tags = Tag.all
+    @posts = tags.tags_search(params[:keyword])
     @keyword2 = params[:keyword]
     render "index"
   end

@@ -43,6 +43,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/" => "homes#top", as: "home"
 
+    get '/posts/search' => "posts#posts_search", as: "posts_search" #検索用
+    get '/tags/search' => "posts#tags_search", as: "tags_search" #検索用
+
     resources :posts, only: [:index,:show,:edit,:destroy,:update]
 
     resources :tags, only: [:index,:create,:edit,:destroy,:update]

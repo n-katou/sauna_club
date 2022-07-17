@@ -24,6 +24,21 @@ class Admin::PostsController < ApplicationController
     redirect_to admin_post_path(post.id)
   end
 
+  #キーワード検索
+  def posts_search
+    @posts = Post.posts_search(params[:keyword])
+    @keyword = params[:keyword]
+    render "index"
+  end
+
+  #タグ検索
+  def tags_search
+    tags = Tag.all
+    @posts = tags.tags_search(params[:keyword])
+    @keyword2 = params[:keyword]
+    render "index"
+  end
+
   private
 
   def post_params
