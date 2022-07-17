@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :taggings, dependent: :destroy
-  has_many :tags, through: :taggings #上にスルーするtaggingsが来ないとエラーになる。
+  has_many :tags, through: :taggings #上にスルーするtaggingsが来ないとエラーになる。イメージとしてtagとpostを直接繋いだようなイメージ
 
   # post = Post.new
   # post.tags　#これで紐づいたタグを簡単に持ってこれる。
@@ -24,4 +24,13 @@ class Post < ApplicationRecord
     favorites.exists?(customer_id: customer.id) #これの意味もいまいちわからない
   end
 
+  #キーワード検索
+  def self.posts_search(keyword)
+    where(["title like? OR post_content like?", "%#{keyword}%", "%#{keyword}%"])
+  end
+
+　#タグ検索
+  def self.tags_search(keyword)
+    where(["tag_name like?", "%#{keyword}%"])
+  end
 end

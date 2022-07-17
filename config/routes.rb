@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get '/about' => "homes#about", as: "about"
 
+  get '/posts/search' => "posts#posts_search", as: "posts_search" #検索用
+  get '/tags/search' => "posts#tags_search", as: "tags_search" #検索用
+
   resources :posts do
     resource :favorites, only: [:destroy,:create] #なぜリソース
     resources :comments, only: [:edit,:create,:update,:destroy]
@@ -25,6 +28,7 @@ Rails.application.routes.draw do
   resource :relationships,only: [:create,:destroy]
   get "followings" => "relationships#followings", as: "followings"
   get "followers" => "relationships#followers", as: "followers"
+
   end
 
   get "/mypage" => "mypages#show"

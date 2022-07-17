@@ -36,6 +36,20 @@ class PostsController < ApplicationController
     @comments = @post.comments  #投稿ごとにコメントを表示させたい　記述方法を知りたい。今の記述でそれができた。
   end
 
+  #キーワード検索
+  def posts_search
+    @posts = Post.posts_search(params[:keyword])
+    @keyword = params[:keyword]
+    render "index"
+  end
+  
+  #タグ
+  def tags_search
+    @posts = Tag.tags_search(params[:keyword])
+    @keyword2 = params[:keyword]
+    render "index"
+  end
+
   private
 
   def post_params
