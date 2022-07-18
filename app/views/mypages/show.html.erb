@@ -1,5 +1,10 @@
 <div class="container">
   <div class="row">
+    <div class="mx-auto">
+      <h1>マイページ</h1>
+    </div>
+  </div>
+  <div class="row">
     <div>
       <h1>
         登録情報
@@ -9,53 +14,92 @@
       </h1>
     </div>
   </div>
-  <div class="row">
-    <div class= "col-8">
-      <table>
-        <tbody>
-          <tr>
-            <br><br>
-            <td><h3>アカウント画像</h3></td>
-            <td><%= image_tag @customer.get_profile_image(100,100)%></td>
-          </tr>
-          <tr>
-            <td><br><br><h3>アカウント名</h3></td>
-            <td><br><br><%= @customer.account_name %></td>
-          </tr>
-          <tr>
-            <td><br><br><h3>メールアドレス</h3></td>
-            <td><br><br><%= @customer.email %></td>
-          </tr>
-          <tr>
-            <td><br><br><h3>生年月日</h3></td>
-            <td><br><br><%= @customer.birth_date %></td>
-          </tr>
-          <tr>
-            <td><br><br><h3>自己紹介</h3></td>
-            <td><br><br><%= @customer.introduction %></td>
-          </tr>
-        </tbody>
-      </table>
+
+  <div class="row mx-auto">
+    <div class= "col-4">
+      <h3>アカウント画像</h3>
     </div>
     <div class="col-4">
-      <br><br><br><p><%= link_to "新規登録する", new_post_path, class: "btn btn-info" %></p><br><br><br>
-      <p><%= link_to "フォローした会員一覧",customer_followings_path(@customer.id), class: "btn btn-info" %></p><br><br><br>
-      <p><%= link_to "いいねした投稿一覧",favorites_path, class: "btn btn-info" %></p><br><br><br>
+      <%= image_tag @customer.get_profile_image(100,100)%>
+    </div>
+    <div class="col-4">
+      <%= link_to "新規登録する", new_post_path, class: "btn btn-info" %>
     </div>
   </div>
+
+  <div class="row mx-auto">
+    <div class="col-4">
+      <h3>アカウント名</h3>
+    </div>
+    <div class="col-4">
+      <%= @customer.account_name %>
+    </div>
+    <div class="col-4"></div>
+  </div>
+
+  <div class="row mx-auto">
+    <div class="col-4">
+      <h3>メールアドレス</h3>
+    </div>
+    <div class="col-4">
+      <%= @customer.email %>
+    </div>
+    <div class="col-4">
+      <%= link_to "フォローした会員一覧",customer_followings_path(@customer.id), class: "btn btn-info" %>
+    </div>
+  </div>
+
+  <div class="row mx-auto">
+    <div class="col-4">
+      <h3>生年月日</h3>
+    </div>
+    <div class="col-4">
+      <%= @customer.birth_date %>
+    </div>
+    <div class="col-4"></div>
+  </div>
+
+  <div class="row mx-auto">
+    <div class="col-4">
+      <h3>自己紹介</h3>
+    </div>
+    <div class="col-4">
+      <%= @customer.introduction %>
+    </div>
+    <div class="col-4">
+      <%= link_to "いいねした投稿一覧",favorites_path, class: "btn btn-info" %>
+    </div>
+  </div>
+
   <div class="row">
     <h1>自分の投稿一覧</h1>
+    <br><br><br>
   </div>
-  <div class="row">
-    <% @customer.posts.each do |post| %>
-      <%= image_tag post.customer.get_profile_image(100,100) %>
-      <%= link_to post.title,post_path(post.id) %>
-      <%= post.created_at.strftime('%Y%m/%d') %> |
-      <%= post.comments.count %>コメント |
-      <%= post.favorites.count %>いいね
-    <% end %>
-  </div>
-  <div class="row">
+  <% @customer.posts.each do |post| %>
+    ____________________________________________________________________________________________
+    <br><br>
+    <div class="row">
+      <div class="col-4">
+        <%= image_tag post.customer.get_profile_image(100,100) %>
+      </div>
+      <div class="col-4">
+        <%= link_to post.title,post_path(post.id) %>
+      </div>
+    </div>
+    <div class="row">
+      <br>
+      <div class="col-4">
+        <%= post.customer.account_name %>
+      </div>
+      <br><br>
+    </div>
+    <div class="row">
+      <div class="col-2"><%= post.created_at.strftime('%Y%m/%d') %> |</div>
+      <div class="col-2"><%= post.comments.count %>コメント |</div>
+      <div class="col-2"><%= post.favorites.count %>いいね</div>
+    </div>
+    ____________________________________________________________________________________________
+    <br>
+  <% end %>
 
-  </div>
 </div>
