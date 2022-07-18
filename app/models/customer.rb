@@ -50,7 +50,6 @@ class Customer < ApplicationRecord
     followings.include?(customer)
   end
 
-
   #ゲストログイン
   def self.guest
     find_or_create_by!(email: 'aaa@aaa.com') do |customer|
@@ -58,6 +57,11 @@ class Customer < ApplicationRecord
       customer.password_confirmation = customer.password
       customer.account_name = 'ゲスト'
     end
+  end
+
+  #ゲストログインの閲覧のみのメソッド
+  def guest?
+    email == 'aaa@aaa.com'
   end
 
 end

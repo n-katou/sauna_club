@@ -28,7 +28,6 @@ class CustomersController < ApplicationController
     reset_session
     redirect_to root_path
   end
-  
 
   private
 

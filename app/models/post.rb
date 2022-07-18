@@ -26,7 +26,12 @@ class Post < ApplicationRecord
 
   #キーワード検索
   def self.posts_search(keyword)
-    Post.where(["title like? OR post_content like?", "%#{keyword}%", "%#{keyword}%"])
+    Post.where(["title like? OR post_content like?", "%#{sanitize_sql_like(keyword)}%", "%#{sanitize_sql_like(keyword)}%"])
+  end
+
+  #タグ検索
+  def self.tags_search(keyword)
+    Post.joins(:tags).where("tags.tag_name LIKE ?","%#{sanitize_sql_like(keyword)}%") #joinsでhas_many or has_one IDを繋げる。
   end
 
 end
