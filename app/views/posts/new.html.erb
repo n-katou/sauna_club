@@ -1,32 +1,71 @@
 <div class="container">
-<h3>新規投稿</h3>
-  <div class="row text-center">
-    <div class="col mx-auto" >
-    <%= form_with model: @post, url: "/posts" ,method: :post do |f| %>
-      <table class= "table table-borderless">
-         <tr>
-          <th>タイトル</th>
-          <th><%= f.text_field :title %></th>
-        </tr>
-        <tr>
-          <th>商品画像</th>
-          <th><%= f.file_field :post_image, accept: "image/*" %></th>
-        </tr>
-        <tr>
-          <th>詳細</th>
-          <th><%= f.text_area :post_content %></th>
-        </tr>
-        <tr>
-          <th>タグ</th>
-          <th>
-            <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_name do |b| %>
-              <%= b.label { b.check_box + b.text } %>
-            <% end %>
-          </th>
-        </tr>
-      </table>
-      <%= f.submit "投稿" , class: "btn btn-primary" %>
-    <% end %>
+<h1>新規投稿</h1>
+  <%= form_with model: @post, url: "/posts" ,method: :post do |f| %>
+    <br><br>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-2">
+        <h3>
+          タイトル
+        </h3>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-6 d-flex align-items-center">
+        <%= f.text_field :title %>
+      </div>
     </div>
-  </div>
+
+    <br><br>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-2">
+        <h3>
+          投稿画像
+        </h3>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-6 d-flex align-items-center">
+        <%= f.file_field :post_image, accept: "image/*" %>
+      </div>
+    </div>
+
+    <br><br>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-2">
+        <h3>
+          詳細
+        </h3>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-6 d-flex align-items-center">
+        <%= f.text_area :post_content %>
+      </div>
+    </div>
+
+    <br><br>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-2">
+        <h3>
+          タグ
+        </h3>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-6 d-flex align-items-center">
+        <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_name do |b| %>
+          <%= b.label { b.check_box + b.text } %>
+        <% end %>
+      </div>
+    </div>
+
+    <br><br>
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-2">
+        <%= f.submit "投稿する" , class: "btn btn-primary" %>
+      </div>
+    </div>
+    <br><br><br><br><br>
+  <% end %>
 </div>
