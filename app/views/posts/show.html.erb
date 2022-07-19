@@ -1,12 +1,13 @@
 <div class="container">
   <br><br>
   <div class="border">
+    <br>
     <div class ="row">
       <div class="col-3"></div>
       <div class="col-6">
         <div class="border rounded">
           <h4 class="text-center">タイトル</h4>
-          <%= @post.title %>
+          <strong><%= @post.title %></strong>
         </div>
       </div>
     </div>
@@ -28,7 +29,7 @@
         <div class="border rounded">
           <h4 class="text-center">本文</h4>
           <br><br>
-          <%= @post.post_content %>
+          <strong><%= @post.post_content %></strong>
         </div>
       </div>
     </div>
@@ -40,7 +41,7 @@
         <div class="border rounded">
           <h4 class="text-center">タグ</h4>
           <% @post.tags.each do |tag| %>
-            <p><%= tag.tag_name %></p>
+            <strong><%= tag.tag_name %></strong>
           <% end %>
         </div>
       </div>
