@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   #ゲストログインで投稿のみ閲覧メソッド
   def restrict_guest_user
     if current_customer&.guest? # &あることによって、エラーを出さずに通過させられる。
-      redirect_to posts_path,alert: "ゲストユーザーは書き込み出来ません"
+      redirect_to error_path
     end
   end
 

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   root to: "homes#top"
   get '/about' => "homes#about", as: "about"
+  get "/error" => "homes#error", as: "error"
 
   get '/posts/search' => "posts#posts_search", as: "posts_search" #検索用
   get '/tags/search' => "posts#tags_search", as: "tags_search" #検索用
