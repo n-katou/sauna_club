@@ -1,68 +1,129 @@
 <div class="container">
-  <div class="row mx-auto">
-      <table>
-        <tr>
-          <td><%= image_tag @post.customer.get_profile_image(100,100) %></td>
-        </tr>
-        <tr>
-          <td><%= @post.customer.account_name %></td>
-        </tr>
-        <tr>
-          <td><%= @post.title %></td>
-        </tr>
-        <tr>
-          <td>
-            <% if @post.post_image.attached? %>
-              <%= image_tag @post.post_image, size: "150x150" %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td><%= @post.post_content %></td>
-        </tr>
-        <% @post.tags.each do |tag| %>
-          <tr>
-            <td><%= tag.tag_name %></td>
-          </tr>
-        <% end %>
-      </table>
-  </div>
-  <% if @post.customer == current_customer %>
-    <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-success" %>
-  <% end %>
-  <%= @post.created_at.strftime('%Y%m/%d')%> | <%= @post.comments.count %>件 |
-  <% unless @post.customer == current_customer %>
-    <% if @post.favorited_by?(current_customer) %>
-      <p>
-        <%= link_to post_favorites_path(@post), method: :delete do %>
-          ♥<%= @post.favorites.count %> いいね
-        <% end %>
-      </p>
-    <% else %>
-      <p>
-        <%= link_to post_favorites_path(@post), method: :post do %>
-          ♡<%= @post.favorites.count %> いいね
-        <% end %>
-      </p>
-    <% end %>
-  <% else %>
-      <p>
-        ♥<%= @post.favorites.count %> いいね
-      </p>
-  <% end %>
+  <br><br><br><br><br>
   <div class ="row">
-    <p><%= @post.comments.count %>件コメント</p>
+    <div class="col-5"></div>
+    <div class="col-6 d-flex align-items-center">
+        <h1><%= @post.title %></h1>
+    </div>
   </div>
-  <div class ="row">
-    <% @comments.each do |comment| %>
-      <%= image_tag comment.customer.get_profile_image(100,100) %>
-      <%= comment.created_at.strftime('%Y%m/%d') %>
-      <%= comment.comment_content %>
-      <% if comment.customer == current_customer %>
-        <p><%= link_to "編集する", edit_post_comment_path(comment.id),class: "btn btn-success"%></p>
+
+  <br><br>
+  <div class="row">
+    <div class="col-5"></div>
+    <div class="col-6">
+      <% if @post.post_image.attached? %>
+        <%= image_tag @post.post_image, size: "150x150" %>
       <% end %>
-    <% end %>
+    </div>
   </div>
+
+  <br><br>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-6">
+      <h4>本文</h4>
+      <%= @post.post_content %>
+    </div>
+  </div>
+
+  <br><br>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-6">
+      <h4>タグ</h4>
+      <% @post.tags.each do |tag| %>
+        <p><%= tag.tag_name %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <br><br>
+  <div class="row">
+    <div class="col-5"></div>
+    <div class="col-4">
+      <% if @post.customer == current_customer %>
+        <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+
+  <br><br>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-4">
+      <p>投稿者</p>
+      <%= image_tag @post.customer.get_profile_image(100,100) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-2">
+      <a><%= @post.customer.account_name %></a>
+    </div>
+    <div class="col-2"></div>
+    <div class="col">
+      <p>投稿日 <%= @post.created_at.strftime('%Y%m/%d')%> | コメント数 <%= @post.comments.count %>件 |
+        <% unless @post.customer == current_customer %>
+          <% if @post.favorited_by?(current_customer) %>
+            <p>
+              <%= link_to post_favorites_path(@post), method: :delete do %>
+                ♥<%= @post.favorites.count %> いいね
+              <% end %>
+            </p>
+          <% else %>
+            <p>
+              <%= link_to post_favorites_path(@post), method: :post do %>
+                ♡<%= @post.favorites.count %> いいね
+              <% end %>
+            </p>
+          <% end %>
+        <% else %>
+          <p>
+            ♥<%= @post.favorites.count %> いいね
+          </p>
+        <% end %>
+      </p>
+    </div>
+  </div>
+
+
+
+  <div class ="row">
+    <h3><%= @post.comments.count %>件コメント</h3>
+  </div>
+  <br><br>
+
+  <% @comments.each do |comment| %>
+    <div class ="row">
+      <div class="col-4"></div>
+      <div class="col-3">
+        <%= comment.created_at.strftime('%Y%m/%d') %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-2">
+         <%= image_tag comment.customer.get_profile_image(100,100) %>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-4">
+        <%= comment.comment_content %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6"></div>
+      <div class="col-2">
+        <% if comment.customer == current_customer %>
+          <p><%= link_to "編集する", edit_post_comment_path(comment.id),class: "btn btn-success"%></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+
   <div class="row">
     <p>コメントする</p>
   </div>
