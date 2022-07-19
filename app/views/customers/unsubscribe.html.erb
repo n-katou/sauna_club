@@ -6,5 +6,14 @@
   <p>これまでの投稿履歴が閲覧できなくなります。</p>
   <p>退会する場合は、「退会する」をクリックしてください。</p>
   <br><br>
-  <%= link_to "退会しない" , mypage_path(current_customer),class: "btn btn-primary" %> <%= link_to "退会する" , withdraw_path(current_customer) ,method: :patch, "data-confirm" => "本当に退会しますか？",class: "btn btn-danger" %>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-2">
+      <%= link_to "退会しない" , mypage_path(current_customer),class: "btn btn-primary" %>
+    </div>
+    <div class="col-2">
+      <%= link_to "退会する" , withdraw_path(current_customer) ,method: :patch, "data-confirm" => "本当に退会しますか？",class: "btn btn-danger" %>
+    </div>
+  </div>
+  <br><br><br><br><br>
 </div>
