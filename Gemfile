@@ -61,3 +61,4 @@ gem 'cocoon'
 
 gem 'jquery-rails'
 gem 'select2-rails'
+gem 'kaminari','~> 1.2.1'
