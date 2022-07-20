@@ -1,8 +1,9 @@
 <div class="container">
-<h3>投稿編集</h3>
-  <div class="row text-center">
-    <div class="col mx-auto" >
-    <%= form_with model: @post,url: post_path(@post.id) ,method: :patch do |f| %>
+<br><br>
+<h1>投稿編集</h1>
+  <%= form_with model: @post,url: post_path(@post.id) ,method: :patch do |f| %>
+  <div class="row">
+    <div class="col-2"></div>
       <table class= "table table-borderless">
          <tr>
           <th>タイトル</th>

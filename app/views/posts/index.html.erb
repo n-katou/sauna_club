@@ -37,7 +37,10 @@
     </div>
     <br><br>
     <% end %>
-    <%#= paginate posts %>
+    <div class="row">
+      <div class="col text-center"><%= paginate @posts %></div>
+    </div>
+  <br><br>
   <div class="row">
     <div class="col text-center">
       <%= link_to "新規投稿する",new_post_path,class: "btn btn-primary" %>
