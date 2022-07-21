@@ -5,6 +5,7 @@ class Admin::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @posts = @customer.posts.order("created_at ASC").page(params[:page]).per(5)
   end
 
   def edit
