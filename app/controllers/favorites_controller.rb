@@ -1,7 +1,6 @@
 class FavoritesController < ApplicationController
   def index
-    favorites = Favorite.all
-    @favorites= current_customer.favorites
+    @favorites= current_customer.favorites.order("created_at DESC").page(params[:page])
     # @favorites = Favorite.where.not(customer_id: current_customer.id).group(:post_id)
   end
 

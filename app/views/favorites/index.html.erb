@@ -1,17 +1,45 @@
-いいねした投稿一覧
 <div class="container">
   <div class="row">
-    <% @favorites.each do |favorite| %>
-    <div>
-      <p><%= image_tag favorite.post.customer.profile_image,size: "100x100" %> <%= link_to favorite.post.title,post_path(favorite.post.id) %></p>
-    </div>
-    <div>
-      <p><%= favorite.customer.account_name %></p>
-    </div>
-    <div>
-      <p><%= favorite.post.created_at.strftime('%Y%m/%d')%> | <%= favorite.post.comments.count %>件 |  <%= favorite.post.favorites.count %>いいね  </p>
-    </div>
-    <% end %>
+    <h1>いいねした投稿一覧</h1>
   </div>
+  <br><br>
+    <% @favorites.each do |favorite| %>
 
+    <div class="border">
+      <div class="row">
+        <div class="col-2">
+          <%= image_tag favorite.post.customer.profile_image,size: "100x100" %>
+        </div>
+        <div clss="col-4">
+          <h4>タイトル   <%= link_to favorite.post.title,post_path(favorite.post.id) %></h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <br>
+        <div class="col-2">
+          <%= favorite.customer.account_name %>
+        </div>
+        <div class="col-6">
+          <% favorite.post.tags.each do |tag| %>
+            <p><%= tag.tag_name %></p>
+          <% end %>
+        </div>
+        <br><br>
+      </div>
+
+      <div class="row">
+        <div class="col-6"></div>
+        <div class="col-2">投稿日 <%= favorite.post.created_at.strftime('%Y%m/%d')%></div>
+        <div class="col-2">コメント数 <%= favorite.post.comments.count %>件</div>
+        <div class="col-2"><%= favorite.post.favorites.count %>いいね</div>
+      </div>
+    </div>
+    <br><br>
+    <% end %>
+    <div class="row">
+      <div class="col text-center"><%= paginate @favorites %></div>
+    </div>
+
+  <br><br><br><br><br>
 </div>

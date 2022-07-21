@@ -49,6 +49,30 @@
 
     <br><br>
     <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6 text-center">
+        <div class="border rounded">
+          <% unless @post.customer == current_customer %>
+            <% if @post.favorited_by?(current_customer) %>
+              <h4>
+                <%= link_to post_favorites_path(@post), method: :delete do %>
+                  💔いいね解除
+                <% end %>
+              </h4>
+            <% else %>
+              <h4>
+                <%= link_to post_favorites_path(@post), method: :post do %>
+                  💖いいねする
+                <% end %>
+              </h4>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <br><br>
+    <div class="row">
       <div class="col-10"></div>
       <div class="col-2">
         <% if @post.customer == current_customer %>
@@ -75,29 +99,13 @@
         </div>
         <div class="col-2"></div>
         <div class="col">
-          <p>投稿日 <%= @post.created_at.strftime('%Y%m/%d')%> | コメント数 <%= @post.comments.count %>件 |
-            <% unless @post.customer == current_customer %>
-              <% if @post.favorited_by?(current_customer) %>
-                <p>
-                  <%= link_to post_favorites_path(@post), method: :delete do %>
-                    ♥<%= @post.favorites.count %> いいね
-                  <% end %>
-                </p>
-              <% else %>
-                <p>
-                  <%= link_to post_favorites_path(@post), method: :post do %>
-                    ♡<%= @post.favorites.count %> いいね
-                  <% end %>
-                </p>
-              <% end %>
-            <% else %>
-              <p>
-                ♥<%= @post.favorites.count %> いいね
-              </p>
-            <% end %>
+          <p>投稿日 <%= @post.created_at.strftime('%Y%m/%d')%> | コメント数 <%= @post.comments.count %>件 |　いいね数 💖<%= @post.favorites.count %>
+
+
           </p>
         </div>
       </div>
+
     </div>
   </div>
 
