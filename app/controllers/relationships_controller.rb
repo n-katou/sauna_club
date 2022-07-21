@@ -8,7 +8,7 @@ class RelationshipsController < ApplicationController
   #フォローはずす時
   def destroy
     current_customer.unfollow(params[:customer_id])
-    redirect_to request.referer
+    redirect_to request.referer #request.refererでそのページに戻るという意味
   end
 
   # フォロー一覧
