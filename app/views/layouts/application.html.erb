@@ -110,9 +110,12 @@
 
           <% else %>
           <div class="row">
-            <div class="col-4">
-              <h2>サウナ倶楽部</h2>
+            <div class="col-3 d-flex align-items-center">
+                <%= link_to root_path, class: "navbar-toggler" do %>
+                  <h2>サウナ倶楽部</h2>
+                <% end %>
             </div>
+            <div class="col-1"></div>
             <div class="col-2 d-flex align-items-center">
               <p class="text-center"><%= link_to "About", about_path,class: "btn btn-secondary" %></p>
             </div>

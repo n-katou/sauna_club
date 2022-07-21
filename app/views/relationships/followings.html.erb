@@ -1,7 +1,8 @@
 <div class="container">
     <h1>フォローした会員</h1>
     <br><br>
-  <!--<% if @customers.exists? %> #存在する確認するメソッド-->
+  <!--exists?はオブジェクトが存在するか確認するメソッド-->
+  <% if @customers.exists? %>
     <% @customers.each do |customer| %>
       <div class="border">
         <div class ="row">
@@ -18,9 +19,7 @@
           <div class="col d-flex align-items-center">
             <% if current_customer != customer %>
                 <% if current_customer.following?(customer) %>
-                  <%= link_to "フォローをはずす", customer_relationships_path(customer.id), method: :delete, class: "btn btn-danger" %>
-                <% else %>
-                  <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-primary"%>
+                  <%= link_to "フォローをはずす", customer_relationships_path(customer.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当にフォロー解除しますか？" %>
                 <% end %>
             <% end %>
           </div>
