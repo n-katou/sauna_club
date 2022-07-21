@@ -1,46 +1,86 @@
-<div class="row">
-  <div class="mx-auto">
-    <h1>会員情報編集</h1>
-  </div>
-</div>
-<div class="row">
-  <div class= "mx-auto">
+<br><br>
+<div class="container">
+    <div class="row">
+      <div class="mx-auto">
+        <h1>会員情報編集</h1>
+      </div>
+    </div>
+
   <%= form_with model: @customer,url: admin_customer_path(@customer.id), method: :patch do |f| %>
-    <table>
-      <tbody>
-        <tr>
-          <td><h3>アカウント画像</h3></td>
-          <td><%= f.file_field :profile_image %></td>
-        </tr>
-        <tr>
-          <td><h3>アカウント名</h3></td>
-          <td><%= f.text_field :account_name %></td>
-        </tr>
-        <tr>
-          <td><h3>メールアドレス</h3></td>
-          <td><%= f.text_field :email %></td>
-        </tr>
-        <tr>
-          <td><h3>生年月日</h3></td>
-          <td><%= f.date_field :birth_date %></td>
-        </tr>
-        <tr>
-          <td><h3>自己紹介</h3></td>
-          <td><%= f.text_area :introduction %></td>
-        </tr>
-        <tr>
-          <td><h3>ステータス</h3></td>
-            <td>
-              <%= f.radio_button :is_active,"true" %>
-              <%= f.label :is_active,"有効" %>
-              <%= f.radio_button :is_active,"false" %>
-              <%= f.label :is_active,"退会" %>
-            </td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="text-center"><%= f.submit "編集内容を保存",class: "btn btn-success" %></p>
+    <div class="row">
+      <div class= "col-3"></div>
+      <div class= "col-4 d-flex align-items-center">
+        <h3>アカウント画像</h3>
+      </div>
+      <div class="col-4 d-flex align-items-center">
+        <%= f.file_field :profile_image %>
+      </div>
+    </div>
+    <br><br>
+
+    <div class="row">
+      <div class= "col-3"></div>
+      <div class="col-4 d-flex align-items-center">
+        <h3 class="d-flex align-items-center">アカウント名</h3>
+      </div>
+      <div class="col-4 d-flex align-items-center">
+        <%= f.text_field :account_name %>
+      </div>
+      <div class="col-4"></div>
+    </div>
+    <br><br>
+
+    <div class="row">
+      <div class= "col-3"></div>
+      <div class="col-4 d-flex align-items-center">
+        <h3>メールアドレス</h3>
+      </div>
+      <div class="col-4 d-flex align-items-center">
+        <%= f.text_field :email %>
+      </div>
+    </div>
+    <br><br>
+
+    <div class="row">
+      <div class= "col-3"></div>
+      <div class="col-4 d-flex align-items-center">
+        <h3>生年月日</h3>
+      </div>
+      <div class="col-4 d-flex align-items-center">
+        <%= f.date_field :birth_date %>
+      </div>
+      <div class="col-4"></div>
+    </div>
+    <br><br>
+
+    <div class="row">
+      <div class= "col-3"></div>
+      <div class="col-4 d-flex align-items-center">
+        <h3>自己紹介</h3>
+      </div>
+      <div class="col-4 d-flex align-items-center">
+        <%= f.text_area :introduction %>
+      </div>
+    </div>
+    <br><br>
+
+    <div class="row">
+      <div class= "col-3"></div>
+      <div class="col-4 d-flex align-items-center">
+        <h3>ステータス</h3>
+      </div>
+      <div class="col-4 d-flex align-items-center">
+        <%= f.radio_button :is_active,"true" %>
+        <%= f.label :is_active,"有効" %>
+        <%= f.radio_button :is_active,"false" %>
+        <%= f.label :is_active,"退会" %>
+      </div>
+    </div>
+    <br><br>
+
+    <div class="row">
+      <div class="mx-auto">
+         <%= f.submit "編集内容を保存",class: "btn btn-success" %>
+      </div>
+    </div>
   <% end %>
-  </div>
-</div>
-</div>
