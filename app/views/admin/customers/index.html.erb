@@ -1,25 +1,51 @@
-管理者会員一覧
 <div class="container">
-  <h1>会員</h1>
-  <div class="row">
+    <h1>会員一覧</h1>
+    <br><br>
     <% @customers.each do |customer| %>
-      <table class="table">
-        <tbody>
-          <tr>
-              <%= link_to admin_customer_path(customer.id) do %>
-                <%= image_tag customer.get_profile_image(100,100) %><br>
-              <% end %>
-              <%= customer.id %><br>
-              <%= customer.account_name %><br>
-              <%= customer.email %><br>
-              <% if customer.is_active == true %>
-                <p>有効</p>
-              <% elsif customer.is_active == false %>
-                <p>退会</p>
-              <% end %>
-          </tr>
-        </tbody>
-      </table>
-      <% end %>
+      <div class="border">
+        <div class ="row">
+          <div class="col-2">
+            <%= link_to admin_customer_path(customer.id) do %>
+              <%= image_tag customer.get_profile_image(100,100) %>
+            <% end %>
+          </div>
+          <div class="col-1">
+            <h4 class="text-center">会員ID</h4>
+            <p class="text-center"><%= customer.id %></p>
+          </div>
+          <div class="col-2">
+            <h4 class="text-center">アカウント名</h4>
+            <p class="text-center"><%= customer.account_name %></p>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-3">
+            <h4 class="text-center">メールアドレス</h4>
+            <p class="text-center"><%= customer.email %></p>
+          </div>
+           <div class="col-1"></div>
+          <div class="col-2">
+            <h4 class="text-center">ステータス</h4>
+            <% if customer.is_active == true %>
+              <p class="text-center">有効</p>
+            <% elsif customer.is_active == false %>
+              <p class="text-center">退会</p>
+            <% end %>
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-2">
+            <%= link_to admin_customer_path(customer.id) do %>
+              <%= customer.account_name %>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+      <br><br>
+    <% end %>
+    <div class="row">
+      <div class="col text-center"><%= paginate @customers %></div>
+    </div>
   </div>
-</div>
