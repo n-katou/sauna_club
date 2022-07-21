@@ -18,7 +18,9 @@
       <div class="row">
         <br>
         <div class="col-2">
-          <%= favorite.customer.account_name %>
+          <%= link_to customer_path(favorite.post.customer.id) do %>
+            <%= favorite.post.customer.account_name %>
+          <% end %>
         </div>
         <div class="col-6">
           <% favorite.post.tags.each do |tag| %>
