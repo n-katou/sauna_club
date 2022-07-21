@@ -1,5 +1,6 @@
 <div class="container">
     <h1>フォローした会員</h1>
+    <br><br>
   <% if @customers.exists? %>
     <% @customers.each do |customer| %>
       <div class="border">
@@ -29,9 +30,14 @@
           </div>
         </div>
       </div>
-      <br><br><br>
+      <br><br>
     <% end %>
+    
+    <div class="row">
+      <div class="col text-center"><%= paginate @customers %></div>
+    </div>
 
   <% else %>
     <h3>ユーザーはいません</h3>
   <% end %>
+  <br><br><br><br><br>

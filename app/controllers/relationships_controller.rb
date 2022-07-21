@@ -14,7 +14,7 @@ class RelationshipsController < ApplicationController
   # フォロー一覧
   def followings
     customer = Customer.find(params[:customer_id])
-    @customers = customer.followings
+    @customers = customer.followings.order("created_at DESC").page(params[:page]).per(5)
   end
 
   #　フォロワー一覧

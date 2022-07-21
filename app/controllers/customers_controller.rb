@@ -1,10 +1,11 @@
 class CustomersController < ApplicationController
   def index
-    @customers = Customer.where(is_active: true)
+    @customers = Customer.where(is_active: true).order("created_at ASC").page(params[:page]).per(5)
   end
 
   def show
     @customer = Customer.find(params[:id])
+    @posts = @customer.posts.order("created_at ASC").page(params[:page]).per(5)
   end
 
   def edit

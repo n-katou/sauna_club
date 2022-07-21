@@ -50,7 +50,7 @@ class Customer < ApplicationRecord
     followings.include?(customer)
   end
 
-  #ゲストログイン
+  #ゲストログイン sessions_controllerで使用
   def self.guest
     find_or_create_by!(email: 'aaa@aaa.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64
@@ -59,7 +59,7 @@ class Customer < ApplicationRecord
     end
   end
 
-  #ゲストログインの閲覧のみのメソッド
+  #ゲストログインの閲覧のみのメソッド　application_controllerで
   def guest?
     email == 'aaa@aaa.com'
   end

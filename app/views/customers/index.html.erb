@@ -1,25 +1,47 @@
 <div class="container">
-  <h1>会員</h1>
-  <div class="row">
+    <h1>会員一覧</h1>
+    <br><br>
     <% @customers.each do |customer| %>
-      <table class="table">
-        <tbody>
-          <tr>
-              <%= link_to customer_path(customer.id) do %>
-              <%= image_tag customer.get_profile_image(100,100) %><br>
-              <% end %>
-              <%= customer.account_name %><br>
-              <%= customer.introduction %><br>
-              <% if current_customer != customer %>
+      <div class="border">
+        <div class ="row">
+          <div class="col-2">
+            <%= link_to customer_path(customer.id) do %>
+              <%= image_tag customer.get_profile_image(100,100) %>
+            <% end %>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-4">
+            <h4>自己紹介</h4><%= customer.introduction %>
+          </div>
+          <div class="col-1"></div>
+          <div class="col d-flex align-items-center">
+            <% if current_customer != customer %>
                 <% if current_customer.following?(customer) %>
-                  <%= link_to "フォローをはずす", customer_relationships_path(customer.id), method: :delete %>
+                  <%= link_to "フォローをはずす", customer_relationships_path(customer.id), method: :delete, class: "btn btn-danger" %>
                 <% else %>
-                  <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post %>
+                  <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-primary"%>
                 <% end %>
               <% end %>
-          </tr>
-        </tbody>
-      </table>
-      <% end %>
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-2">
+            <%= customer.account_name %>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-2">
+            フォロー数: <%= customer.followings.count %>
+          </div>
+          <div class="col-2">
+            フォロワー数: <%= customer.followers.count %>
+          </div>
+        </div>
+      </div>
+      <br><br>
+    <% end %>
+    <div class="row">
+      <div class="col text-center"><%= paginate @customers %></div>
+    </div>
   </div>
-</div>

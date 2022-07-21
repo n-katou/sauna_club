@@ -1,24 +1,58 @@
+<br><br>
 <div class="container">
   <div class="row">
     <div class="mx-auto">
-      <table>
-        <tbody>
-          <tr>
-            <td><h2>アカウント画像</h2></td>
-            <td><%= image_tag @customer.get_profile_image(100,100) %></td>
-          </tr>
-          <tr>
-            <td><h2>アカウント名</h2></td>
-            <td><%= @customer.account_name %></td>
-          </tr>
-          <tr>
-            <td><h2>自己紹介</h2></td>
-            <td><%= @customer.introduction %></td>
-          </tr>
-        </tbody>
-      </table>
+      <h1><%= @customer.account_name %>のページ</h1>
     </div>
   </div>
+  <br><br>
+
+  <div class="row mx-auto">
+    <div class="col-3"></div>
+    <div class= "col-4 d-flex align-items-center">
+      <h3>アカウント画像</h3>
+    </div>
+    <div class="col-4 d-flex align-items-center">
+      <%= image_tag @customer.get_profile_image(100,100)%>
+    </div>
+  </div>
+  <br><br>
+
+  <div class="row mx-auto">
+    <div class="col-3"></div>
+    <div class="col-4 d-flex align-items-center">
+      <h3 class="d-flex align-items-center">アカウント名</h3>
+    </div>
+    <div class="col-4 d-flex align-items-center">
+      <%= @customer.account_name %>
+    </div>
+    <div class="col-4"></div>
+  </div>
+  <br><br>
+
+  <div class="row mx-auto">
+    <div class="col-3"></div>
+    <div class="col-4 d-flex align-items-center">
+      <h3>生年月日</h3>
+    </div>
+    <div class="col-4 d-flex align-items-center">
+      <%= @customer.birth_date %>
+    </div>
+    <div class="col-4"></div>
+  </div>
+  <br><br>
+
+  <div class="row mx-auto">
+    <div class="col-3"></div>
+    <div class="col-4 d-flex align-items-center">
+      <h3>自己紹介</h3>
+    </div>
+    <div class="col-4 d-flex align-items-center">
+      <%= @customer.introduction %>
+    </div>
+  </div>
+  <br><br>
+
   <div class="row">
     <div class="mx-auto">
       <p>
@@ -33,17 +67,43 @@
     </div>
   </div>
 
+  <div class="row">
+    <h1><%= @customer.account_name %>の投稿一覧</h1>
+  </div>
+  <br><br>
+  <% @posts.each do |post| %>
+  <div class="border">
     <div class="row">
-      <h1><%= @customer.account_name %>投稿一覧</h1>
+      <div class="col-2">
+        <%= image_tag post.customer.get_profile_image(100,100) %>
+      </div>
+      <div class="col-4">
+        <h4>タイトル     <%= link_to post.title,post_path(post.id) %></h4>
+      </div>
     </div>
-
     <div class="row">
-      <% @customer.posts.each do |post| %>
-      <%= image_tag post.customer.get_profile_image(100,100) %>
-      <%= link_to post.title,post_path(post.id) %>
-      <%= post.created_at.strftime('%Y%m/%d') %> |
-      <%= post.comments.count %>コメント |
-      <%= post.favorites.count %>いいね
-    <% end %>
+      <br>
+      <div class="col-2">
+        <%= post.customer.account_name %>
+      </div>
+      <div class="col-6">
+        <% post.tags.each do |tag| %>
+          <p><%= tag.tag_name %></p>
+        <% end %>
+      </div>
+      <br><br>
     </div>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-2"><%= post.created_at.strftime('%Y%m/%d') %> </div>
+      <div class="col-2"><%= post.comments.count %>コメント </div>
+      <div class="col-2"><%= post.favorites.count %>いいね</div>
+    </div>
+  </div>
+  <br><br>
+  <% end %>
+    <div class="row">
+        <div class="col text-center"><%= paginate @posts %></div>
+      </div>
+    <br><br><br><br><br>
 </div>

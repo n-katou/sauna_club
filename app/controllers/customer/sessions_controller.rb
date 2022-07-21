@@ -19,9 +19,9 @@ class Customer::SessionsController < Devise::SessionsController
   #   super
   # end
   def new_guest
-    customer = Customer.guest
+    customer = Customer.guest #.guestは　customerモデルで記述している。selfにCustomerが入っている
     sign_in customer   # ユーザーをログインさせる
-    redirect_to posts_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to posts_path
   end
 
   protected
