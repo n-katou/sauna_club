@@ -1,46 +1,123 @@
 <div class="container">
-  <div class="row mx-auto">
-      <table>
-        <tr>
-          <td><%= image_tag @post.customer.get_profile_image(100,100) %></td>
-        </tr>
-        <tr>
-          <td><%= @post.customer.account_name %></td>
-        </tr>
-        <tr>
-          <td><%= @post.title %></td>
-        </tr>
-        <tr>
-          <td>
-            <% if @post.post_image.attached? %>
-              <%= image_tag @post.post_image, size: "150x150" %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td><%= @post.post_content %></td>
-        </tr>
-        <% @post.tags.each do |tag| %>
-          <tr>
-            <td><%= tag.tag_name %></td>
-          </tr>
+<br><br>
+  <div class="border">
+    <br>
+    <div class ="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="border rounded">
+          <h4 class="text-center">タイトル</h4>
+          <p class="text-center"><strong><%= @post.title %></strong></p>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6 text-center">
+        <% if @post.post_image.attached? %>
+          <%= image_tag @post.post_image, size: "150x150" %>
         <% end %>
-      </table>
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="border rounded">
+          <h4 class="text-center">本文</h4>
+          <br><br>
+          <strong><%= @post.post_content %></strong>
+        </div>
+      </div>
+    </div>
+
+    <br><br>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="border rounded">
+          <h4 class="text-center">タグ</h4>
+          <% @post.tags.each do |tag| %>
+            <strong><%= tag.tag_name %></strong>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <br><br>
+    <div class="row">
+      <div class="col text-center">
+        <%= link_to "編集する", edit_admin_post_path(@post.id), class: "btn btn-success" %>
+      </div>
+    </div>
+
+    <br><br>
+    <div class="border rounded">
+      <br>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-4">
+          <p>投稿者</p>
+          <%= image_tag @post.customer.get_profile_image(100,100) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-2">
+          <a><%= @post.customer.account_name %></a>
+        </div>
+        <div class="col-2"></div>
+        <div class="col">
+          <p>
+            投稿日 <%= @post.created_at.strftime('%Y/%m/%d')%> | コメント数 <%= @post.comments.count %>件 |　いいね数 💖<%= @post.favorites.count %>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
-    <%= link_to "編集する", edit_admin_post_path(@post.id), class: "btn btn-success" %>
-  <%= @post.created_at.strftime('%Y%m/%d')%> | <%= @post.comments.count %>件 |
-      <p>
-        ♥<%= @post.favorites.count %> いいね
-      </p>
+
+  <br>
   <div class ="row">
-    <p><%= @post.comments.count %>件コメント</p>
+    <h3><%= @post.comments.count %>件コメント</h3>
   </div>
-  <div class ="row">
+  <br>
+
     <% @comments.each do |comment| %>
-      <%= image_tag comment.customer.get_profile_image(100,100) %>
-      <%= comment.created_at.strftime('%Y%m/%d') %>
-      <%= comment.comment_content %>
-        <p><%= link_to "削除", admin_comment_path(comment.id),method: :delete,class: "btn btn-danger","data-confirm" => "本当に削除しますか？"%></p>
+    <div class="border rounded">
+      <br>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-2">
+          <p>コメント投稿者</p>
+          <%= image_tag comment.customer.get_profile_image(100,100) %>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-4 d-flex align-items-center">
+          <%= comment.comment_content %>
+        </div>
+        <div class="col-3">
+          投稿日  <%= comment.created_at.strftime('%Y%m/%d') %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <%= comment.customer.account_name %>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-2">
+          <p><%= link_to "削除", admin_comment_path(comment.id),method: :delete,class: "btn btn-danger","data-confirm" => "本当に削除しますか？"%></p>
+        </div>
+      </div>
+      <br>
+    </div>
     <% end %>
-  </div>
-</div>
+
+    <div class="row">
+      <div class="col text-center"><%= paginate @comments %></div>
+    </div>

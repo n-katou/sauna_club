@@ -1,5 +1,5 @@
 <div class="container">
-  <br><br>
+<br><br>
   <div class="border">
     <br>
     <div class ="row">
@@ -97,13 +97,11 @@
         </div>
         <div class="col-2"></div>
         <div class="col">
-          <p>投稿日 <%= @post.created_at.strftime('%Y%m/%d')%> | コメント数 <%= @post.comments.count %>件 |　いいね数 💖<%= @post.favorites.count %>
-
-
+          <p>
+            投稿日 <%= @post.created_at.strftime('%Y/%m/%d')%> | コメント数 <%= @post.comments.count %>件 |　いいね数 💖<%= @post.favorites.count %>
           </p>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -147,27 +145,30 @@
     </div>
     <% end %>
 
+    <div class="row">
+      <div class="col text-center"><%= paginate @comments %></div>
+    </div>
 
   <div class="row">
     <h3>コメントする</h3>
   </div>
   <br><br>
 
+<%= form_with model: [@post,@comment] do |f| %>
   <div class= "row">
     <div class="col-2"></div>
     <div class="col-6">
-      <%= form_with model: [@post,@comment] do |f| %>
-        <%= f.text_area :comment_content,rows: "5", placeholder: "コメントをここに" %>
+      <%= f.text_area :comment_content,rows: "5", placeholder: "コメントをここに" %>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-8"></div>
+    <div class="col-4"></div>
     <div class="col-3">
-        <%= f.submit "投稿する",class: "btn btn-primary" %>
-      <% end %>
+      <%= f.submit "投稿する",class: "btn btn-primary" %>
     </div>
   </div>
+<% end %>
   <br><br><br><br><br>
 
 </div>
