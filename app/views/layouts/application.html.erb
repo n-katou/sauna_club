@@ -91,18 +91,25 @@
             <p class="text-center"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete ,class: "btn btn-secondary" %></p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-8"></div>
-          <div class="col-sm-2">
-            <p>キーワード検索</p>
-            <%= form_with url: admin_posts_search_path, method: :get, local: true do |f| %>
-              <%= f.text_field :keyword, value: @keyword %>
-              <%= f.submit "検索する" %>
-            <% end %>
+
+       <div class="row">
+          <div class="col-2"></div>
+          <div class="col-3 d-flex align-items-center">
+            <h5>管理者がログイン中</h5>
           </div>
-          <div class="col-sm-2">
+          <div class="col-1"></div>
+          <div class="col-3">
+            <p>キーワード検索</p>
+            <p class="text-center">
+              <%= form_with url: posts_search_path, method: :get, local: true do |f| %>
+                <%= f.text_field :keyword, value: @keyword %>
+                <%= f.submit "検索する" %>
+              <% end %>
+            </p>
+          </div>
+          <div class="col-3">
             <p>タグ検索</p>
-            <%= form_with url: admin_tags_search_path, method: :get, local: true do |f| %>
+            <%= form_with url: tags_search_path, method: :get, local: true do |f| %>
               <%= f.text_field :keyword, value: @keyword2 %>
               <%= f.submit "検索する" %>
             <% end %>

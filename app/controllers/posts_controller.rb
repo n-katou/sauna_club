@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.order("created_at DESC").page(params[:page]).per(5)
+    @posts = Post.order("created_at DESC").page(params[:page]).per(8)
   end
 
   def new
@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = current_customer.posts.new(post_params)
+    post = current_customer.posts.new(post_params) #この記述じゃないとエラーが出る理由はなぜか。おそらくcustomerの情報を欲しいからcurrent_customerをいれている。
     # byebug
     post.save
     redirect_to post_path(post.id)
