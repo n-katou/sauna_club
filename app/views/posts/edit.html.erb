@@ -42,7 +42,7 @@
       </div>
       <div class="col-5 d-flex align-items-center">
         <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_name do |b| %>
-          <%= b.label { b.check_box + b.text } %>
+          <%= b.label { b.check_box +   b.text } %>
         <% end %>
       </div>
     </div>
