@@ -1,20 +1,58 @@
+<br><br>
 <div class="container">
-  <h2>ログイン</h2>
-  <h4>会員の方はこちらからログイン</h4><br>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <table class="table table-borderless">
-    <tr>
-      <td>メールアドレス</td>
-      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-    </tr>
+  <h1>ログイン</h1>
+  <br><br>
 
-    <tr>
-      <td>パスワード</td>
-      <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-    </tr>
-  </table>
-    <p class="text-center"><%= f.submit "ログイン", class: "btn btn-primary" %></p>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-3">
+        <h4> 会員の方はこちらからログイン</h4>
+      </div>
+    </div>
+    <br><br>
+
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-3">
+        <h3>メールアドレス</h3>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-4 d-flex align-items-center">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+    </div>
+    <br><br>
+
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-3">
+        <h3>パスワード</h3>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-4 d-flex align-items-center">
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+    </div>
+    <br><br><br>
+
+    <div class="row">
+      <div class="col-5"></div>
+      <div class="col-4 d-flex align-items-center">
+        <p class="text-center"><%= f.submit "ログイン", class: "btn btn-primary" %></p>
+      </div>
+    </div>
+    <br><br>
   <% end %>
-  <h4>会員登録がお済みでない方</h4>
-  <%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。
+
+  <h1>会員登録がお済みでない方</h1>
+  <br>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col">
+      <p><%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</p>
+    </div>
+  </div>
+
+<br><br><br><br><br>
 </div>
