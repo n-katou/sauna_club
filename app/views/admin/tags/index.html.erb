@@ -1,22 +1,46 @@
+<br><br>
+<div class="container">
+  <h1>タグ一覧・追加</h1>
+  <br><br>
 
-<h1>タグ一覧・追加</h1>
-<%= form_with model: @tag,url: admin_tags_path,method: :post do |f| %>
-<a>タグ名</a>  <%= f.text_field :tag_name %>   <%= f.submit "新規登録" ,class: "btn btn-success" %>
-<% end %>
-<br><br><br>
+  <%= form_with model: @tag,url: admin_tags_path,method: :post do |f| %>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-2 d-flex align-items-center">
+        <h3>タグ名</h3>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-3 d-flex align-items-center">
+        <%= f.text_field :tag_name %>
+      </div>
+      <div class="col-2 d-flex align-items-center">
+        <%= f.submit "新規登録" ,class: "btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+  <br><br><br><br><br>
 
-<table class="table table-hover table-inverse">
-  <thead>
-    <th>タグ</th>
-    <th></th>
-    <th colspan="2"></th>
-  </thead>
-  <tbody>
-    <% @tags.each do |tag| %>
-    <tr>
-      <td class="text-center"><%= tag.tag_name %></td>
-      <td> <%= link_to "編集する", edit_admin_tag_path(tag.id),class: "btn btn-success"  %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% @tags.each do |tag| %>
+    <div class="border">
+      <br>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-3 d-flex align-items-center">
+          <%= tag.tag_name %>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-1 d-flex align-items-center">
+          <%= link_to "編集する", edit_admin_tag_path(tag.id),class: "btn btn-success"  %>
+        </div>
+      </div>
+      <br>
+    </div>
+    <br><br>
+  <% end %>
+
+  <div class="row">
+    <div class="col text-center"><%= paginate @tags %></div>
+  </div>
+
+</div>
+<br><br><br><br><br>

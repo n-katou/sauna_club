@@ -1,6 +1,6 @@
 class Admin::TagsController < ApplicationController
   def index
-    @tags = Tag.all
+    @tags = Tag.all.order("created_at ASC").page(params[:page]).per(5)
     @tag = Tag.new
   end
 
