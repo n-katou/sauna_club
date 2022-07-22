@@ -1,0 +1,26 @@
+<div class="container bg-light">
+  <br><br>
+  <h1>タグ一覧</h1>
+  <br><br>
+
+  <% @tags.each do |tag| %>
+    <div class="border">
+      <br>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-3 d-flex align-items-center">
+          <%= tag.tag_name %>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <br>
+    </div>
+    <br><br>
+  <% end %>
+
+  <div class="row">
+    <div class="col text-center"><%= paginate @tags %></div>
+  </div>
+
+<br><br><br><br><br>
+</div>

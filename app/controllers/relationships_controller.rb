@@ -20,6 +20,6 @@ class RelationshipsController < ApplicationController
   #　フォロワー一覧
   def followers
     customer = Customer.find(params[:customer_id])
-    @customers = customer.followers
+    @customers = customer.followers.order("created_at ASC").page(params[:page]).per(5)
   end
 end

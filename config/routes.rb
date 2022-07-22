@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
 
+  get 'tags/index'
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "customer/registrations",
   sessions: 'customer/sessions'
   }
+
   devise_scope :customer do
     post 'customer/guest_sign_in', to: 'customer/sessions#new_guest' #ゲストログイン
   end
@@ -24,6 +26,7 @@ Rails.application.routes.draw do
 
   get "/customers/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
   patch "/customers/withdraw" => "customers#withdraw", as: "withdraw"
+
   resources :customers, only: [:index,:show,:edit,:update] do
 
   resource :relationships,only: [:create,:destroy]
@@ -34,7 +37,7 @@ Rails.application.routes.draw do
 
   get "/mypage" => "mypages#show"
 
-  get "/followings" => "followers#index"
+  get "/tags" => "tags#index"
 
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
