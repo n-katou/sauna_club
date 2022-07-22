@@ -19,7 +19,7 @@
                 <% if current_customer.following?(customer) %>
                   <%= link_to "フォローをはずす", customer_relationships_path(customer.id), method: :delete, class: "btn btn-danger" %>
                 <% else %>
-                  <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-info"%>
+                  <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "text-white bg-primary btn"%>
                 <% end %>
               <% end %>
           </div>
