@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+  before_action :authenticate_customer!
   def index
     @favorites= current_customer.favorites.order("created_at DESC").page(params[:page])
     # @favorites = Favorite.where.not(customer_id: current_customer.id).group(:post_id)

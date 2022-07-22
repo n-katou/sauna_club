@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_action :authenticate_customer!
   def index
     @customers = Customer.where(is_active: true).order("created_at ASC").page(params[:page]).per(7)
   end
