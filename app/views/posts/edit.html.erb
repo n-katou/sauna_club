@@ -1,4 +1,12 @@
 <div class="container bg-light">
+  <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
 <br><br>
 <h1>投稿編集</h1>
   <%= form_with model: @post,url: post_path(@post.id) ,method: :patch do |f| %>
@@ -37,12 +45,17 @@
 
     <div class="row">
       <div class="col-3"></div>
-      <div class="col-2">
-        <h3>タグ</h3>
+      <div class="col-4 d-flex align-items-center">
+        <h3>タグ(1つ以上の使用を推奨)</h3>
       </div>
-      <div class="col-5 d-flex align-items-center">
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-8">
         <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_name do |b| %>
-          <%= b.label { b.check_box +   b.text } %>
+          <p><%= b.label { b.check_box +   b.text } %></p>
         <% end %>
       </div>
     </div>

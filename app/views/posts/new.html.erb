@@ -1,9 +1,18 @@
 <div class="container bg-light">
+  <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
 <h1>新規投稿</h1>
   <%= form_with model: @post, url: posts_path ,method: :post do |f| %>
     <br><br>
     <div class="row">
-      <div class="col-1"></div>
+      <div class="col-3"></div>
       <div class="col-2">
         <h3>
           タイトル
@@ -17,7 +26,7 @@
 
     <br><br>
     <div class="row">
-      <div class="col-1"></div>
+      <div class="col-3"></div>
       <div class="col-2">
         <h3>
           投稿画像
@@ -31,7 +40,7 @@
 
     <br><br>
     <div class="row">
-      <div class="col-1"></div>
+      <div class="col-3"></div>
       <div class="col-2">
         <h3>
           詳細
@@ -45,23 +54,27 @@
 
     <br><br>
     <div class="row">
-      <div class="col-1"></div>
-      <div class="col-2">
+      <div class="col-3"></div>
+      <div class="col-4 d-flex align-items-center">
         <h3>
-          タグ
+          タグ(1つ以上の使用を推奨)
         </h3>
       </div>
-      <div class="col-1"></div>
-      <div class="col-8 d-flex align-items-center">
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-8">
         <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_name do |b| %>
-          <%= b.label { b.check_box + b.text } %>
+          <p><%= b.label { b.check_box + b.text } %></p>
         <% end %>
       </div>
     </div>
 
     <br><br>
     <div class="row">
-      <div class="col-4"></div>
+      <div class="col-5"></div>
       <div class="col-2">
         <%= f.submit "投稿する" , class: "text-white bg-primary btn" %>
       </div>
