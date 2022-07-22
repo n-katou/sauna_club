@@ -55,13 +55,13 @@
           <% if @post.favorited_by?(current_customer) %>
             <h4>
               <%= link_to post_favorites_path(@post), method: :delete do %>
-                💔いいね解除
+                 <p class="text-center">いいね解除<%= image_tag('no-good.png') %></p>
               <% end %>
             </h4>
           <% else %>
             <h4>
               <%= link_to post_favorites_path(@post), method: :post do %>
-                💖いいねする
+                <i class="fa-solid fa-heart"></i>いいねする
               <% end %>
             </h4>
           <% end %>
@@ -102,7 +102,7 @@
         <div class="col-2"></div>
         <div class="col">
           <p>
-            投稿日 <%= @post.created_at.strftime('%Y/%m/%d')%> | コメント数 <%= @post.comments.count %>件 |　いいね数 💖<%= @post.favorites.count %>
+            投稿日 <%= @post.created_at.strftime('%Y/%m/%d')%> | コメント数 <%= @post.comments.count %>件 | いいね数   <%= image_tag('good.png') %> <%= @post.favorites.count %>
           </p>
         </div>
       </div>

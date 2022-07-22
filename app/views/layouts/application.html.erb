@@ -11,6 +11,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <script src="https://kit.fontawesome.com/bfadd432f1.js" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -23,28 +24,27 @@
     <br>
       <div class="container">
         <% if customer_signed_in? %>
-        <div class="row">
+        <div class="row bg-primary">
           <div class="col-4">
-            <h2>サウナ倶楽部</h2>
+            <h2><%= image_tag('logo.png') %></h2>
           </div>
           <div class="col-2 d-flex align-items-center">
-            <p class="text-center"><%= link_to "マイページ" , mypage_path(current_customer),class: "btn btn-secondary" %></p>
+            <p class="text-center"><%= link_to "マイページ" , mypage_path(current_customer),class: "btn btn-info" %></p>
           </div>
           <div class="col-2 d-flex align-items-center">
-            <p class="text-center"><%= link_to "投稿一覧", posts_path,class: "btn btn-secondary" %></p>
+            <p class="text-center"><%= link_to "投稿一覧", posts_path,class: "btn btn-info" %></p>
           </div>
           <div class="col-2 d-flex align-items-center">
-            <p class="text-center"><%= link_to "会員一覧", customers_path,class: "btn btn-secondary" %></p>
+            <p class="text-center"><%= link_to "会員一覧", customers_path,class: "btn btn-info" %></p>
           </div>
           <div class="col-2 d-flex align-items-center">
-            <p class="text-center"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: "btn btn-secondary" %></p>
+            <p class="text-center text-warning"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: "btn btn-info" %></p>
           </div>
         </div>
-        <br>
 
-        <div class="row">
+        <div class="row bg-warning">
           <div class="col-2"></div>
-          <div class="col-3">
+          <div class="col-3 d-flex align-items-center">
             <a><p>ログイン中のユーザー<%= image_tag current_customer.profile_image,size: "50x50"  %> <%= current_customer.account_name %></p></a>
           </div>
           <div class="col-1"></div>
@@ -74,25 +74,25 @@
         </div>
 
         <% elsif admin_signed_in? %>
-        <div class="row">
+        <div class="row bg-primary">
           <div class="col-4">
-            <h2>サウナ倶楽部</h2>
+            <h2><%= image_tag('logo.png') %></h2>
           </div>
           <div class="col-2 d-flex align-items-center">
-            <p class="text-center"><%= link_to "全投稿一覧", admin_posts_path,class: "btn btn-secondary" %></p>
+            <p class="text-center"><%= link_to "全投稿一覧", admin_posts_path,class: "btn btn-info" %></p>
           </div>
           <div class="col-2 d-flex align-items-center">
-            <p class="text-center"><%= link_to "全会員一覧", admin_customers_path, class: "btn btn-secondary" %></p>
+            <p class="text-center"><%= link_to "全会員一覧", admin_customers_path, class: "btn btn-info" %></p>
           </div>
           <div class="col-2 d-flex align-items-center">
-            <p class="text-center"><%= link_to "タグ登録", admin_tags_path, class: "btn btn-secondary" %></p>
+            <p class="text-center"><%= link_to "タグ登録", admin_tags_path, class: "btn btn-info" %></p>
           </div>
           <div class="col-2 d-flex align-items-center">
-            <p class="text-center"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete ,class: "btn btn-secondary" %></p>
+            <p class="text-center"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete ,class: "btn btn-info" %></p>
           </div>
         </div>
 
-       <div class="row">
+       <div class="row bg-warning">
           <div class="col-2"></div>
           <div class="col-3 d-flex align-items-center">
             <h5>管理者がログイン中</h5>
@@ -117,24 +117,24 @@
         </div>
 
         <% else %>
-        <div class="row">
+        <div class="row bg-primary">
           <div class="col-3 d-flex align-items-center">
               <%= link_to root_path, class: "navbar-toggler" do %>
-                <h2>サウナ倶楽部</h2>
+                <h2><%= image_tag('logo.png') %></h2>
               <% end %>
           </div>
           <div class="col-1"></div>
           <div class="col-2 d-flex align-items-center">
-            <p class="text-center"><%= link_to "About", about_path,class: "btn btn-secondary" %></p>
+            <p class="text-center"><%= link_to "About", about_path,class: "btn btn-info" %></p>
           </div>
           <div class="col-2 d-flex align-items-center">
-            <p class="text-center"><%= link_to "新規会員登録", new_customer_registration_path,class: "btn btn-secondary" %></p>
+            <p class="text-center"><%= link_to "新規会員登録", new_customer_registration_path,class: "btn btn-info" %></p>
           </div>
           <div class="col-2 d-flex align-items-center">
-            <p class="text-center"><%= link_to "会員ログイン",  new_customer_session_path,class: "btn btn-secondary" %></p>
+            <p class="text-center"><%= link_to "会員ログイン",  new_customer_session_path,class: "btn btn-info" %></p>
           </div>
           <div class="col-2 d-flex align-items-center">
-            <p class="text-center"><%= link_to 'ゲストログイン', customer_guest_sign_in_path, method: :post, class: "btn btn-secondary" %></p>
+            <p class="text-center"><%= link_to 'ゲストログイン', customer_guest_sign_in_path, method: :post, class: "btn btn-info" %></p>
           </div>
         </div>
         <% end %>
