@@ -1,9 +1,10 @@
-<div class="container">
+<div class="container bg-light">
   <div class="row">
     <div class="mx-auto">
       <h1>マイページ</h1>
     </div>
   </div>
+  
   <div class="row">
     <div>
       <h1>
@@ -93,20 +94,24 @@
     <div class="row">
       <br>
       <div class="col-2">
-        <%= post.customer.account_name %>
+        <%= link_to customer_path(post.customer.id) do %>
+          <%= post.customer.account_name %>
+        <% end %>
       </div>
       <div class="col-6">
+        <h4>タグ</h4>
         <% post.tags.each do |tag| %>
-          <p><%= tag.tag_name %></p>
+          <p class="d-flex align-items-center"><%= tag.tag_name %></p>
         <% end %>
       </div>
       <br><br>
     </div>
+    
     <div class="row">
       <div class="col-2"></div>
-      <div class="col-2"><%= post.created_at.strftime('%Y/%m/%d') %> </div>
-      <div class="col-2"><%= post.comments.count %>コメント </div>
-      <div class="col-2"><%= post.favorites.count %>いいね</div>
+      <div class="col-2"><i class="fa-solid fa-calendar"></i> <%= post.created_at.strftime('%Y/%m/%d') %> </div>
+      <div class="col-2"><i class="fa-solid fa-comments"></i> <%= post.comments.count %>コメント </div>
+      <div class="col-2"><i class="fa-solid fa-heart"></i> <%= post.favorites.count %>いいね </div>
     </div>
   </div>
   <br><br>

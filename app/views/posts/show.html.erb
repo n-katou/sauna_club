@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container bg-light">
 <br><br>
   <div class="border">
     <br>
@@ -55,7 +55,7 @@
           <% if @post.favorited_by?(current_customer) %>
             <h4>
               <%= link_to post_favorites_path(@post), method: :delete do %>
-                 <p class="text-center">いいね解除<%= image_tag('no-good.png') %></p>
+                <i class="fa-solid fa-heart-crack"></i>いいね解除
               <% end %>
             </h4>
           <% else %>
@@ -102,7 +102,7 @@
         <div class="col-2"></div>
         <div class="col">
           <p>
-            投稿日 <%= @post.created_at.strftime('%Y/%m/%d')%> | コメント数 <%= @post.comments.count %>件 | いいね数   <%= image_tag('good.png') %> <%= @post.favorites.count %>
+            投稿日 <i class="fa-solid fa-calendar"></i><%= @post.created_at.strftime('%Y/%m/%d')%> | コメント数 <i class="fa-solid fa-comments"></i><%= @post.comments.count %>件 | いいね数 <i class="fa-solid fa-heart"></i> <%= @post.favorites.count %>
           </p>
         </div>
       </div>
@@ -129,7 +129,7 @@
           <%= comment.comment_content %>
         </div>
         <div class="col-3">
-          投稿日  <%= comment.created_at.strftime('%Y%m/%d') %>
+          投稿日  <i class="fa-solid fa-calendar"></i> <%= comment.created_at.strftime('%Y%m/%d') %>
         </div>
       </div>
 
@@ -164,7 +164,7 @@
   <div class= "row">
     <div class="col-2"></div>
     <div class="col-6">
-      <%= f.text_area :comment_content,rows: "5", placeholder: "コメントをここに" %>
+      <h3><%= f.text_area :comment_content,rows: "5", placeholder: "コメントをここに" %></h3>
     </div>
   </div>
 

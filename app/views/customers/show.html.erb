@@ -1,8 +1,8 @@
-<br><br>
-<div class="container">
+<div class="container bg-light">
+  <br><br>
   <div class="row">
     <div class="mx-auto">
-      <h1><%= @customer.account_name %>のページ</h1>
+      <h1><%= @customer.account_name %>さんのページ</h1>
     </div>
   </div>
   <br><br>
@@ -68,9 +68,12 @@
   </div>
 
   <div class="row">
-    <h1><%= @customer.account_name %>の投稿一覧</h1>
+    <div class="mx-auto">
+      <h1><%= @customer.account_name %>さんの投稿一覧</h1>
+    </div>
   </div>
   <br><br>
+  
   <% @posts.each do |post| %>
   <div class="border">
     <div class="row">
@@ -81,23 +84,28 @@
         <h4>タイトル     <%= link_to post.title,post_path(post.id) %></h4>
       </div>
     </div>
+
     <div class="row">
       <br>
       <div class="col-2">
-        <%= post.customer.account_name %>
-      </div>
-      <div class="col-6">
-        <% post.tags.each do |tag| %>
-          <p><%= tag.tag_name %></p>
+        <%= link_to customer_path(post.customer.id) do %>
+          <%= post.customer.account_name %>
         <% end %>
       </div>
-      <br><br>
+      <div class="col-6">
+        <h4>タグ</h4>
+        <% post.tags.each do |tag| %>
+          <p class="d-flex align-items-center"><%= tag.tag_name %></p>
+        <% end %>
+      </div>
+      <br><br><br><br>
+
     </div>
     <div class="row">
       <div class="col-2"></div>
-      <div class="col-2"><%= post.created_at.strftime('%Y%m/%d') %> </div>
-      <div class="col-2"><%= post.comments.count %>コメント </div>
-      <div class="col-2"><%= post.favorites.count %>いいね</div>
+      <div class="col-2">投稿日 <i class="fa-solid fa-calendar"></i> <%= post.created_at.strftime('%Y%m/%d') %> </div>
+      <div class="col-2">コメント数 <i class="fa-solid fa-comments"></i> <%= post.comments.count %>コメント </div>
+      <div class="col-2">いいね数 <i class="fa-solid fa-heart"></i><%= post.favorites.count %>いいね</div>
     </div>
   </div>
   <br><br>
