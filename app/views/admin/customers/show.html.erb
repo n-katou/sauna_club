@@ -1,5 +1,5 @@
-<br><br>
-<div class="container">
+<div class="container bg-light">
+  <br><br>
   <div class="row">
     <div class="mx-auto">
       <h1>会員情報</h1>
@@ -99,7 +99,9 @@
   <br><br>
 
   <div class="row">
-    <h1>自分の投稿一覧</h1>
+    <div class="mx-auto">
+      <h1><%= @customer.account_name %>さんの投稿一覧</h1>
+    </div>
   </div>
   <br><br>
   <% @posts.each do |post| %>
