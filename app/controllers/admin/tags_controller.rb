@@ -6,9 +6,13 @@ class Admin::TagsController < ApplicationController
   end
 
   def create
-    tag = Tag.new(tag_params)
-    tag.save
-    redirect_to admin_tags_path
+    @tag = Tag.new(tag_params)
+    if @tag.save
+      redirect_to admin_tags_path
+    else
+      @tags = Tag.all.order("created_at ASC").page(params[:page]).per(10)
+      render :index
+    end
   end
 
   def edit
@@ -22,9 +26,12 @@ class Admin::TagsController < ApplicationController
   end
 
   def update
-    tag = Tag.find(params[:id])
-    tag.update(tag_params)
-    redirect_to admin_tags_path
+    @tag = Tag.find(params[:id])
+    if @tag.update(tag_params)
+      redirect_to admin_tags_path
+    else
+      render :edit
+    end
   end
 
 

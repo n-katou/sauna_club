@@ -19,6 +19,8 @@ ja:
         email: Eメール
       comment:
         comment_content: コメント内容
+      tag:
+        tag_name: タグ名
         # ↑追加したもの
     errors:
       messages:
