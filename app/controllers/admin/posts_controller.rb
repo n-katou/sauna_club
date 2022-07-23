@@ -27,14 +27,14 @@ class Admin::PostsController < ApplicationController
 
   #キーワード検索
   def posts_search
-    @posts = Post.posts_search(params[:keyword])
+    @posts = Post.posts_search(params[:keyword]).order("created_at DESC").page(params[:page]).per(10)
     @keyword = params[:keyword]
     render "index"
   end
 
   #タグ検索
   def tags_search
-    @posts = Post.tags_search(params[:keyword])
+    @posts = Post.tags_search(params[:keyword]).order("created_at DESC").page(params[:page]).per(10)
     @keyword2 = params[:keyword]
     render "index"
   end

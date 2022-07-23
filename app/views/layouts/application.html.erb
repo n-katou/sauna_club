@@ -108,7 +108,7 @@
           <div class="col-3">
             <p>キーワード検索</p>
             <p class="text-center">
-              <%= form_with url: posts_search_path, method: :get, local: true do |f| %>
+              <%= form_with url: admin_posts_search_path, method: :get, local: true do |f| %>
                 <%= f.text_field :keyword, value: @keyword %>
                 <%= f.submit "検索する" %>
               <% end %>
@@ -116,7 +116,7 @@
           </div>
           <div class="col-3">
             <p>タグ検索</p>
-            <%= form_with url: tags_search_path, method: :get, local: true do |f| %>
+            <%= form_with url: admin_tags_search_path, method: :get, local: true do |f| %>
               <%= f.text_field :keyword, value: @keyword2 %>
               <%= f.submit "検索する" %>
             <% end %>
