@@ -45,14 +45,14 @@ class PostsController < ApplicationController
 
   #キーワード検索
   def posts_search
-    @posts = Post.posts_search(params[:keyword]).page(params[:page])
+    @posts = Post.posts_search(params[:keyword]).order("created_at DESC").page(params[:page]).per(5)
     @keyword = params[:keyword]
     render "index"
   end
 
   #タグ検索
   def tags_search
-    @posts = Post.tags_search(params[:keyword]).page(params[:page])
+    @posts = Post.tags_search(params[:keyword]).order("created_at DESC").page(params[:page]).per(5)
     @keyword2 = params[:keyword]
     render "index"
   end

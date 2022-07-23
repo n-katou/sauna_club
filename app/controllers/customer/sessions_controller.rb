@@ -18,6 +18,7 @@ class Customer::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+
   def new_guest
     customer = Customer.guest #.guestは　customerモデルで記述している。selfにCustomerが入っている
     sign_in customer   # ユーザーをログインさせる
@@ -31,16 +32,16 @@ class Customer::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
-#退会メソッド
+#会員か確認するメソッド
   def reject_inactive_customer
-      @customer = Customer.find_by(email: params[:customer][:email])
-      return if !@customer #これがないと存在しないアカウントでログインを行おうとするとエラーが出る。
-      if @customer.valid_password?(params[:customer][:password])
-        if @customer.is_active == true
-        else
-          redirect_to new_customer_registration_path
-        end
+    @customer = Customer.find_by(email: params[:customer][:email])
+    return if !@customer #これがないと存在しないアカウントでログインを行おうとするとエラーが出る。
+    if @customer.valid_password?(params[:customer][:password])
+      if @customer.is_active == true
+      else
+        redirect_to new_customer_registration_path
       end
+    end
   end
 
 end
