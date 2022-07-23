@@ -1,4 +1,13 @@
 <div class="container">
+  <% if @comment.errors.any? %>
+    <%= @comment.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <h1>コメント編集</h1>
   <br><br>
   <%= form_with model: @comment ,url: post_comment_path(@comment.id),method: :patch do |f| %>

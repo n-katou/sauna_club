@@ -153,7 +153,7 @@
         <div class="col-4"></div>
         <div class="col-2">
           <% if comment.customer == current_customer %>
-            <p><%= link_to "編集する", edit_post_comment_path(comment.id),class: "text-white bg-primary btn"%></p>
+            <p><%= link_to "編集する", edit_post_comment_path(comment.post, comment.id),class: "text-white bg-primary btn"%></p>
           <% end %>
         </div>
       </div>

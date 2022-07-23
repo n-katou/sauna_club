@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_customer!
 
   def edit
-    @comment = Comment.find(params[:post_id])
+    @comment = Comment.find(params[:id])
   end
 
   def create
@@ -14,16 +14,19 @@ class CommentsController < ApplicationController
     else
       @error_comment = comment
       @post = Post.find(params[:post_id])
-      @coment = Comment.new
-      @comments = Comment.all
+      @comment = Comment.new
+      @comments = @post.comments.order("created_at DESC").page(params[:page]).per(5)
       render "posts/show"
     end
   end
 
   def update
-    comment = Comment.find(params[:post_id])
-    comment.update(comment_params)
-    redirect_to post_path(comment.post.id) #coment.post_idか？
+    @comment = Comment.find(params[:id])
+    if @comment.update(comment_params)
+      redirect_to post_path(@comment.post.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
