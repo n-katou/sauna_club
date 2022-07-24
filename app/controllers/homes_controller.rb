@@ -1,7 +1,6 @@
 class HomesController < ApplicationController
   def top
-    rand = Rails.env.production? ? "RANDOM()" : "rand()"
-    @posts = Post.order(rand).limit(5)
+    @posts = Post.order("created_at DESC").page(params[:page]).per(5)
   end
 
   def about
