@@ -56,7 +56,7 @@ class Customer < ApplicationRecord
   #ゲストログイン sessions_controllerで使用
   def self.guest
     find_or_create_by!(email: 'aaa@aaa.com') do |customer|
-      customer.password = SecureRandom.SecureRandom.alphanumeric(10) + [*'a'..'z'].sample(1).join + [*'0'..'9'].sample(1).join
+      customer.password = SecureRandom.alphanumeric(10) + [*'a'..'z'].sample(1).join + [*'0'..'9'].sample(1).join
       customer.password_confirmation = customer.password
       customer.account_name = 'ゲスト'
     end
