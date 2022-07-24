@@ -52,7 +52,7 @@ class PostsController < ApplicationController
 
   #タグ検索
   def tags_search
-    @posts = Post.tags_search(params[:keyword]).order("created_at DESC").page(params[:page]).per(5).distinct　#.distinctで重複を解消している
+    @posts = Post.tags_search(params[:keyword]).order("created_at DESC").page(params[:page]).per(5).distinct #.distinctで重複を
     @keyword2 = params[:keyword]
     render "index"
   end
