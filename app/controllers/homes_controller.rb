@@ -1,9 +1,9 @@
 class HomesController < ApplicationController
   def top
-    @posts = Post.order("created_at DESC").page(params[:page]).per(5)
+    @posts = Kaminari.paginate_array(Post.all.shuffle).page(params[:page]).per(5)  #Kaminari.paginate_array()　配列ではこれを使用すると良い。
   end
 
-  def about
+  def abouteit
   end
 
   def error
