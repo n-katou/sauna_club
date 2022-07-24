@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
   def top
-    @posts = Post.order("RANDOM()").limit(4)
+    @posts = Post.order("created_at DESC").page(params[:page]).per(5)
   end
 
   def about
