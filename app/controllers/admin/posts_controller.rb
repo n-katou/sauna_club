@@ -34,7 +34,7 @@ class Admin::PostsController < ApplicationController
 
   #タグ検索
   def tags_search
-    @posts = Post.tags_search(params[:keyword]).order("created_at DESC").page(params[:page]).per(10)
+    @posts = Post.tags_search(params[:keyword]).order("created_at DESC").page(params[:page]).per(10).distinct #.distinctで重複を解消
     @keyword2 = params[:keyword]
     render "index"
   end
