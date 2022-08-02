@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :block_comment_customer, only: [:edit, :destroy, :update]
 
   def edit
     @comment = Comment.find(params[:id])
@@ -39,6 +40,13 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:comment_content)
+  end
+
+  #投稿者以外に編集させないメソッド
+  def block_comment_customer
+    unless Comment.find(params[:id]).customer.id.to_i == current_customer.id
+      redirect_to posts_path
+    end
   end
 
 end
