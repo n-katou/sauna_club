@@ -1,4 +1,13 @@
 <div class="container bg-light">
+  <% if @customer.errors.any? %>
+  <div class = "error">
+     <ul>
+        <% @customer.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+	    <% end %>
+     </ul>
+  </div>
+<% end %>
   <div class="row">
     <div class="mx-auto">
       <h1>会員情報編集</h1>
