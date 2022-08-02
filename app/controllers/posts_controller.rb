@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :block_post_customer, only: [:edit, :destroy, :update]
+  
   def index
     @posts = Post.order("created_at DESC").page(params[:page]).per(5)
   end
@@ -61,6 +63,13 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:post_image, :title, :post_content, tag_ids: []) #tag_ids: []は配列を取り出す記述。
+  end
+
+  #投稿者以外に編集させないメソッド
+  def block_post_customer
+    unless Post.find(params[:id]).customer.id.to_i == current_customer.id
+      redirect_to posts_path
+    end
   end
 
 end
