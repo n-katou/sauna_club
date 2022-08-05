@@ -1,0 +1,15 @@
+<% unless post.customer == current_customer %>
+  <% if post.favorited_by?(current_customer) %>
+    <h4>
+      <%= link_to post_favorites_path(post), method: :delete, remote: true do %>
+        <i class="fa-solid fa-heart-crack"></i><p class="text-danger">いいね解除</p>
+      <% end %>
+    </h4>
+  <% else %>
+    <h4>
+      <%= link_to post_favorites_path(post), method: :post, remote: true do %>
+        <i class="fa-solid fa-heart"></i><p class="text-primary">いいねする</p>
+      <% end %>
+    </h4>
+  <% end %>
+<% end %>
