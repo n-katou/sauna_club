@@ -1,0 +1,39 @@
+  <% comments.each do |comment| %>
+    <div class="border rounded">
+      <br>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-2">
+          <p>コメント投稿者</p>
+          <%= image_tag comment.customer.get_profile_image(100,100) %>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-4 d-flex align-items-center">
+          <%= comment.comment_content %>
+        </div>
+        <div class="col-3">
+          投稿日  <i class="fa-solid fa-calendar"></i> <%= comment.created_at.strftime('%Y%m/%d') %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <%= link_to customer_path(comment.customer.id) do %>
+            <%= comment.customer.account_name %>
+          <% end %>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-2">
+          <% if comment.customer == current_customer %>
+            <p><%= link_to "編集する", edit_post_comment_path(comment.post, comment.id),class: "text-white bg-primary btn"%></p>
+          <% end %>
+        </div>
+      </div>
+      <br>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col text-center"><%= paginate comments %></div>
+  </div>
