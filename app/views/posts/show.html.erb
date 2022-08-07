@@ -1,15 +1,4 @@
 <div class="container bg-light">
-  <% if @error_comment.present? %>
-    <div id="error_explanation">
-      <h2><%= @error_comment.errors.count %>件のエラーが発生しました。</h2>
-      <ul>
-        <% @error_comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-<br><br>
   <div class="border">
     <br>
     <div class ="row">
@@ -61,21 +50,9 @@
     <div class="row">
       <div class="col-3"></div>
       <div class="col-6 text-center">
-        <% unless @post.customer == current_customer %>
-          <% if @post.favorited_by?(current_customer) %>
-            <h4>
-              <%= link_to post_favorites_path(@post), method: :delete do %>
-                <i class="fa-solid fa-heart-crack"></i><p class="text-danger">いいね解除</p>
-              <% end %>
-            </h4>
-          <% else %>
-            <h4>
-              <%= link_to post_favorites_path(@post), method: :post do %>
-                <i class="fa-solid fa-heart"></i><p class="text-primary">いいねする</p>
-              <% end %>
-            </h4>
-          <% end %>
-        <% end %>
+        <div id="favorites_buttons_<%= @post.id %>">
+          <%= render partial: "posts/favorites" , locals: { post: @post} %>
+        </div>
       </div>
     </div>
 
@@ -112,79 +89,43 @@
         <div class="col-2"></div>
         <div class="col">
           <p>
-            投稿日 <i class="fa-solid fa-calendar"></i><%= @post.created_at.strftime('%Y/%m/%d')%> | コメント数 <i class="fa-solid fa-comments"></i><%= @post.comments.count %>件 | いいね数 <i class="fa-solid fa-heart"></i> <%= @post.favorites.count %>
+            投稿日 <i class="fa-solid fa-calendar"></i>
+            <%= @post.created_at.strftime('%Y/%m/%d')%> | 
+            コメント数 <i class="fa-solid fa-comments"></i>
+            <span id="comment_counts1">
+              <%= @post.comments.count %>
+            </span>
+            件 |
+            いいね数 <i class="fa-solid fa-heart"></i>
+            <span id="favorite_counts">
+              <%= @post.favorites.count %>
+            </span>
           </p>
         </div>
       </div>
     </div>
   </div>
-
-  <br>
   <div class ="row">
-    <h3><%= @post.comments.count %>件コメント</h3>
+    <h3>
+      <span id="comment_counts2">
+        <%= @post.comments.count %>
+      </span>
+      件コメント
+    </h3>
   </div>
   <br>
-
-    <% @comments.each do |comment| %>
-    <div class="border rounded">
-      <br>
-      <div class="row">
-        <div class="col-1"></div>
-        <div class="col-2">
-          <p>コメント投稿者</p>
-          <%= image_tag comment.customer.get_profile_image(100,100) %>
-        </div>
-        <div class="col-1"></div>
-        <div class="col-4 d-flex align-items-center">
-          <%= comment.comment_content %>
-        </div>
-        <div class="col-3">
-          投稿日  <i class="fa-solid fa-calendar"></i> <%= comment.created_at.strftime('%Y%m/%d') %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-1"></div>
-        <div class="col-3">
-          <%= link_to customer_path(comment.customer.id) do %>
-            <%= comment.customer.account_name %>
-          <% end %>
-        </div>
-        <div class="col-4"></div>
-        <div class="col-2">
-          <% if comment.customer == current_customer %>
-            <p><%= link_to "編集する", edit_post_comment_path(comment.post, comment.id),class: "text-white bg-primary btn"%></p>
-          <% end %>
-        </div>
-      </div>
-      <br>
-    </div>
-    <% end %>
-
-    <div class="row">
-      <div class="col text-center"><%= paginate @comments %></div>
-    </div>
+  <br>
+ <div id="post_comments">
+    <%= render partial: "posts/post_comments" , locals: { post: @post, comments: @comments} %>
+ </div>
 
   <div class="row">
     <h3>コメントする</h3>
   </div>
   <br><br>
-
-<%= form_with model: [@post,@comment] do |f| %>
-  <div class= "row">
-    <div class="col-4"></div>
-    <div class="col-6">
-      <h3><%= f.text_area :comment_content,rows: "5", placeholder: "コメントをここに" %></h3>
-    </div>
+  <div id="comment">
+    <%= render partial: "posts/comment_form" , locals: { post: @post, comment: @comment} %>
   </div>
-
-  <div class="row">
-    <div class="col-6"></div>
-    <div class="col-3">
-      <%= f.submit "投稿する",class: "text-white bg-primary btn" %>
-    </div>
-  </div>
-<% end %>
   <br><br><br><br><br>
 
 </div>

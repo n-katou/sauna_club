@@ -7,17 +7,15 @@ class CommentsController < ApplicationController
   end
 
   def create
-    post = Post.find(params[:post_id])
-    comment = current_customer.comments.new(comment_params)
-    comment.post_id = post.id
-    if comment.save
-      redirect_to post_path(post.id)
+    @post = Post.find(params[:post_id])
+    @comment = current_customer.comments.new(comment_params)
+    @comment.post_id = @post.id
+    @comments = @post.comments.order("created_at DESC").page(params[:page]).per(5)
+    if @comment.save
+      render :create #jsを読み込んでいる
+      # redirect_to post_path(@post.id)
     else
-      @error_comment = comment
-      @post = Post.find(params[:post_id])
-      @comment = Comment.new
-      @comments = @post.comments.order("created_at DESC").page(params[:page]).per(5)
-      render "posts/show"
+      render :error #jsを読み込んでいる
     end
   end
 
