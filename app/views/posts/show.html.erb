@@ -113,8 +113,7 @@
       件コメント
     </h3>
   </div>
-  <br>
-  <br>
+ <br><br>
  <div id="post_comments">
     <%= render partial: "posts/post_comments" , locals: { post: @post, comments: @comments} %>
  </div>
@@ -123,7 +122,7 @@
     <h3>コメントする</h3>
   </div>
   <br><br>
-  <div id="comment">
+  <div id="comment_form">
     <%= render partial: "posts/comment_form" , locals: { post: @post, comment: @comment} %>
   </div>
   <br><br><br><br><br>
