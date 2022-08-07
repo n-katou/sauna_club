@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_customer!
   before_action :block_post_customer, only: [:edit, :destroy, :update]
-  
+
   def index
     @posts = Post.order("created_at DESC").page(params[:page]).per(5)
   end
@@ -43,6 +43,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.order("created_at DESC").page(params[:page]).per(5)  #投稿ごとにコメントを表示させたい　記述方法を知りたい。今の記述でそれができた。
+    #@comments = Kaminari.paginate_array(@comments).order("created_at DESC").page(params[:page]).per(5)
   end
 
   #キーワード検索
