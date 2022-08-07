@@ -9,7 +9,6 @@ class FavoritesController < ApplicationController
     @post = Post.find(params[:post_id])
     favorite = current_customer.favorites.new(post_id: @post.id)
     favorite.save
-    render :favorite
     # redirect_to post_path(post.id)
   end
 
@@ -17,7 +16,6 @@ class FavoritesController < ApplicationController
     @post = Post.find(params[:post_id])
     favorite = current_customer.favorites.find_by(post_id: @post.id) #post_id: post.idこれの意味は？
     favorite.destroy
-    render :favorite
     # redirect_to post_path(post.id)
   end
 end
