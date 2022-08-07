@@ -27,7 +27,8 @@
         <div class="col-4">
           <% if comment.customer == current_customer %>
             <span><%= link_to "編集する", edit_post_comment_path(comment.post, comment.id),class: "text-white bg-primary btn"%></span>
-            <span><%= link_to "削除する",post_comment_path(comment.id),method: :delete, class: "btn btn-danger","data-confirm" => "本当に削除しますか？" %></span>
+            <a>　　　</a>
+            <span><%= link_to "削除する",post_comment_path(comment.id),method: :delete, class: "btn btn-danger","data-confirm" => "本当に削除しますか？" , remote: true %></span>
           <% end %>
         </div>
       </div>

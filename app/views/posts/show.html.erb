@@ -90,7 +90,7 @@
         <div class="col">
           <p>
             投稿日 <i class="fa-solid fa-calendar"></i>
-            <%= @post.created_at.strftime('%Y/%m/%d')%> | 
+            <%= @post.created_at.strftime('%Y/%m/%d')%> |
             コメント数 <i class="fa-solid fa-comments"></i>
             <span id="comment_counts1">
               <%= @post.comments.count %>
@@ -105,6 +105,7 @@
       </div>
     </div>
   </div>
+  <br>
   <div class ="row">
     <h3>
       <span id="comment_counts2">
@@ -122,7 +123,8 @@
     <h3>コメントする</h3>
   </div>
   <br><br>
-  <div id="comment_form">
+
+  <div id="comment">
     <%= render partial: "posts/comment_form" , locals: { post: @post, comment: @comment} %>
   </div>
   <br><br><br><br><br>
