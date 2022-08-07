@@ -1,10 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_customer!
-<<<<<<< Updated upstream
-  before_action :block_comment_customer, only: [:edit, :update]
-=======
   before_action :block_comment_customer, only: [:edit,:update]
->>>>>>> Stashed changes
 
   def edit
     @comment = Comment.find(params[:id])
