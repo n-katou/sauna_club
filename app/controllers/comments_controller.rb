@@ -1,6 +1,10 @@
 class CommentsController < ApplicationController
   before_action :authenticate_customer!
+<<<<<<< Updated upstream
   before_action :block_comment_customer, only: [:edit, :update]
+=======
+  before_action :block_comment_customer, only: [:edit,:update]
+>>>>>>> Stashed changes
 
   def edit
     @comment = Comment.find(params[:id])
@@ -29,9 +33,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = Comment.find(params[:post_id])
-    comment.destroy
-    redirect_to post_path(comment.post.id) #coment.post_idか？
+    @comment = Comment.find(params[:post_id])
+    @comment.destroy
+    redirect_to post_path(@comment.post.id) #coment.post_idか？
   end
 
   private
