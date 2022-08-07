@@ -18,6 +18,7 @@ class FavoritesController < ApplicationController
     favorite = current_customer.favorites.find_by(post_id: @post.id) #post_id: post.idこれの意味は？
     favorite.destroy
     render :favorite
+    
     # redirect_to post_path(post.id)
   end
 end
