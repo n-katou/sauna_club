@@ -1,7 +1,6 @@
-$('#post_comments').html("<%= j(render partial: "posts/post_comments", locals: { post: @post, comments: @comments }) %>");
-
+$('#post_comments').html("<%= j(render partial: "posts/post_comments", locals: {comments: @comments }) %>");
 $("#comment_counts1").html("<%= @post.comments.count %>");
 $("#comment_counts2").html("<%= @post.comments.count %>");
 
-$('#comment_form).html("<%= j(render partial: "posts/comment_form", locals: {post: @post,comment: @comment}) %>");
+$('#comment).html("<%= j(render partial: "posts/comment_form", locals: {post: @post,comment: @comment}) %>");
 $("textarea").val('');
