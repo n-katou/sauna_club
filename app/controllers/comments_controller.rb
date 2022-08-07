@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :block_comment_customer, only: [:edit, :destroy, :update]
+  before_action :block_comment_customer, only: [:edit, :update]
 
   def edit
     @comment = Comment.find(params[:id])
