@@ -32,6 +32,11 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     if @comment.destroy
+      # @comment = Comment.new
+      # @post = Post.find(params[:post_id])
+      # @comment.post_id = @post.id
+      # @comments = @post.comments.order("created_at DESC").page(params[:page]).per(5)
+      # render :delete
       redirect_to post_path(@comment.post.id) #coment.post_idか？
     end
   end
