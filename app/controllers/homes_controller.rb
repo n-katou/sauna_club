@@ -8,7 +8,7 @@ class HomesController < ApplicationController
     end
   end
 
-  def abouteit
+  def about
   end
 
   def error
