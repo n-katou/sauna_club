@@ -12,6 +12,7 @@ class HomesController < ApplicationController
   end
 
   def error
+    
   end
 
 end
