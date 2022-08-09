@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
     @comment.post_id = @post.id
     @comments = @post.comments.order("created_at DESC").page(params[:page]).per(5)
     if @comment.save
+      @comment = Comment.new
       render :create #jsを読み込んでいる
       # redirect_to post_path(@post.id)
     else
@@ -29,7 +30,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:post_id])
+    @comment = Comment.find(params[:id])
     if @comment.destroy
       redirect_to post_path(@comment.post.id) #coment.post_idか？
     end

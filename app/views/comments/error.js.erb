@@ -1,1 +1,2 @@
-$('#comment').html("<%= j(render partial: "posts/comment_form", locals: {post: @post,comment: @comment}) %>");
+$('#post_comments').html("<%= j(render partial: "posts/post_comments", locals: {comments: @comments }) %>");
+$('input[name="authenticity_token"]').val($('meta[name="csrf-token"]').attr('content'));
