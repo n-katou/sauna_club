@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <h1> <%= @customer.account_name %>さんとのチャットルーム</h1>
+      <div class="message">
+        <% @chats.each do |chat| %>
+          <% if chat.customer_id == current_customer.id %>
+            <p>
+              <span class="text-danger h3"><%= current_customer.account_name %></span><span class="h5">: <%= chat.message %></span>
+              <span><%= link_to "編集する", edit_chat_path(chat.id), class: "text-white bg-primary btn" %></span><span><%= link_to "削除する",chat_path(chat.id),method: :delete, class: "btn btn-danger","data-confirm" => "本当に削除しますか？" %></span>
+            </p>
+          <% else %>
+            <p>
+              <span class="text-info h3"><%= @customer.account_name %></span><span class="h5">: <%= chat.message %></span>
+            </p>
+          <% end %>
+        <% end %>
+      <%= form_with model: @chat do |f| %>
+        <%= f.text_field :message %>
+        <%= f.hidden_field :room_id %>
+        <%= f.submit "送る", class:"btn btn-sm btn-success chat-btn" %>
+      <% end %>
+    </div>
+  </div>
+</div>

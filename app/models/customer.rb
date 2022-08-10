@@ -23,6 +23,10 @@ class Customer < ApplicationRecord
 
   has_many :comments,dependent: :destroy
 
+  #チャット機能
+  has_many :customer_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
+
   has_one_attached :profile_image
 
   validates :account_name, presence: true

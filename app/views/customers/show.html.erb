@@ -64,6 +64,11 @@
           <% end %>
         <% end %>
       </p>
+      <p>
+        <% if current_customer != @customer %>
+          <%= link_to 'チャットする', chat_path(@customer.id) %>
+        <% end %>
+      </p>
     </div>
   </div>
 
