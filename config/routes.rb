@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   get "/tags" => "tags#index"
 
   #チャット機能
-  resources :chats, only: [:create,:destroy,:edit,:show,:update]
+  resources :chats, only: [:create,:destroy,:edit,:update]
   resources :rooms, only: %i[create index show]
 
 
