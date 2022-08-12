@@ -1,4 +1,6 @@
 class ChatsController < ApplicationController
+  before_action :authenticate_customer!
+
   def show
     @customer = Customer.find(params[:id])
     rooms = current_customer.customer_rooms.pluck(:room_id)
@@ -13,7 +15,7 @@ class ChatsController < ApplicationController
       @room = customer_rooms.room
     end
 
-    @chats = @room.chats
+    @chats = @room.chats.order("created_at DESC").page(params[:page]).per(5)
     @chat = Chat.new(room_id: @room.id)
   end
 
@@ -47,4 +49,5 @@ class ChatsController < ApplicationController
   def chat_params
     params.require(:chat).permit(:message, :room_id)
   end
+
 end

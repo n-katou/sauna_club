@@ -55,7 +55,7 @@
 
   <div class="row">
     <div class="mx-auto">
-      <p>
+      <div>
         <% if current_customer != @customer %>
           <% if current_customer.following?(@customer) %>
             <%= link_to "フォローをはずす", customer_relationships_path(@customer.id), method: :delete, class: "btn btn-danger" %>
@@ -63,14 +63,16 @@
             <%= link_to "フォローする", customer_relationships_path(@customer.id), method: :post, class: "text-white bg-primary btn" %>
           <% end %>
         <% end %>
-      </p>
-      <p>
+      </div>
+      <br>
+       <div>
         <% if current_customer != @customer %>
-          <%= link_to 'チャットする', chat_path(@customer.id) %>
+          <%= link_to 'チャットする', chat_path(@customer.id),class: "text-white bg-info btn" %>
         <% end %>
-      </p>
+      </div>
     </div>
   </div>
+  <br><br>
 
   <div class="row">
     <div class="mx-auto">
@@ -109,7 +111,7 @@
     <div class="row">
       <div class="col-2"></div>
       <div class="col-2">投稿日 <i class="fa-solid fa-calendar"></i> <%= post.created_at.strftime('%Y%m/%d') %> </div>
-      <div class="col-2">コメント数 <i class="fa-solid fa-comments"></i> <%= post.comments.count %>コメント </div>
+      <div class="col-3">コメント数 <i class="fa-solid fa-comments"></i> <%= post.comments.count %>コメント </div>
       <div class="col-2">いいね数 <i class="fa-solid fa-heart"></i><%= post.favorites.count %>いいね</div>
     </div>
   </div>
