@@ -1,0 +1,113 @@
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col">
+      <h1> <%= @customer.account_name %>さんとのチャットルーム</h1>
+    </div>
+  </div>
+
+  <br>
+  <% @chats.each do |chat| %>
+    <div class="border rounded">
+    <br>
+      <% if chat.customer_id == current_customer.id %>
+        <div class="row message">
+          <div class="col-1"></div>
+          <div class="col-2">
+            <p>チャット投稿者</p>
+            <%= image_tag chat.customer.get_profile_image(100,100) %>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-4 d-flex align-items-center">
+            <%= chat.message %>
+          </div>
+          <div class="col-3">
+            投稿日  <i class="fa-solid fa-calendar"></i> <%= chat.created_at.strftime('%Y%m/%d') %>
+          </div>
+        </div>
+      <% else %>
+        <div class="row message">
+          <div class="col-1"></div>
+          <div class="col-2">
+              <p>チャット投稿者</p>
+              <%= image_tag chat.customer.get_profile_image(100,100) %>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-4 d-flex align-items-center">
+            <%= chat.message %>
+          </div>
+          <div class="col-3">
+            投稿日  <i class="fa-solid fa-calendar"></i> <%= chat.created_at.strftime('%Y%m/%d') %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <%= link_to customer_path(chat.customer.id) do %>
+            <%= chat.customer.account_name %>
+          <% end %>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4">
+          <% if chat.customer == current_customer %>
+            <div class="row">
+              <div>
+                <%= link_to "編集する", edit_chat_path(chat.id), class: "text-white bg-primary btn" %>
+              </div>
+              <div class="ml-4">
+              <!--mlはマージンレフトのこと-->
+                <%= link_to "削除する",chat_path(chat.id),method: :delete, class: "btn btn-danger","data-confirm" => "本当に削除しますか？" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <br>
+    </div>
+  <br>
+  <% end %>
+
+  <br>
+  <div class="row">
+    <div class="mx-auto"><%= paginate @chats %></div>
+  </div>
+
+   <div class="row">
+    <h1>チャットする</h1>
+  </div>
+  <br><br>
+
+  <div class="form">
+    <%= form_with model: @chat do |f| %>
+      <% if f.object.errors.present? %>
+        <div id="error_explanation">
+          <h2><%= f.object.errors.count %>件のエラーが発生しました。</h2>
+          <ul>
+            <% f.object.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-6">
+          <h3>
+            <%= f.text_field :message,rows: "5", placeholder: "内容をここに" %>
+          </h3>
+          <%= f.hidden_field :room_id %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-7"></div>
+        <div class="col-3">
+          <%= f.submit "送る", class:"btn btn-sm btn-success chat-btn" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br><br><br><br><br>

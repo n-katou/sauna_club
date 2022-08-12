@@ -15,8 +15,7 @@ class CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(current_customer.id)
-    if
-      @customer.update(customer_params)
+    if @customer.update(customer_params)
       redirect_to mypage_path(current_customer.id)
     else
       render "edit"

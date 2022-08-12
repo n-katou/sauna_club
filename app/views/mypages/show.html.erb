@@ -25,8 +25,14 @@
     <div class="col-4 d-flex align-items-center">
       <%= image_tag @customer.get_profile_image(100,100)%>
     </div>
-    <div class="col-4 d-flex align-items-center">
-      <%= link_to "新規投稿する", new_post_path, class: "text-white bg-primary btn" %>
+    <div class="col-4">
+      <p>
+        <%= link_to "新規投稿する", new_post_path, class: "text-white bg-primary btn" %>
+      </p>
+      <br>
+      <p>
+        <%= link_to "チャット一覧" ,rooms_path, class: "text-white bg-primary btn" %>
+      </p>
     </div>
   </div>
   <br><br>
