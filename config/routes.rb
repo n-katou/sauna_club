@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   #チャット機能
   resources :chats, only: [:create,:destroy,:edit,:show,:update]
+  resources :rooms, only: %i[create index show]
 
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

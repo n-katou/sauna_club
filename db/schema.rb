@@ -53,11 +53,14 @@ ActiveRecord::Schema.define(version: 2022_08_10_134616) do
   end
 
   create_table "chats", force: :cascade do |t|
-    t.integer "customer_id"
-    t.integer "room_id"
-    t.text "message"
+    t.integer "customer_id", null: false
+    t.integer "room_id", null: false
+    t.string "message", null: false
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_chats_on_customer_id"
+    t.index ["room_id"], name: "index_chats_on_room_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -69,10 +72,13 @@ ActiveRecord::Schema.define(version: 2022_08_10_134616) do
   end
 
   create_table "customer_rooms", force: :cascade do |t|
-    t.integer "customer_id"
-    t.integer "room_id"
+    t.integer "customer_id", null: false
+    t.integer "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id", "room_id"], name: "index_customer_rooms_on_customer_id_and_room_id", unique: true
+    t.index ["customer_id"], name: "index_customer_rooms_on_customer_id"
+    t.index ["room_id"], name: "index_customer_rooms_on_room_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -137,4 +143,8 @@ ActiveRecord::Schema.define(version: 2022_08_10_134616) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chats", "customers"
+  add_foreign_key "chats", "rooms"
+  add_foreign_key "customer_rooms", "customers"
+  add_foreign_key "customer_rooms", "rooms"
 end

@@ -67,7 +67,13 @@
       <br>
        <div>
         <% if current_customer != @customer %>
-          <%= link_to 'チャットする', chat_path(@customer.id),class: "text-white bg-info btn" %>
+          <%#= link_to 'チャットする', chat_path(@customer.id),class: "text-white bg-info btn" %>
+        <% end %>
+      </div>
+      <br>
+      <div>
+        <% if current_customer != @customer %>
+          <%= link_to 'チャットをする', rooms_path(customer_id: @customer), method: :post, class: "text-white bg-info btn" %>
         <% end %>
       </div>
     </div>
