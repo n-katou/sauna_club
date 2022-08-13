@@ -1,5 +1,4 @@
 <div class="row">
-  <div class="col-1"></div>
   <div class="col-1">
     <%= link_to root_path, class: "navbar-toggler" do %>
       <div class="logo_icon"></div>
@@ -11,6 +10,9 @@
   </div>
   <div class="col-2 d-flex align-items-center">
     <h1 class="text-center"><%= link_to "投稿一覧", posts_path,class: "text-white btn" %></h1>
+  </div>
+  <div class="col-2 d-flex align-items-center">
+    <h1 class="text-center"><%= link_to "チャット一覧" ,rooms_path, class: "text-white btn" %></h1>
   </div>
   <div class="col-2 d-flex align-items-center">
     <h1 class="text-center"><%= link_to "会員一覧", customers_path,class: "text-white btn" %></h1>

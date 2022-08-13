@@ -121,7 +121,7 @@
 
     <div class="row">
       <div class="col-2"></div>
-      <div class="col-2"><i class="fa-solid fa-calendar"></i> <%= post.created_at.strftime('%Y/%m/%d') %> </div>
+      <div class="col-2"><i class="fa-solid fa-calendar"></i> <%= post.created_at.strftime("%Y/%m/%d %H:%M") %> </div>
       <div class="col-2"><i class="fa-solid fa-comments"></i> <%= post.comments.count %>コメント </div>
       <div class="col-2"><i class="fa-solid fa-heart"></i> <%= post.favorites.count %>いいね </div>
     </div>

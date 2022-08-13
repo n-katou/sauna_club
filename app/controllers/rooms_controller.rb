@@ -9,6 +9,7 @@ class RoomsController < ApplicationController
   end
 
   def create
+    @customer = Customer.find(params[:customer_id])
     customer_rooms = CustomerRoom.find_customer_rooms(current_customer, @customer)
     if customer_rooms.nil?
       room = Room.create
@@ -25,7 +26,7 @@ class RoomsController < ApplicationController
     room.check_chats_notification(current_customer)
     customer_id = room.customer_rooms.where.not(customer_id: current_customer.id).select(:customer_id)
     @customer = Customer.where(id: customer_id).first
-    @chats = room.chats.includes(:customer)
+    @chats = room.chats.includes(:customer).page(params[:page]).per(5)
     @chat = Chat.new(room_id: room.id)
   end
 
@@ -36,7 +37,7 @@ class RoomsController < ApplicationController
     flash[:danger] = "ユーザーにはアクセスする権限がありません"
     redirect_to root_path
   end
-  
+
   # def show
   #   @customer = Customer.find(params[:id])
   #   rooms = current_customer.customer_rooms.pluck(:room_id)

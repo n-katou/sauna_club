@@ -86,11 +86,11 @@
             <%= @post.customer.account_name %>
           <% end %>
         </div>
-        <div class="col-2"></div>
+        <div class="col-1"></div>
         <div class="col">
           <p>
             投稿日 <i class="fa-solid fa-calendar"></i>
-            <%= @post.created_at.strftime('%Y/%m/%d')%> |
+            <%= @post.created_at.strftime("%Y/%m/%d %H:%M")%> |
             コメント数 <i class="fa-solid fa-comments"></i>
             <span id="comment_counts1">
               <%= @post.comments.count %>
