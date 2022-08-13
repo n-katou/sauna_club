@@ -1,0 +1,45 @@
+<div class="container bg-light">
+  <br><br>
+  <div class="row mx-auto">
+    <h1>チャット一覧</h1>
+  </div>
+  <br>
+  <div class="row">
+    <% if @customer_rooms.empty? %>
+      <p class="mx-auto">メッセージはありません</p>
+    <% end %>
+  </div>
+  <% @customer_rooms.each do |room| %>
+    <div class="row mx-auto border border-secondary rounded pt-2 px-2">
+      <div class="col">
+        <div class="user border-bottom border-secondary">
+        <%= link_to customer_path(room.customer) do %>
+          <%= image_tag room.customer.get_profile_image(100,100)%>
+          <br>
+          <span class="text-break"><%= room.customer.account_name %></span>
+        <% end %>
+        </div>
+        <%= link_to room_path(room.room_id), class: "text-decoration-none" do %>
+          <div class="chat-min-heiht">
+            <% if room.chats != [] %>
+              <p class="pt-3 ml-3 mb-0 text-dark text-break"><%= room.chats.last.message %></p>
+              <div class="small text-muted text-right text-break">
+                <span>
+                  <% if room.message_checked %>
+                    <i class="fa fa-circle fa-x" style="color: blue;"></i>
+                  <% end %>
+                </span>
+                <%= (room.chats.last).created_at.strftime("%Y/%m/%d %H:%M") %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <br><br>
+  <% end %>
+  </div>
+  <br><br>
+</div>
+
+

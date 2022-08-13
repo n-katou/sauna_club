@@ -12,7 +12,7 @@
           <%= comment.comment_content %>
         </div>
         <div class="col-3">
-          投稿日  <i class="fa-solid fa-calendar"></i> <%= comment.created_at.strftime('%Y%m/%d') %>
+          投稿日  <i class="fa-solid fa-calendar"></i> <%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>
         </div>
       </div>
 
@@ -32,10 +32,7 @@
               </div>
               <div class="ml-4">
               <!--mlはマージンレフトのこと-->
-                <form action= "/posts/<%= @post.id %>/comments/<%= comment.id %>" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="delete" autocomplete="off">
-                  <input type="hidden" name="authenticity_token" value="" autocomplete="off">
-                  <input type="submit" name="commit" value="削除する" class="btn btn-danger" data-confirm="本当に削除しますか？" data-disable-with="削除する">
-                </form>
+              <%= link_to "削除",post_comment_path(@post.id, comment.id),method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn btn-danger",remote: true %>
               </div>
             </div>
           <% end %>
@@ -45,11 +42,12 @@
     </div>
   <% end %>
 
+  <br>
   <div class="row">
-    <div class="col text-center"><%= paginate comments %></div>
+    <div class="mx-auto"><%= paginate comments %></div>
   </div>
 
-   <div class="row">
+  <div class="row">
     <h3>コメントする</h3>
   </div>
   <br><br>

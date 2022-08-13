@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  get 'chats/show'
   get 'tags/index'
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "customer/registrations",
@@ -38,6 +39,10 @@ Rails.application.routes.draw do
   get "/mypage" => "mypages#show"
 
   get "/tags" => "tags#index"
+
+  #チャット機能
+  resources :chats, only: [:create,:destroy,:edit,:update]
+  resources :rooms, only: %i[create index show]
 
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

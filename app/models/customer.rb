@@ -23,6 +23,10 @@ class Customer < ApplicationRecord
 
   has_many :comments,dependent: :destroy
 
+  #チャット機能
+  has_many :customer_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
+
   has_one_attached :profile_image
 
   validates :account_name, presence: true
@@ -64,6 +68,13 @@ class Customer < ApplicationRecord
   #ゲストログインの閲覧のみのメソッド　application_controllerで
   def guest?
     email == 'aaa@aaa.com'
+  end
+  
+  #未読の通知が存在するか確認(チャット)
+  def unchecked_chats?
+    my_rooms_ids = CustomerRoom.select(:room_id).where(customer_id: id)
+    other_customer_ids = CustomerRoom.select(:customer_id).where(room_id: my_rooms_ids).where.not(customer_id: id)
+    Chat.where(customer_id: other_customer_ids, room_id: my_rooms_ids).where.not(checked: true).any?
   end
 
 end
