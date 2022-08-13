@@ -1,2 +1,5 @@
 $('#post_comments').html("<%= j(render partial: "posts/post_comments", locals: {comments: @comments }) %>");
 <!--$('input[name="authenticity_token"]').val($('meta[name="csrf-token"]').attr('content'));-->
+
+$("#comment_counts1").html("<%= @post.comments.count %>");
+$("#comment_counts2").html("<%= @post.comments.count %>");
