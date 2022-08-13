@@ -2,7 +2,7 @@
   <br>
   <div class="row">
     <div class="col">
-      <h1> <%= @customer.account_name %>さんとのチャットルーム</h1>
+      <h2> <%= @customer.account_name %>さんとのチャットルーム</h2>
     </div>
   </div>
 
@@ -22,7 +22,7 @@
             <%= chat.message %>
           </div>
           <div class="col-3">
-            投稿日  <i class="fa-solid fa-calendar"></i> <%= chat.created_at.strftime('%Y%m/%d') %>
+            投稿日  <i class="fa-solid fa-calendar"></i> <%= chat.created_at.strftime("%Y/%m/%d %H:%M") %>
           </div>
         </div>
       <% else %>
@@ -37,7 +37,7 @@
             <%= chat.message %>
           </div>
           <div class="col-3">
-            投稿日  <i class="fa-solid fa-calendar"></i> <%= chat.created_at.strftime('%Y%m/%d') %>
+            投稿日  <i class="fa-solid fa-calendar"></i> <%= chat.created_at.strftime("%Y/%m/%d %H:%M") %>
           </div>
         </div>
       <% end %>
@@ -75,12 +75,12 @@
   </div>
 
    <div class="row">
-    <h1>チャットする</h1>
+    <h2>チャットする</h2>
   </div>
   <br><br>
 
   <div class="form">
-    <%= form_with model: [@customer, @chat] do |f| %>
+    <%= form_with model: [@chat] do |f| %>
       <% if f.object.errors.present? %>
         <div id="error_explanation">
           <h2><%= f.object.errors.count %>件のエラーが発生しました。</h2>

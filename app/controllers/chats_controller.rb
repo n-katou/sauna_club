@@ -1,6 +1,6 @@
 class ChatsController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def create
     @chat = current_customer.chats.new(chat_params)
     if @chat.save
@@ -13,7 +13,7 @@ class ChatsController < ApplicationController
   def destroy
     @chat = Chat.find(params[:id])
     @chat.destroy
-    redirect_to chat_path(@chat.id)
+    redirect_to room_path(@chat.room.id)
   end
 
   def edit
@@ -23,7 +23,7 @@ class ChatsController < ApplicationController
   def update
     @chat = Chat.find(params[:id])
     if @chat.update(chat_params)
-      redirect_to chat_path(@chat.id)
+      redirect_to room_path(@chat.room.id)
     else
       render :edit
     end
