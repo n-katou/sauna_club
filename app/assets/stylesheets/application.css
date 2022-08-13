@@ -13,20 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
- .header_view {
-  background-image: url("../images/aaa.jpg");
-  width: 100%;
-  height: 302px;
-  background-size: cover;
-  background-position: center;
-}
-
-.logo_icon {
-  background-image: url("/assets/logo.png");
-  height: 113px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 28px;
-  width: 122px;
-}
