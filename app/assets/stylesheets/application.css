@@ -15,7 +15,7 @@
  */
 
  .header_view {
-  background-image: url("/assets/aaa.jpg");
+  background-image: url("../images/aaa.jpg");
   width: 100%;
   height: 302px;
   background-size: cover;
