@@ -79,35 +79,8 @@
   </div>
   <br><br>
 
-  <div class="form">
-    <%= form_with model: [@chat] do |f| %>
-      <% if f.object.errors.present? %>
-        <div id="error_explanation">
-          <h2><%= f.object.errors.count %>件のエラーが発生しました。</h2>
-          <ul>
-            <% f.object.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-      <div class="row">
-        <div class="col-4"></div>
-        <div class="col-6">
-          <h3>
-            <%= f.text_field :message,rows: "5", placeholder: "内容をここに" %>
-          </h3>
-          <%= f.hidden_field :room_id %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-7"></div>
-        <div class="col-3">
-          <%= f.submit "送る", class:"btn btn-sm btn-success chat-btn" %>
-        </div>
-      </div>
-    <% end %>
+  <div id="form">
+    <%= render partial: "rooms/form" %>
   </div>
 </div>
 <br><br><br><br><br>
