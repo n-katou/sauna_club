@@ -20,7 +20,7 @@
 
   <body>
     <header>
-      <div class="container">
+      <div class="container header_view">
         <% if customer_signed_in? %>
           <%= render partial: 'layouts/customer'%>
         <% elsif admin_signed_in? %>
@@ -32,14 +32,14 @@
     </header>
     <%= yield %>
      <footer>
-      <div class="container  bg-primary">
-        <br>
+      <div class="container bg-primary">
+        <br><br>
         <div class="row">
           <div class="mx-auto">
-            <p>©︎ サウナ倶楽部. All Rights reserved.</p>
+            <p class="text-white">©︎ サウナ倶楽部. All Rights reserved.</p>
           </div>
         </div>
-        <br><br>
+        <br>
       </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
