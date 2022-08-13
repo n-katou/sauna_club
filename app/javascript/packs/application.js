@@ -14,3 +14,8 @@ ActiveStorage.start()
 
 //= require jquery
 //= require rails-ujs
+
+const images = require.context('../images', true)
+const imagePath = (name) => images(name, true)
+
+import "packs/application.css";
