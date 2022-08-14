@@ -34,8 +34,8 @@
     <p class="text-white">キーワード検索</p>
     <p class="text-center">
       <%= form_with url: posts_search_path, method: :get, local: true do |f| %>
-        <%= f.text_field :keyword, value: @keyword %>
-        <%= f.submit "検索する" %>
+        <p><%= f.text_field :keyword, value: @keyword,size: "15x15" %></p>
+        <p><%= f.submit "検索する" %></p>
       <% end %>
     </p>
   </div>
@@ -43,8 +43,8 @@
   <div class="col-xl-3 col-4">
     <p class="text-white">タグ検索</p>
     <%= form_with url: tags_search_path, method: :get, local: true do |f| %>
-      <%= f.text_field :keyword, value: @keyword2 %>
-      <%= f.submit "検索する" %>
+      <p><%= f.text_field :keyword, value: @keyword2, size: "14x14" %></p>
+      <p><%= f.submit "検索する" %></p>
     <% end %>
   </div>
 </div>
