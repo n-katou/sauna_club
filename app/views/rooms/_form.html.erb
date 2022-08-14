@@ -1,7 +1,7 @@
 <%= form_with model: [@chat],local: false do |f| %>
   <% if f.object.errors.present? %>
     <div id="error_explanation">
-      <h2><%= f.object.errors.count %>件のエラーが発生しました。</h2>
+      <h4><%= f.object.errors.count %>件のエラーが発生しました。</h4>
       <ul>
         <% f.object.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,8 +10,8 @@
     </div>
   <% end %>
   <div class="row">
-    <div class="col-4"></div>
-    <div class="col-6">
+    <div class="col-xl-4 col-1"></div>
+    <div class="col-xl-6 col-5">
       <h3>
         <%= f.text_field :message,rows: "5", placeholder: "内容をここに" %>
       </h3>
@@ -20,8 +20,8 @@
   </div>
 
   <div class="row">
-    <div class="col-7"></div>
-    <div class="col-3">
+    <div class="col-xl-7 col-9"></div>
+    <div class="col-xl-3 col-3">
       <%= f.submit "送る", class:"btn btn-primary chat-btn" %>
     </div>
   </div>

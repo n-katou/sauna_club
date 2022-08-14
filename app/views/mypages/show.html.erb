@@ -3,78 +3,7 @@
   <div class="row">
     <h1>マイページ</h1>
   </div>
-
-  <div class="row">
-    <div class="mx-auto">
-      <h2>
-        登録情報
-        <% if  %>
-          <a class="text-center">
-            <%= link_to "編集する", edit_customer_path(current_customer),class: "text-white bg-info btn" %>
-          </a>
-        <% end %>
-      </h2>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-xl-2 col0"></div>
-    <div class= "col-xl-3 col-6 d-flex align-items-center">
-      <h5>アカウント画像</h5>
-    </div>
-    <div class="col-xl-2 col-2"></div>
-    <div class="col-xl-4 col-4 d-flex align-items-center">
-      <%= image_tag @customer.get_profile_image(100,100)%>
-    </div>
-  </div>
-  <br><br>
-
-  <div class="row">
-    <div class="col-xl-2 col0"></div>
-    <div class="col-xl-3 col-6 d-flex align-items-center">
-      <h5 class="d-flex align-items-center">アカウント名</h5>
-    </div>
-    <div class="col-xl-2 col-2"></div>
-    <div class="col-xl-4 col-4 d-flex align-items-center">
-      <%= @customer.account_name %>
-    </div>
-  </div>
-  <br><br>
-
-  <div class="row">
-    <div class="col-xl-2 col0"></div>
-    <div class="col-xl-3 col-6 d-flex align-items-center">
-      <h5>メールアドレス</h5>
-    </div>
-    <div class="col-xl-2 col-2"></div>
-    <div class="col-xl-4 col-4 d-flex align-items-center">
-      <%= @customer.email %>
-    </div>
-  </div>
-  <br><br>
-
-  <div class="row">
-    <div class="col-xl-2 col0"></div>
-    <div class="col-xl-3 col-6 d-flex align-items-center">
-      <h5>生年月日</h5>
-    </div>
-    <div class="col-xl-2 col-2"></div>
-    <div class="col-xl-4 col-4 d-flex align-items-center">
-      <%= @customer.birth_date %>
-    </div>
-  </div>
-  <br><br>
-
-  <div class="row">
-    <div class="col-xl-2 col-0"></div>
-    <div class="col-xl-3 col-6 d-flex align-items-center">
-      <h5>自己紹介</h5>
-    </div>
-    <div class="col-xl-2 col-2"></div>
-    <div class="col-xl-4 col-4 d-flex align-items-center">
-      <%= @customer.introduction %>
-    </div>
-  </div>
+  <%= render "mypages/info_mypage",customer: @customer %>
   <br><br>
 
   <div class="row">
@@ -119,45 +48,6 @@
     <h2>自分の投稿一覧</h2>
   </div>
   <br><br>
-  <% @posts.each do |post| %>
-  <div class="border">
-    <div class="row">
-      <div class="col-xl-2 col-12">
-        <p><%= image_tag post.customer.get_profile_image(100,100) %></p>
-        <p>
-          <%= link_to customer_path(post.customer.id) do %>
-            <%= post.customer.account_name %>
-          <% end %>
-        </p>
-      </div>
-      <div class="col-xl-4 col-12">
-        <h4>タイトル</h4>
-        <p><%= link_to post.title,post_path(post.id) %></p>
-      </div>
-    </div>
-    <div class="row">
-      <br>
-      <div class="col-xl-2 col0 d-flex align-items-center"></div>
-      <div class="col-xl-4 col-8">
-        <h4>タグ</h4>
-        <% post.tags.each do |tag| %>
-          <p class="d-flex align-items-center"><%= tag.tag_name %></p>
-        <% end %>
-      </div>
-      <br><br>
-    </div>
-
-    <div class="row">
-      <div class="col-xl-5 col0"></div>
-      <div class="col-xl-3 col-12"><i class="fa-solid fa-calendar"></i> <%= post.created_at.strftime("%Y/%m/%d %H:%M") %> </div>
-      <div class="col-xl-2 col-12"><i class="fa-solid fa-comments"></i> <%= post.comments.count %>コメント </div>
-      <div class="col-xl-2 col-12"><i class="fa-solid fa-heart"></i> <%= post.favorites.count %>いいね </div>
-    </div>
-  </div>
-  <br><br>
-  <% end %>
-    <div class="row">
-      <div class="col text-center"><%= paginate @posts %></div>
-    </div>
+  <%= render "mypages/post_mypage",posts: @posts %>
     <br><br><br><br><br>
 </div>

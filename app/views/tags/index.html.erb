@@ -7,11 +7,11 @@
     <div class="border">
       <br>
       <div class="row">
-        <div class="col-2"></div>
-        <div class="col-3 d-flex align-items-center">
+        <div class="col-xl-2 col-1"></div>
+        <div class="col-xl-3 col-10 d-flex align-items-center">
           <%= tag.tag_name %>
         </div>
-        <div class="col-1"></div>
+        <div class="col-xl-1 col-1"></div>
       </div>
       <br>
     </div>
@@ -19,7 +19,7 @@
   <% end %>
 
   <div class="row">
-    <div class="col text-center"><%= paginate @tags %></div>
+    <div class="mx-auto"><%= paginate @tags %></div>
   </div>
 
 <br><br><br><br><br>
