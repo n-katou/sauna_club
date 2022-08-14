@@ -1,20 +1,40 @@
 <div class="container bg-light">
+  <br>
     <h1>会員一覧</h1>
     <br><br>
     <% @customers.each do |customer| %>
       <div class="border">
         <div class ="row">
-          <div class="col-2">
+          <div class="col-xl-2 col-3">
             <%= link_to customer_path(customer.id) do %>
-              <%= image_tag customer.get_profile_image(100,100) %>
+              <p><%= image_tag customer.get_profile_image(100,100) %></p>
+              <p><%= customer.account_name %></p>
             <% end %>
           </div>
-          <div class="col-1"></div>
-          <div class="col-4">
-            <h4>自己紹介</h4><%= customer.introduction %>
+          <div class="col-xl-1 col-1"></div>
+          <div class="col-xl-3 col-8">
+            <h4>自己紹介</h4>
+            <p><%= customer.introduction %></p>
           </div>
-          <div class="col-1"></div>
-          <div class="col d-flex align-items-center">
+          <div class="col-xl-2 col-6"></div>
+          <div class="col-xl-4 col-6 d-flex align-items-center">
+            <% if current_customer != customer %>
+              <%= link_to 'チャットをする', rooms_path(customer_id: customer), method: :post, class: "text-white bg-info btn" %>
+            <% end %>
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-xl-3 col-1"></div>
+          <div class="col-xl-2 col-5">
+            フォロー数: <%= customer.followings.count %>
+          </div>
+          <div class="col-xl-2 col-5">
+            フォロワー数: <%= customer.followers.count %>
+          </div>
+          <div class="col-xl-1 col-3"></div>
+          <div class="col-xl-4 col-8 d-flex align-items-center">
             <% if current_customer != customer %>
               <% if current_customer.following?(customer) %>
                 <%= link_to "フォローをはずす", customer_relationships_path(customer.id), method: :delete, class: "btn btn-danger" %>
@@ -24,33 +44,12 @@
             <% end %>
           </div>
         </div>
-        <br>
-
-        <div class="row">
-          <div class="col-2">
-            <%= link_to customer_path(customer.id) do %>
-              <%= customer.account_name %>
-            <% end %>
-          </div>
-          <div class="col-1"></div>
-          <div class="col-2">
-            フォロー数: <%= customer.followings.count %>
-          </div>
-          <div class="col-2">
-            フォロワー数: <%= customer.followers.count %>
-          </div>
-          <div class="col-1"></div>
-          <div class="col d-flex align-items-center">
-            <% if current_customer != customer %>
-              <%= link_to 'チャットをする', rooms_path(customer_id: customer), method: :post, class: "text-white bg-info btn" %>
-            <% end %>
-          </div>
-        </div>
       <br>
       </div>
       <br><br>
     <% end %>
+    <br>
     <div class="row">
-      <div class="col text-center"><%= paginate @customers %></div>
+      <div class="mx-auto"><%= paginate @customers %></div>
     </div>
   </div>
