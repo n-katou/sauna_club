@@ -1,0 +1,40 @@
+<% posts.each do |post| %>
+  <div class="border">
+    <div class="row">
+      <div class="col-xl-2 col-12">
+        <p><%= image_tag post.customer.get_profile_image(100,100) %></p>
+        <p>
+          <%= link_to customer_path(post.customer.id) do %>
+            <%= post.customer.account_name %>
+          <% end %>
+        </p>
+      </div>
+      <div class="col-xl-4 col-12">
+        <h4>タイトル</h4>
+        <p><%= link_to post.title,post_path(post.id) %></p>
+      </div>
+    </div>
+    <div class="row">
+      <br>
+      <div class="col-xl-2 col0 d-flex align-items-center"></div>
+      <div class="col-xl-4 col-8">
+        <h4>タグ</h4>
+        <% post.tags.each do |tag| %>
+          <p class="d-flex align-items-center"><%= tag.tag_name %></p>
+        <% end %>
+      </div>
+      <br><br>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-5 col0"></div>
+      <div class="col-xl-3 col-12"><i class="fa-solid fa-calendar"></i> <%= post.created_at.strftime("%Y/%m/%d %H:%M") %> </div>
+      <div class="col-xl-2 col-12"><i class="fa-solid fa-comments"></i> <%= post.comments.count %>コメント </div>
+      <div class="col-xl-2 col-12"><i class="fa-solid fa-heart"></i> <%= post.favorites.count %>いいね </div>
+    </div>
+  </div>
+  <br><br>
+<% end %>
+<div class="row">
+  <div class="col text-center"><%= paginate posts %></div>
+</div>

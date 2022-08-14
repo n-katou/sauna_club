@@ -1,135 +1,53 @@
 <div class="container bg-light">
+  <br>
   <div class="row">
-    <div class="mx-auto">
-      <h1>マイページ</h1>
-    </div>
+    <h1>マイページ</h1>
   </div>
+  <%= render "mypages/info_mypage",customer: @customer %>
+  <br><br>
 
   <div class="row">
-    <div>
-      <h1>
-        登録情報
-        <% if  %>
-          <a class="text-center">
-            <%= link_to "編集する", edit_customer_path(current_customer),class: "text-white bg-primary btn" %>
-          </a>
-        <% end %>
-      </h1>
-    </div>
+    <h2>メニュー</h2>
   </div>
-
-  <div class="row mx-auto">
-    <div class= "col-4 d-flex align-items-center">
-      <h3>アカウント画像</h3>
+  <br>
+  <div class="row">
+    <div class="col-xl-3 col-1"></div>
+    <div class="col-xl-3 col-5">
+      <%= link_to "新規投稿する", new_post_path, class: "text-white bg-primary btn" %>
     </div>
-    <div class="col-4 d-flex align-items-center">
-      <%= image_tag @customer.get_profile_image(100,100)%>
-    </div>
-    <div class="col-4">
-      <p>
-        <%= link_to "新規投稿する", new_post_path, class: "text-white bg-primary btn" %>
-      </p>
-      <br>
-      <p>
-        <%= link_to "チャット一覧" ,rooms_path, class: "text-white bg-primary btn" %>
-      </p>
-    </div>
-  </div>
-  <br><br>
-
-  <div class="row mx-auto">
-    <div class="col-4 d-flex align-items-center">
-      <h3 class="d-flex align-items-center">アカウント名</h3>
-    </div>
-    <div class="col-4 d-flex align-items-center">
-      <%= @customer.account_name %>
-    </div>
-    <div class="col-4 d-flex align-items-center">
-      <%= link_to "タグ一覧",tags_path, class: "text-white bg-primary btn" %>
-    </div>
-  </div>
-  <br><br>
-
-  <div class="row mx-auto">
-    <div class="col-4 d-flex align-items-center">
-      <h3>メールアドレス</h3>
-    </div>
-    <div class="col-4 d-flex align-items-center">
-      <%= @customer.email %>
-    </div>
-    <div class="col-4 d-flex align-items-center">
-      <%= link_to "フォローした会員一覧",customer_followings_path(@customer.id), class: "text-white bg-primary btn" %>
-    </div>
-  </div>
-  <br><br>
-
-  <div class="row mx-auto">
-    <div class="col-4 d-flex align-items-center">
-      <h3>生年月日</h3>
-    </div>
-    <div class="col-4 d-flex align-items-center">
-      <%= @customer.birth_date %>
-    </div>
-    <div class="col-4 d-flex align-items-center">
-       <%= link_to "フォローされた会員一覧",customer_followers_path(@customer.id), class: "text-white bg-primary btn" %>
-    </div>
-  </div>
-  <br><br>
-
-  <div class="row mx-auto">
-    <div class="col-4 d-flex align-items-center">
-      <h3>自己紹介</h3>
-    </div>
-    <div class="col-4 d-flex align-items-center">
-      <%= @customer.introduction %>
-    </div>
-    <div class="col-4 d-flex align-items-center">
+    <div class="col-xl-1 col-1"></div>
+    <div class="col-xl-3 col-5">
       <%= link_to "いいねした投稿一覧",favorites_path, class: "text-white bg-primary btn" %>
     </div>
   </div>
+  <br>
+  <div class="row">
+    <div class="col-xl-3 col-1"></div>
+    <div class="col-xl-3 col-5">
+      <%= link_to "タグ一覧",tags_path, class: "text-white bg-primary btn" %>
+    </div>
+    <div class="col-xl-1 col-1"></div>
+    <div class="col-xl-2 col-5">
+      <%= link_to "チャット一覧" ,rooms_path, class: "text-white bg-primary btn" %>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-xl-3 col-1"></div>
+    <div class="col-xl-3 col-5">
+      <%= link_to "フォローした会員一覧",customer_followings_path(@customer.id), class: "text-white bg-primary btn" %>
+    </div>
+    <div class="col-xl-1 col-1"></div>
+    <div class="col-xl-3 col-5">
+      <%= link_to "フォローされた会員一覧",customer_followers_path(@customer.id), class: "text-white bg-primary btn" %>
+    </div>
+  </div>
   <br><br>
 
   <div class="row">
-    <h1>自分の投稿一覧</h1>
+    <h2>自分の投稿一覧</h2>
   </div>
   <br><br>
-  <% @posts.each do |post| %>
-  <div class="border">
-    <div class="row">
-      <div class="col-2">
-        <%= image_tag post.customer.get_profile_image(100,100) %>
-      </div>
-      <div class="col-4">
-        <h4>タイトル     <%= link_to post.title,post_path(post.id) %></h4>
-      </div>
-    </div>
-    <div class="row">
-      <br>
-      <div class="col-2">
-        <%= link_to customer_path(post.customer.id) do %>
-          <%= post.customer.account_name %>
-        <% end %>
-      </div>
-      <div class="col-6">
-        <h4>タグ</h4>
-        <% post.tags.each do |tag| %>
-          <p class="d-flex align-items-center"><%= tag.tag_name %></p>
-        <% end %>
-      </div>
-      <br><br>
-    </div>
-
-    <div class="row">
-      <div class="col-2"></div>
-      <div class="col-2"><i class="fa-solid fa-calendar"></i> <%= post.created_at.strftime("%Y/%m/%d %H:%M") %> </div>
-      <div class="col-2"><i class="fa-solid fa-comments"></i> <%= post.comments.count %>コメント </div>
-      <div class="col-2"><i class="fa-solid fa-heart"></i> <%= post.favorites.count %>いいね </div>
-    </div>
-  </div>
-  <br><br>
-  <% end %>
-    <div class="row">
-      <div class="col text-center"><%= paginate @posts %></div>
-    </div>
+  <%= render "mypages/post_mypage",posts: @posts %>
     <br><br><br><br><br>
 </div>

@@ -1,0 +1,69 @@
+ <% chats.each do |chat| %>
+    <div class="border rounded">
+    <br>
+      <% if chat.customer_id == current_customer.id %>
+        <div class="row message">
+          <div class="col-xl-1 col-1"></div>
+          <div class="col-xl-2 col-4">
+            <p>チャット投稿者</p>
+            <%= link_to customer_path(chat.customer.id) do %>
+              <p><%= image_tag chat.customer.get_profile_image(70,70) %></p>
+              <p><%= chat.customer.account_name %></p>
+            <% end %>
+          </div>
+          <div class="col-xl-1 col-1"></div>
+          <div class="col-xl-4 col-6 d-flex align-items-center">
+            <p><%= chat.message %></p>
+          </div>
+          <div class="col-xl-1 col-1"></div>
+          <div class="col-xl-3 col-8">
+            投稿日  <i class="fa-solid fa-calendar"></i> <%= chat.created_at.strftime("%Y/%m/%d %H:%M") %>
+          </div>
+        </div>
+      <% else %>
+        <div class="row message">
+          <div class="col-xl-1 col-1"></div>
+          <div class="col-xl-2 col-4">
+              <p>チャット投稿者</p>
+              <%= link_to customer_path(chat.customer.id) do %>
+                <p><%= image_tag chat.customer.get_profile_image(70,70) %></p>
+                <p><%= chat.customer.account_name %></p>
+              <% end %>
+          </div>
+          <div class="col-xl-1 col-1"></div>
+          <div class="col-xl-4 col-6 d-flex align-items-centerr">
+            <p><%= chat.message %></p>
+          </div>
+          <div class="col-xl-1 col-1"></div>
+          <div class="col-xl-3 col-8">
+            投稿日  <i class="fa-solid fa-calendar"></i> <%= chat.created_at.strftime("%Y/%m/%d %H:%M") %>
+          </div>
+        </div>
+      <% end %>
+      <br>
+
+      <div class="row">
+        <div class="col-xl-8 col-4"></div>
+        <div class="col-xl-4 col-8">
+          <% if chat.customer == current_customer %>
+            <div class="row">
+              <div>
+                <%= link_to "編集する", edit_chat_path(chat.id), class: "text-white bg-primary btn" %>
+              </div>
+              <div class="ml-4">
+              <!--mlはマージンレフトのこと-->
+                <%= link_to "削除する",chat_path(chat.id),method: :delete, class: "btn btn-danger","data-confirm" => "本当に削除しますか？" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <br>
+    </div>
+  <br>
+  <% end %>
+
+  <br>
+  <div class="row">
+    <div class="mx-auto"><%= paginate chats %></div>
+  </div>

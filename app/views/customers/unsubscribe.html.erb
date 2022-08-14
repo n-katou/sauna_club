@@ -7,11 +7,11 @@
   <p>退会する場合は、「退会する」をクリックしてください。</p>
   <br><br>
   <div class="row">
-    <div class="col-4"></div>
-    <div class="col-2">
+    <div class="col-xl-4 col-2"></div>
+    <div class="col-xl-2 col-5">
       <%= link_to "退会しない" , mypage_path(current_customer),class: "text-white bg-primary btn" %>
     </div>
-    <div class="col-2">
+    <div class="col-xl-2 col-4">
       <%= link_to "退会する" , withdraw_path(current_customer) ,method: :patch, "data-confirm" => "本当に退会しますか？",class: "btn btn-danger" %>
     </div>
   </div>
