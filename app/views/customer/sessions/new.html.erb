@@ -1,36 +1,36 @@
 <div class="container bg-light">
   <br><br>
-  <h1>ログイン</h1>
+  <h2>ログイン</h2>
   <br><br>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="row">
-      <div class="col-1"></div>
-      <div class="col-3">
+      <div class="col-xl-1 col-1"></div>
+      <div class="col-xl-3 col-9">
         <h4> 会員の方はこちらからログイン</h4>
       </div>
     </div>
     <br><br>
 
     <div class="row">
-      <div class="col-2"></div>
-      <div class="col-3">
-        <h3>メールアドレス</h3>
+      <div class="col-xl-2 col-1"></div>
+      <div class="col-xl-3 col-5">
+        <h5>メールアドレス</h5>
       </div>
-      <div class="col-1"></div>
-      <div class="col-4 d-flex align-items-center">
+      <div class="col-xl-1 col-1"></div>
+      <div class="col-xl-4 col-4 d-flex align-items-center">
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
       </div>
     </div>
     <br><br>
 
     <div class="row">
-      <div class="col-2"></div>
-      <div class="col-3">
-        <h3>パスワード</h3>
+      <div class="col-xl-2 col-1"></div>
+      <div class="col-xl-3 col-5">
+        <h5>パスワード</h5>
       </div>
-      <div class="col-1"></div>
-      <div class="col-4 d-flex align-items-center">
+      <div class="col-xl-1 col-1"></div>
+      <div class="col-xl-4 col-4 d-flex align-items-center">
         <%= f.password_field :password, autocomplete: "current-password" %>
       </div>
     </div>
@@ -45,12 +45,12 @@
     <br><br>
   <% end %>
 
-  <h1>会員登録がお済みでない方</h1>
+  <h3>会員登録がお済みでない方</h3>
   <br>
   <div class="row">
     <div class="col-1"></div>
     <div class="col">
-      <h4><%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</h4>
+      <h5><%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</h5>
     </div>
   </div>
 

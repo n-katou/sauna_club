@@ -26,6 +26,8 @@
           <%= render partial: 'layouts/customer'%>
         <% elsif admin_signed_in? %>
           <%= render partial: "layouts/admin" %>
+      </div>
+      <div class="container header_viewer">
         <% else %>
           <%= render partial: "layouts/other" %>
         <% end %>
