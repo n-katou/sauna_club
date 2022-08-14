@@ -2,59 +2,21 @@
   <br><br>
   <div class="row">
     <div class="mx-auto">
-      <h1><%= @customer.account_name %>さんのページ</h1>
+      <h2><%= @customer.account_name %>さんのページ</h2>
     </div>
   </div>
   <br><br>
 
-  <div class="row mx-auto">
-    <div class="col-3"></div>
-    <div class= "col-4 d-flex align-items-center">
-      <h3>アカウント画像</h3>
-    </div>
-    <div class="col-4 d-flex align-items-center">
-      <%= image_tag @customer.get_profile_image(100,100)%>
-    </div>
-  </div>
-  <br><br>
-
-  <div class="row mx-auto">
-    <div class="col-3"></div>
-    <div class="col-4 d-flex align-items-center">
-      <h3 class="d-flex align-items-center">アカウント名</h3>
-    </div>
-    <div class="col-4 d-flex align-items-center">
-      <%= @customer.account_name %>
-    </div>
-    <div class="col-4"></div>
-  </div>
-  <br><br>
-
-  <div class="row mx-auto">
-    <div class="col-3"></div>
-    <div class="col-4 d-flex align-items-center">
-      <h3>生年月日</h3>
-    </div>
-    <div class="col-4 d-flex align-items-center">
-      <%= @customer.birth_date %>
-    </div>
-    <div class="col-4"></div>
-  </div>
-  <br><br>
-
-  <div class="row mx-auto">
-    <div class="col-3"></div>
-    <div class="col-4 d-flex align-items-center">
-      <h3>自己紹介</h3>
-    </div>
-    <div class="col-4 d-flex align-items-center">
-      <%= @customer.introduction %>
-    </div>
-  </div>
-  <br><br>
+  <%= render "customers/customer_info", customer: @customer %>
 
   <div class="row">
     <div class="mx-auto">
+      <div>
+        <% if current_customer != @customer %>
+          <%= link_to 'チャットをする', rooms_path(customer_id: @customer), method: :post, class: "text-white bg-info btn" %>
+        <% end %>
+      </div>
+      <br>
       <div>
         <% if current_customer != @customer %>
           <% if current_customer.following?(@customer) %>
@@ -62,18 +24,6 @@
           <% else %>
             <%= link_to "フォローする", customer_relationships_path(@customer.id), method: :post, class: "text-white bg-primary btn" %>
           <% end %>
-        <% end %>
-      </div>
-      <br>
-       <div>
-        <% if current_customer != @customer %>
-          <%#= link_to 'チャットする', chat_path(@customer.id),class: "text-white bg-info btn" %>
-        <% end %>
-      </div>
-      <br>
-      <div>
-        <% if current_customer != @customer %>
-          <%= link_to 'チャットをする', rooms_path(customer_id: @customer), method: :post, class: "text-white bg-info btn" %>
         <% end %>
       </div>
     </div>
@@ -87,44 +37,7 @@
   </div>
   <br><br>
 
-  <% @posts.each do |post| %>
-  <div class="border">
-    <div class="row">
-      <div class="col-2">
-        <%= image_tag post.customer.get_profile_image(100,100) %>
-      </div>
-      <div class="col-4">
-        <h4>タイトル     <%= link_to post.title,post_path(post.id) %></h4>
-      </div>
-    </div>
+  <%= render "/customers/post_customer", posts: @posts %>
 
-    <div class="row">
-      <br>
-      <div class="col-2">
-        <%= link_to customer_path(post.customer.id) do %>
-          <%= post.customer.account_name %>
-        <% end %>
-      </div>
-      <div class="col-6">
-        <h4>タグ</h4>
-        <% post.tags.each do |tag| %>
-          <p class="d-flex align-items-center"><%= tag.tag_name %></p>
-        <% end %>
-      </div>
-      <br><br><br><br>
-
-    </div>
-    <div class="row">
-      <div class="col-2"></div>
-      <div class="col-2">投稿日 <i class="fa-solid fa-calendar"></i> <%= post.created_at.strftime('%Y%m/%d') %> </div>
-      <div class="col-3">コメント数 <i class="fa-solid fa-comments"></i> <%= post.comments.count %>コメント </div>
-      <div class="col-2">いいね数 <i class="fa-solid fa-heart"></i><%= post.favorites.count %>いいね</div>
-    </div>
-  </div>
-  <br><br>
-  <% end %>
-    <div class="row">
-        <div class="col text-center"><%= paginate @posts %></div>
-      </div>
-    <br><br><br><br><br>
+  <br><br><br><br><br>
 </div>

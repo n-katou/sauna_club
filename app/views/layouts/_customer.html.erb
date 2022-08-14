@@ -26,7 +26,7 @@
   <div class="col-xl-1 col0"></div>
   <div class="col-xl-3 col-12">
     <p class="text-white">ログイン中のユーザー</p>
-    <p><%= image_tag current_customer.profile_image,size: "50x50" %></p>
+    <p><%= image_tag current_customer.get_profile_image(50,50) %></p>
     <p class="text-white"><%= current_customer.account_name %></p>
   </div>
   <div class="col-xl-2 col-0"></div>

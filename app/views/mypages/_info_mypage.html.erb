@@ -1,15 +1,15 @@
 <div class="row">
-  <div class="mx-auto">
-    <h2>
-      登録情報
+    <div class="col-xl-1"></div>
+    <div class="col-xl-2 col-6"><h2>登録情報</h2></div>
+    <div class="col-xl-3 col-6 d-flex align-items-center">
       <% if  %>
         <a class="text-center">
           <%= link_to "編集する", edit_customer_path(current_customer),class: "text-white bg-info btn" %>
         </a>
       <% end %>
-    </h2>
+    </div>
   </div>
-  </div>
+
   <br>
   <div class="row">
     <div class="col-xl-2 col0"></div>
@@ -69,3 +69,6 @@
       <%= customer.introduction %>
     </div>
   </div>
+
+
+
