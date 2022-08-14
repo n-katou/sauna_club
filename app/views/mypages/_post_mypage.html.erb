@@ -14,6 +14,7 @@
         <p><%= link_to post.title,post_path(post.id) %></p>
       </div>
     </div>
+
     <div class="row">
       <br>
       <div class="col-xl-2 col0 d-flex align-items-center"></div>
@@ -36,5 +37,5 @@
   <br><br>
 <% end %>
 <div class="row">
-  <div class="col text-center"><%= paginate posts %></div>
+  <div class="mx-auto"><%= paginate posts %></div>
 </div>

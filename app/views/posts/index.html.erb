@@ -7,21 +7,24 @@
     <% @posts.each do |post| %>
     <div class="border">
       <div class="row">
-        <div class="col-2 d-flex align-items-center">
-          <%= image_tag post.customer.profile_image,size: "100x100" %>
+        <div class="col-xl-2 col-12">
+          <p><%= image_tag post.customer.profile_image,size: "100x100" %></p>
+          <p>
+            <%= link_to customer_path(post.customer.id) do %>
+              <%= post.customer.account_name %>
+            <% end %>
+          </p>
         </div>
-        <div clss="col-4 d-flex align-items-center">
-          <h4>タイトル   <%= link_to post.title,post_path(post.id) %></h4>
+        <div class="col-xl-4 col-12">
+          <h4>タイトル</h4>
+          <p><%= link_to post.title,post_path(post.id) %></p>
         </div>
       </div>
+
       <div class="row">
         <br>
-         <div class="col-2">
-          <%= link_to customer_path(post.customer.id) do %>
-            <%= post.customer.account_name %>
-          <% end %>
-        </div>
-        <div class="col-6 ">
+         <div class="col-xl-2 col0 d-flex align-items-center"></div>
+        <div class="col-xl-4 col-8">
           <h4>タグ</h4>
           <% post.tags.each do |tag| %>
             <p class="d-flex align-items-center"><%= tag.tag_name %></p>
@@ -30,10 +33,10 @@
         <br><br>
       </div>
       <div class="row">
-        <div class="col-5"></div>
-        <div class="col-3">投稿日 <i class="fa-solid fa-calendar"></i> <%= post.created_at.strftime("%Y/%m/%d %H:%M")%></div>
-        <div class="col-2">コメント数 <i class="fa-solid fa-comments"></i> <%= post.comments.count %>件</div>
-        <div class="col-2">いいね数 <i class="fa-solid fa-heart"></i><%= post.favorites.count %>いいね</div>
+        <div class="col-xl-5 col0"></div>
+        <div class="col-xl-3 col-12">投稿日 <i class="fa-solid fa-calendar"></i> <%= post.created_at.strftime("%Y/%m/%d %H:%M")%></div>
+        <div class="col-xl-2 col-12">コメント数 <i class="fa-solid fa-comments"></i> <%= post.comments.count %>件</div>
+        <div class="col-xl-2 col-12">いいね数 <i class="fa-solid fa-heart"></i><%= post.favorites.count %>いいね</div>
       </div>
     </div>
     <br><br>
@@ -43,7 +46,7 @@
     </div>
   <br><br>
   <div class="row">
-    <div class="col text-center">
+    <div class="mx-auto">
       <%= link_to "新規投稿する",new_post_path,class: "text-white bg-primary btn" %>
     </div>
   </div>

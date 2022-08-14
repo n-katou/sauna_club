@@ -2,29 +2,27 @@
     <div class="border rounded">
       <br>
       <div class="row">
-        <div class="col-1"></div>
-        <div class="col-2">
+        <div class="col-xl-1 col-1"></div>
+        <div class="col-xl-2 col-5">
           <p>コメント投稿者</p>
-          <%= image_tag comment.customer.get_profile_image(100,100) %>
+          <%= link_to customer_path(comment.customer.id) do %>
+            <%= image_tag comment.customer.get_profile_image(100,100) %>
+            <p><%= comment.customer.account_name %></p>
+          <% end %>
         </div>
-        <div class="col-1"></div>
-        <div class="col-4 d-flex align-items-center">
-          <%= comment.comment_content %>
+        <div class="col-xl-1 col-1"></div>
+        <div class="col-xl-4 col-6 d-flex align-items-center">
+          <p><%= comment.comment_content %></p>
         </div>
-        <div class="col-3">
+        <div class="col-xl-3 col-12">
           投稿日  <i class="fa-solid fa-calendar"></i> <%= comment.created_at.strftime("%Y/%m/%d %H:%M") %>
         </div>
       </div>
+      <br>
 
       <div class="row">
-        <div class="col-1"></div>
-        <div class="col-3">
-          <%= link_to customer_path(comment.customer.id) do %>
-            <%= comment.customer.account_name %>
-          <% end %>
-        </div>
-        <div class="col-4"></div>
-        <div class="col-4">
+        <div class="col-xl-8 col-3"></div>
+        <div class="col-xl-4 col-6">
           <% if comment.customer == current_customer %>
             <div class="row">
               <div>
@@ -47,10 +45,11 @@
     <div class="mx-auto"><%= paginate comments %></div>
   </div>
 
+  <br>
   <div class="row">
     <h3>コメントする</h3>
   </div>
-  <br><br>
+  <br>
 
   <div id="comment">
     <%= form_with(model: [@post,@comment],local: false,url:  post_comments_path(@post)) do |f| %>
@@ -66,8 +65,8 @@
       </div>
     <% end %>
     <div class= "row">
-      <div class="col-4"></div>
-      <div class="col-6">
+      <div class="col-xl-4 col-1"></div>
+      <div class="col-xl-6 col-12">
         <h3><%= f.text_area :comment_content,rows: "5", placeholder: "コメントをここに" %></h3>
       </div>
     </div>
