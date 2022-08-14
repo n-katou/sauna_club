@@ -23,7 +23,7 @@
   width: 122px;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 1199.98px) {
  .header_view {
   background-image: url("../images/aaa.jpg");
   width: 100%;

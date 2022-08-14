@@ -43,7 +43,7 @@
   <div class="col-xl-3 col-4">
     <p class="text-white">タグ検索</p>
     <%= form_with url: tags_search_path, method: :get, local: true do |f| %>
-      <p><%= f.text_field :keyword, value: @keyword2, size: "14x14" %></p>
+      <p><%= f.text_field :keyword, value: @keyword2, size: "11x15" %></p>
       <p><%= f.submit "検索する" %></p>
     <% end %>
   </div>
