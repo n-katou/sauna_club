@@ -1,4 +1,5 @@
 <div class="container bg-light">
+  <br>
   <% if @post.errors.any? %>
     <%= @post.errors.count %>件のエラーが発生しました
     <ul>
@@ -12,50 +13,50 @@
   <%= form_with model: @post, url: posts_path ,method: :post do |f| %>
     <br><br>
     <div class="row">
-      <div class="col-3"></div>
-      <div class="col-2">
+      <div class="col-xl-2 col0"></div>
+      <div class="col-xl-2 col-5">
         <h3>
           タイトル
         </h3>
       </div>
-      <div class="col-1"></div>
-      <div class="col-6 d-flex align-items-center">
+      <div class="col-xl-1 col-1"></div>
+      <div class="col-xl-6 col-6 d-flex align-items-center">
         <%= f.text_field :title %>
       </div>
     </div>
 
     <br><br>
     <div class="row">
-      <div class="col-3"></div>
-      <div class="col-2">
+      <div class="col-xl-2 col0"></div>
+      <div class="col-xl-2 col-5">
         <h3>
           投稿画像
         </h3>
       </div>
-      <div class="col-1"></div>
-      <div class="col-6 d-flex align-items-center">
+      <div class="col-xl-1 col-1"></div>
+      <div class="col-xl-6 col-6 d-flex align-items-center">
         <%= f.file_field :post_image, accept: "image/*" %>
       </div>
     </div>
 
     <br><br>
     <div class="row">
-      <div class="col-3"></div>
-      <div class="col-2">
+      <div class="col-xl-2 col0"></div>
+      <div class="col-xl-2 col-5">
         <h3>
           詳細
         </h3>
       </div>
-      <div class="col-1"></div>
-      <div class="col-6 d-flex align-items-center">
+      <div class="col-xl-1 col-1"></div>
+      <div class="col-xl-6 col-6 d-flex align-items-center">
         <%= f.text_area :post_content %>
       </div>
     </div>
 
     <br><br>
     <div class="row">
-      <div class="col-3"></div>
-      <div class="col-4 d-flex align-items-center">
+      <div class="col-xl-2 col0"></div>
+      <div class="col-xl-4 col-12 d-flex align-items-center">
         <h3>
           タグ(1つ以上の使用を推奨)
         </h3>
@@ -64,8 +65,8 @@
 
     <br>
     <div class="row">
-      <div class="col-3"></div>
-      <div class="col-8">
+      <div class="col-xl-3 col-1"></div>
+      <div class="col-xl-8 col-11">
         <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_name do |b| %>
           <p><%= b.label { b.check_box + b.text } %></p>
         <% end %>
@@ -74,8 +75,8 @@
 
     <br><br>
     <div class="row">
-      <div class="col-5"></div>
-      <div class="col-2">
+      <div class="col-xl-5 col-4"></div>
+      <div class="col-xl-2 col-2">
         <%= f.submit "投稿する" , class: "text-white bg-primary btn" %>
       </div>
     </div>

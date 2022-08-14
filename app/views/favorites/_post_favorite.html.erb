@@ -1,0 +1,42 @@
+<% favorites.each do |favorite| %>
+  <div class="border">
+    <div class="row">
+      <div class="col-xl-2 col-12">
+        <p><%= image_tag favorite.post.customer.profile_image,size: "100x100" %></p>
+        <p>
+          <%= link_to customer_path(favorite.customer.id) do %>
+            <%= favorite.post.customer.account_name %>
+          <% end %>
+        </p>
+      </div>
+      <div class="col-xl-4 col-12">
+        <h4>タイトル</h4>
+        <p><%= link_to favorite.post.title,post_path(favorite.post.id) %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <br>
+      <div class="col-xl-2 col0 d-flex align-items-center"></div>
+      <div class="col-xl-4 col-8">
+        <h4>タグ</h4>
+        <% favorite.post.tags.each do |tag| %>
+          <p ><%= tag.tag_name %></p>
+        <% end %>
+      </div>
+      <br><br>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-5 col0"></div>
+      <div class="col-xl-3 col-12">投稿日 <i class="fa-solid fa-calendar"></i><%= favorite.post.created_at.strftime("%Y/%m/%d %H:%M")%></div>
+      <div class="col-xl-2 col-12">コメント数 <i class="fa-solid fa-comments"></i><%= favorite.post.comments.count %>件</div>
+      <div class="col-xl-2 col-12">いいね数<i class="fa-solid fa-heart"></i><%= favorite.post.favorites.count %>いいね</div>
+    </div>
+  </div>
+  <br><br>
+<% end %>
+
+<div class="row">
+  <div class="mx-auto"><%= paginate favorites %></div>
+</div>
