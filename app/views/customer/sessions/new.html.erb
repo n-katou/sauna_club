@@ -6,7 +6,7 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="row">
       <div class="col-xl-1 col-1"></div>
-      <div class="col-xl-3 col-9">
+      <div class="col-xl-4 col-9">
         <h4> 会員の方はこちらからログイン</h4>
       </div>
     </div>
@@ -45,12 +45,12 @@
     <br><br>
   <% end %>
 
-  <h3>会員登録がお済みでない方</h3>
+  <h2>会員登録がお済みでない方</h2>
   <br>
   <div class="row">
     <div class="col-1"></div>
     <div class="col">
-      <h5><%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</h5>
+      <h4><%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</h4>
     </div>
   </div>
 
