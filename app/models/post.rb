@@ -37,4 +37,9 @@ class Post < ApplicationRecord
     Post.joins(:tags).where("tags.tag_name LIKE ?","%#{sanitize_sql_like(keyword)}%") #joinsでhas_many or has_one IDを繋げる。
   end
 
+  #タグ選択
+  def self.tags_select(id)
+    Post.joins(:tags).where("tags.id = ?", id) #joinsでhas_many or has_one IDを繋げる。
+  end
+
 end
