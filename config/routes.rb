@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   get '/posts/search' => "posts#posts_search", as: "posts_search" #会員検索用
   get '/tags/search' => "posts#tags_search", as: "tags_search" #会員検索用
+  get '/tags/select' => "posts#tags_select", as: "tags_select" #会員選択
 
   resources :posts do
     resource :favorites, only: [:destroy,:create] #なぜリソース
@@ -54,6 +55,7 @@ Rails.application.routes.draw do
 
     get '/posts/search' => "posts#posts_search", as: "posts_search" #管理者検索用
     get '/tags/search' => "posts#tags_search", as: "tags_search" #管理者検索用
+    get '/tags/select' => "posts#tags_select", as: "tags_select" #管理者選択用
 
     resources :posts, only: [:index,:show,:edit,:destroy,:update]
 

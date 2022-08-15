@@ -34,8 +34,14 @@ class Admin::PostsController < ApplicationController
 
   #タグ検索
   def tags_search
-    @posts = Post.tags_search(params[:keyword]).order("created_at DESC").page(params[:page]).per(10).distinct  #.distinctで重複を解消
+    @posts = Post.tags_search(params[:keyword]).order("created_at DESC").page(params[:page]).per(10).distinct  #.distinctで重複を解消 タグ検索機能
     @keyword2 = params[:keyword]
+    render "index"
+  end
+
+  #タグセレクト
+  def tags_select
+    @posts = Post.tags_select(params[:tag_id]).order("created_at DESC").page(params[:page]).per(10).distinct  #.distinctで重複を解消
     render "index"
   end
 
