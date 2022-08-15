@@ -42,8 +42,9 @@
   <div class="col-xl-1 col-1"></div>
   <div class="col-xl-3 col-4">
     <p class="text-white">タグ検索</p>
-    <%= form_with url: tags_search_path, method: :get, local: true do |f| %>
-      <p><%= f.text_field :keyword, value: @keyword2, size: "11x15" %></p>
+    <%= form_with url: tags_select_path, method: :get, local: true do |f| %>
+      <%#= f.text_field :keyword, value: @keyword2, size: "11x15" %>
+      <p><%= f.collection_select :tag_id, Tag.all, :id, :tag_name, size: "11x15", include_blank: "選択して下さい" %></p>
       <p><%= f.submit "検索する" %></p>
     <% end %>
   </div>

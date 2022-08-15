@@ -60,6 +60,12 @@ class PostsController < ApplicationController
     render "index"
   end
 
+  #タグセレクト
+  def tags_select
+    @posts = Post.tags_select(params[:tag_id]).order("created_at DESC").page(params[:page]).per(10).distinct  #.distinctで重複を解消
+    render "index"
+  end
+
   private
 
   def post_params
