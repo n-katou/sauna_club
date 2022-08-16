@@ -1,0 +1,46 @@
+<!--exists?はオブジェクトが存在するか確認するメソッド-->
+  <% if customers.exists? %>
+    <% customers.each do |customer| %>
+      <div class="border">
+        <div class ="row">
+          <div class="col-xl-2 col-3">
+            <%= link_to customer_path(customer.id) do %>
+              <p><%= image_tag customer.get_profile_image(100,100) %></p>
+              <p><%= customer.account_name %></p>
+            <% end %>
+          </div>
+          <div class="col-xl-1 col-1"></div>
+          <div class="col-xl-3 col-7">
+            <h4>自己紹介</h4>
+            <p><%= customer.introduction %></p>
+          </div>
+           <div class="col-xl-1 col-5"></div>
+          <div class="col-xl-5 col-7 d-flex align-items-center">
+          <% if current_customer != customer %>
+              <% if current_customer.following?(customer) %>
+                <%= link_to "フォローをはずす", customer_relationships_path(customer.id), method: :delete, class: "btn btn-danger", remote: true, "data-confirm" => "本当にフォロー解除しますか？" %>
+              <% end %>
+          <% end %>
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-lg-3 col-1"></div>
+          <div class="col-lg-2 col-5">
+            フォロー数: <%= customer.followings.count %>
+          </div>
+          <div class="col-lg-2 col-5">
+            フォロワー数: <%= customer.followers.count %>
+          </div>
+        </div>
+      </div>
+      <br><br>
+    <% end %>
+    <div class="row">
+      <div class="col text-center"><%= paginate customers %></div>
+    </div>
+
+  <% else %>
+    <h3>ユーザーはいません</h3>
+  <% end %>
