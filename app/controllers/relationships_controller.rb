@@ -3,13 +3,17 @@ class RelationshipsController < ApplicationController
   #フォローする時
   def create
     current_customer.follow(params[:customer_id])
-    redirect_to request.referer
+    @customer = Customer.find(params[:customer_id])
+    #redirect_to request.referer
+    # render :create
   end
 
   #フォローはずす時
   def destroy
     current_customer.unfollow(params[:customer_id])
-    redirect_to request.referer #request.refererでそのページに戻るという意味
+    @customer = Customer.find(params[:customer_id])
+    # redirect_to request.referer #request.refererでそのページに戻るという意味
+    # render :delete #jsを読み込んでいる
   end
 
   # フォロー一覧

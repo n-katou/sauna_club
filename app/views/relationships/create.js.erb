@@ -1,0 +1,3 @@
+$("#follow_buttons_<%= @customer.id %>").html("<%= j(render partial: 'customers/follow_show',locals: {customer: @customer}) %>");
+$("#follow_index_<%= @customer.id %>").html("<%= j(render partial: 'customers/follow_index',locals: {customer: @customer}) %>");
+$("#follow_index_<%= current_customer.id %>").html("<%= j(render partial: 'customers/follow_count',locals: {customer: current_customer}) %>");
