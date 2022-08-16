@@ -12,6 +12,7 @@ class RelationshipsController < ApplicationController
   def destroy
     current_customer.unfollow(params[:customer_id])
     @customer = Customer.find(params[:customer_id])
+    render :delete
     # redirect_to request.referer #request.refererでそのページに戻るという意味
     # render :delete #jsを読み込んでいる
   end
