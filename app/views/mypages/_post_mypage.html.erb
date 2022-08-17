@@ -21,7 +21,7 @@
       <div class="col-xl-4 col-8">
         <h4>タグ</h4>
         <% post.tags.each do |tag| %>
-          <p class="d-flex align-items-center"><%= tag.tag_name %></p>
+          <p class="d-flex align-items-center"><%= link_to tag.tag_name, tags_select_path(tag_id: tag.id) %></p>
         <% end %>
       </div>
       <br><br>
