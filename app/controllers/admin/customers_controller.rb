@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
   def index
@@ -20,10 +22,8 @@ class Admin::CustomersController < ApplicationController
   end
 
   private
-
-  def customer_params
-    # binding.pry
-    params.require(:customer).permit(:profile_image,:account_name,:birth_date,:email,:is_active,:introduction)
-  end
-
+    def customer_params
+      # binding.pry
+      params.require(:customer).permit(:profile_image, :account_name, :birth_date, :email, :is_active, :introduction)
+    end
 end

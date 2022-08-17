@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RoomsController < ApplicationController
   before_action :authenticate_customer!
   before_action :same_room_customer!, only: [:show]
@@ -31,12 +33,11 @@ class RoomsController < ApplicationController
   end
 
   private
-
-  def same_room_customer!
-    return if Room.find(params[:id]).customers.include?(current_customer)
-    flash[:danger] = "ユーザーにはアクセスする権限がありません"
-    redirect_to root_path
-  end
+    def same_room_customer!
+      return if Room.find(params[:id]).customers.include?(current_customer)
+      flash[:danger] = "ユーザーにはアクセスする権限がありません"
+      redirect_to root_path
+    end
 
   # def show
   #   @customer = Customer.find(params[:id])
@@ -55,5 +56,4 @@ class RoomsController < ApplicationController
   #   @chats = @room.chats.order("created_at DESC").page(params[:page]).per(5)
   #   @chat = Chat.new(room_id: @room.id)
   # end
-
 end

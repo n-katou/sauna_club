@@ -66,6 +66,6 @@ class Customer::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up,keys:[:account_name,:email,:birth_date])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:account_name, :email, :birth_date])
   end
 end
