@@ -6,6 +6,7 @@ class ChatsController < ApplicationController
   def create
     @chat = current_customer.chats.new(chat_params)
     if @chat.save
+      @chat = current_customer.chats.new(chat_params)
       room = Room.find(params[:chat][:room_id])
       @chats = room.chats.includes(:customer).order("created_at DESC").page(params[:page]).per(5)
       # redirect_to request.referer
