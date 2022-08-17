@@ -1,8 +1,10 @@
-class ApplicationController < ActionController::Base
-  #ゲストの閲覧のみのメソッド
-  before_action :restrict_guest_user,only:[:update,:create,:destroy], unless: :devise_controller? #unlessの部分で:devise_controllerを使用していないという条件で絞り込んでいる。
+# frozen_string_literal: true
 
-  #ゲストログインで投稿のみ閲覧メソッド
+class ApplicationController < ActionController::Base
+  # ゲストの閲覧のみのメソッド
+  before_action :restrict_guest_user, only: [:update, :create, :destroy], unless: :devise_controller? # unlessの部分で:devise_controllerを使用していないという条件で絞り込んでいる。
+
+  # ゲストログインで投稿のみ閲覧メソッド
   def restrict_guest_user
     if current_customer&.guest? # &あることによって、エラーを出さずに通過させられる。 guest?はcustomerモデルで記述している
       redirect_to error_path

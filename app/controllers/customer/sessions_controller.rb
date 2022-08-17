@@ -20,28 +20,26 @@ class Customer::SessionsController < Devise::SessionsController
   # end
 
   def new_guest
-    customer = Customer.guest #.guestは　customerモデルで記述している。selfにCustomerが入っている
+    customer = Customer.guest # .guestは　customerモデルで記述している。selfにCustomerが入っている
     sign_in customer   # ユーザーをログインさせる
     redirect_to posts_path
   end
 
   protected
+    # If you have extra params to permit, append them to the sanitizer.
+    # def configure_sign_in_params
+    #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+    # end
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
-
-#会員か確認するメソッド
-  def reject_inactive_customer
-    @customer = Customer.find_by(email: params[:customer][:email])
-    return if !@customer #これがないと存在しないアカウントでログインを行おうとするとエラーが出る。
-    if @customer.valid_password?(params[:customer][:password])
-      if @customer.is_active == true
-      else
-        redirect_to new_customer_registration_path
+    # 会員か確認するメソッド
+    def reject_inactive_customer
+      @customer = Customer.find_by(email: params[:customer][:email])
+      return if !@customer # これがないと存在しないアカウントでログインを行おうとするとエラーが出る。
+      if @customer.valid_password?(params[:customer][:password])
+        if @customer.is_active == true
+        else
+          redirect_to new_customer_registration_path
+        end
       end
     end
-  end
-
 end
