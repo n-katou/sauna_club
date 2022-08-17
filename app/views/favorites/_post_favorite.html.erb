@@ -21,7 +21,7 @@
       <div class="col-xl-4 col-8">
         <h4>タグ</h4>
         <% favorite.post.tags.each do |tag| %>
-          <p ><%= tag.tag_name %></p>
+          <p><%= link_to tag.tag_name, tags_select_path(tag_id: tag.id) %></p>
         <% end %>
       </div>
       <br><br>
