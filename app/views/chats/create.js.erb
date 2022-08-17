@@ -1,2 +1,2 @@
-<!--$('#form').html("<%#= j(render partial: "rooms/form") %>");-->
 $('#chat').html("<%= j(render partial: "rooms/info_chat", locals: {chats: @chats }) %>");
+$("input#chat_message").val('');

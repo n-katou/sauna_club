@@ -1,22 +1,15 @@
 <div class="container">
-  <br>
-  <div class="row">
-    <div class="col">
-      <h2> <%= @customer.account_name %>さんとのチャットルーム</h2>
+    <br>
+    <div class="row">
+      <div class="col">
+        <h2> <%= @customer.account_name %>さんとのチャットルーム</h2>
+      </div>
     </div>
-  </div>
-  <br>
+    <br>
 
-  <%= render "rooms/info_chat", chats: @chats %>
-  <br>
-
-  <div class="row">
-    <h2>チャットする</h2>
-  </div>
-  <br><br>
-
-  <div id="form">
-    <%= render partial: "rooms/form" %>
-  </div>
+    <div id="chat">
+      <%= render "rooms/info_chat", chats: @chats %>
+    </div>
 </div>
 <br><br><br><br><br>
+
