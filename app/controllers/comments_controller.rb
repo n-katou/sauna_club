@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :block_comment_customer, only: [:edit,:update]
+  before_action :block_comment_customer, only: [:edit, :update]
 
   def edit
     @comment = Comment.find(params[:id])
@@ -13,10 +15,10 @@ class CommentsController < ApplicationController
     @comments = @post.comments.order("created_at DESC").page(params[:page]).per(5)
     if @comment.save
       @comment = Comment.new
-      render :create #jsを読み込んでいる
+      render :create # jsを読み込んでいる
       # redirect_to post_path(@post.id)
     else
-      render :error #jsを読み込んでいる
+      render :error # jsを読み込んでいる
     end
   end
 
@@ -36,21 +38,19 @@ class CommentsController < ApplicationController
       @post = Post.find(params[:post_id])
       @comment.post_id = @post.id
       @comments = @post.comments.order("created_at DESC").page(params[:page]).per(5)
-      render :delete #jsを読み込んでいる
+      render :delete # jsを読み込んでいる
     end
   end
 
   private
-
-  def comment_params
-    params.require(:comment).permit(:comment_content)
-  end
-
-  #投稿者以外に編集させないメソッド
-  def block_comment_customer
-    unless Comment.find(params[:id]).customer.id.to_i == current_customer.id
-      redirect_to posts_path
+    def comment_params
+      params.require(:comment).permit(:comment_content)
     end
-  end
 
+    # 投稿者以外に編集させないメソッド
+    def block_comment_customer
+      unless Comment.find(params[:id]).customer.id.to_i == current_customer.id
+        redirect_to posts_path
+      end
+    end
 end

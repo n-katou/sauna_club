@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails/all"
@@ -19,9 +21,9 @@ module Saunaclub
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    config.i18n.default_locale = :ja #追加した
-    #config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s] #追加した
-    config.time_zone = 'Tokyo' #追加で足した。日本時間に変更するために
-    config.active_record.default_timezone = :local  #追加で足した。日本時間に変更するために
+    config.i18n.default_locale = :ja # 追加した
+    # config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s] #追加した
+    config.time_zone = "Tokyo" # 追加で足した。日本時間に変更するために
+    config.active_record.default_timezone = :local  # 追加で足した。日本時間に変更するために
   end
 end

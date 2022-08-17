@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChatsController < ApplicationController
   before_action :authenticate_customer!
 
@@ -30,9 +32,7 @@ class ChatsController < ApplicationController
   end
 
   private
-
-  def chat_params
-    params.require(:chat).permit(:message, :room_id)
-  end
-
+    def chat_params
+      params.require(:chat).permit(:message, :room_id)
+    end
 end

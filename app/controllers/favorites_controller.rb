@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class FavoritesController < ApplicationController
   before_action :authenticate_customer!
   def index
-    @favorites= current_customer.favorites.order("created_at DESC").page(params[:page])
+    @favorites = current_customer.favorites.order("created_at DESC").page(params[:page])
     # @favorites = Favorite.where.not(customer_id: current_customer.id).group(:post_id)
   end
 
@@ -15,7 +17,7 @@ class FavoritesController < ApplicationController
 
   def destroy
     @post = Post.find(params[:post_id])
-    favorite = current_customer.favorites.find_by(post_id: @post.id) #post_id: post.idこれの意味は？
+    favorite = current_customer.favorites.find_by(post_id: @post.id) # post_id: post.idこれの意味は？
     favorite.destroy
     render :favorite
     # redirect_to post_path(post.id)

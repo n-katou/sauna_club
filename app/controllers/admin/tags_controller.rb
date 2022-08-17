@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::TagsController < ApplicationController
   before_action :authenticate_admin!
   def index
@@ -36,9 +38,7 @@ class Admin::TagsController < ApplicationController
 
 
   private
-
-  def tag_params
-    params.require(:tag).permit(:tag_name)
-  end
-
+    def tag_params
+      params.require(:tag).permit(:tag_name)
+    end
 end
