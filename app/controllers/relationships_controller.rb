@@ -18,7 +18,7 @@ class RelationshipsController < ApplicationController
     # ↓jsとhtmlを分ける記述方法
     # respond_to do |format|
     #   format.html { redirect_to root_path }
-    #   format.js { render 'relationships/destroy.js.erb' } 
+    #   format.js { render 'relationships/destroy.js.erb' }
     # end
     # render :destroy　←これはjsファイルが同じdestroyだから書かなくても良い。
     # redirect_to request.referer #request.refererでそのページに戻るという意味
