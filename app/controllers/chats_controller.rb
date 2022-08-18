@@ -25,7 +25,7 @@ class ChatsController < ApplicationController
      format.html { redirect_to room_path(@chat.room.id) }
      format.js {
       @chats = room.chats.includes(:customer).order("created_at DESC").page(params[:page]).per(5)
-      render 'chats/destroy.js.erb' }
+      render "chats/destroy.js.erb" }
    end
     # redirect_to room_path(@chat.room.id)
   end
