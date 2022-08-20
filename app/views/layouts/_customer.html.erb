@@ -1,51 +1,53 @@
-<div class="row">
-  <div class="col-xl-1 col0">
-    <%= link_to root_path, class: "navbar-toggler" do %>
-      <div class="logo_icon"></div>
-    <% end %>
-  </div>
-  <div class="col-xl-1 col-1"></div>
-  <div class="col-xl-2 col-5 d-flex align-items-center">
-    <h2 class="text-center"><%= link_to "マイページ" , mypage_path(current_customer),class: "text-white btn" %></h2>
-  </div>
-  <div class="col-xl-2 col-4 d-flex align-items-center">
-    <h2 class="text-center"><%= link_to "投稿一覧", posts_path,class: "text-white btn" %></h2>
-  </div>
-  <div class="col-xl-2 col-4 d-flex align-items-center">
-    <h2 class="text-center"><%= link_to "チャット" ,rooms_path, class: "text-white btn" %></h2>
-  </div>
-  <div class="col-xl-2 col-4 d-flex align-items-center">
-    <h2 class="text-center"><%= link_to "会員一覧", customers_path,class: "text-white btn" %></h2>
-  </div>
-  <div class="col-xl-2 col-4 d-flex align-items-center">
-    <h2 class="text-center"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: "text-white btn" %></h2>
-  </div>
-</div>
-<br>
-<div class="row">
-  <div class="col-xl-1 col0"></div>
-  <div class="col-xl-3 col-12">
-    <p class="text-white">ログイン中のユーザー</p>
-    <p><%= image_tag current_customer.get_profile_image(50,50) %></p>
-    <p class="text-white"><%= current_customer.account_name %></p>
-  </div>
-  <div class="col-xl-2 col-0"></div>
-  <div class="col-xl-2 col-6">
-    <p class="text-white">キーワード検索</p>
-    <p class="text-center">
-      <%= form_with url: posts_search_path, method: :get, local: true do |f| %>
-        <p><%= f.text_field :keyword, value: @keyword,size: "15x15" %></p>
-        <p><%= f.submit "検索する" %></p>
-      <% end %>
-    </p>
-  </div>
-  <div class="col-xl-1 col-1"></div>
-  <div class="col-xl-3 col-4">
-    <p class="text-white">タグ選択</p>
-    <%= form_with url: tags_select_path, method: :get, local: true do |f| %>
-      <%#= f.text_field :keyword, value: @keyword2, size: "11x15" %>
-      <p><%= f.collection_select :tag_id, Tag.all, :id, :tag_name, size: "11x15", include_blank: "選択して下さい" %></p>
-      <p><%= f.submit "検索する" %></p>
-    <% end %>
-  </div>
+<div class="container header_view">
+    <div class="row">
+      <div class="col-xl-1 col0">
+        <%= link_to root_path, class: "navbar-toggler" do %>
+          <div class="logo_icon"></div>
+        <% end %>
+      </div>
+      <div class="col-xl-1 col-1"></div>
+      <div class="col-xl-2 col-5 d-flex align-items-center">
+        <h2 class="text-center"><%= link_to "マイページ" , mypage_path(current_customer),class: "text-white btn" %></h2>
+      </div>
+      <div class="col-xl-2 col-4 d-flex align-items-center">
+        <h2 class="text-center"><%= link_to "投稿一覧", posts_path,class: "text-white btn" %></h2>
+      </div>
+      <div class="col-xl-2 col-4 d-flex align-items-center">
+        <h2 class="text-center"><%= link_to "チャット" ,rooms_path, class: "text-white btn" %></h2>
+      </div>
+      <div class="col-xl-2 col-4 d-flex align-items-center">
+        <h2 class="text-center"><%= link_to "会員一覧", customers_path,class: "text-white btn" %></h2>
+      </div>
+      <div class="col-xl-2 col-4 d-flex align-items-center">
+        <h2 class="text-center"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: "text-white btn" %></h2>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-xl-1 col0"></div>
+      <div class="col-xl-3 col-12">
+        <p class="text-white">ログイン中のユーザー</p>
+        <p><%= image_tag current_customer.get_profile_image(50,50) %></p>
+        <p class="text-white"><%= current_customer.account_name %></p>
+      </div>
+      <div class="col-xl-2 col-0"></div>
+      <div class="col-xl-2 col-6">
+        <p class="text-white">キーワード検索</p>
+        <p class="text-center">
+          <%= form_with url: posts_search_path, method: :get, local: true do |f| %>
+            <p><%= f.text_field :keyword, value: @keyword,size: "15x15" %></p>
+            <p><%= f.submit "検索する" %></p>
+          <% end %>
+        </p>
+      </div>
+      <div class="col-xl-1 col-1"></div>
+      <div class="col-xl-3 col-4">
+        <p class="text-white">タグ選択</p>
+        <%= form_with url: tags_select_path, method: :get, local: true do |f| %>
+          <%#= f.text_field :keyword, value: @keyword2, size: "11x15" %>
+          <p><%= f.collection_select :tag_id, Tag.all, :id, :tag_name, size: "11x15", include_blank: "選択して下さい" %></p>
+          <p><%= f.submit "検索する" %></p>
+        <% end %>
+      </div>
+    </div>
 </div>

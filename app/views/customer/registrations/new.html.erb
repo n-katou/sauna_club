@@ -6,55 +6,43 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "customer/shared/error_messages", resource: resource %>
   <div class="row">
-    <div class="col-xl-2 col-1"></div>
-    <div class="col-xl-4 col-5">
+    <div class="col-xl-3 col-1"></div>
+    <div class="col-xl-4 col-7">
       <h4>アカウント名</h4>
-    </div>
-    <div class="col-xl-1 col-1"></div>
-    <div class="col-xl-4 col-5 d-flex align-items-center">
-      <%= f.text_field :account_name, autofocus: true, autocomplete: "account_name" %>
+      <p><%= f.text_field :account_name, autofocus: true, autocomplete: "account_name" %></p>
     </div>
   </div>
   <br><br>
 
   <div class="row">
-    <div class="col-xl-2 col-1"></div>
-    <div class="col-xl-4 col-5">
+    <div class="col-xl-3 col-1"></div>
+    <div class="col-xl-4 col-8">
       <h4>メールアドレス</h4>
-    </div>
-    <div class="col-xl-1 col-1"></div>
-    <div class="col-xl-4 col-5 d-flex align-items-center">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
     </div>
   </div>
   <br><br>
 
   <div class="row">
-    <div class="col-xl-2 col-1"></div>
-    <div class="col-xl-4 col-4">
+    <div class="col-xl-3 col-1"></div>
+    <div class="col-xl-4 col-9">
       <h4>パスワード(６文字以上)</h4>
-    </div>
-    <div class="col-xl-1 col-2"></div>
-    <div class="col-xl-4 col-5 d-flex align-items-center">
-      <%= f.password_field :password, autocomplete: "new-password" %>
+      <p><%= f.password_field :password, autocomplete: "new-password" %></p>
     </div>
   </div>
   <br><br>
 
   <div class="row">
-    <div class="col-xl-2 col-1"></div>
-    <div class="col-xl-4 col-5">
+    <div class="col-xl-3 col-1"></div>
+    <div class="col-xl-4 col-9">
       <h4>パスワード確認用</h4>
-    </div>
-    <div class="col-xl-1 col-1"></div>
-    <div class="col-xl-4 col-5 d-flex align-items-center">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <p><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
     </div>
   </div>
   <br><br>
 
   <div class="row">
-    <div class="col-5"></div>
+    <div class="col-xl-6 col-5"></div>
     <div class="col-4 d-flex align-items-center">
       <%= f.submit "新規登録", class: "text-white bg-primary btn" %>
     </div>
