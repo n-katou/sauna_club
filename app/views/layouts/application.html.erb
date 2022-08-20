@@ -21,15 +21,13 @@
 
   <body>
     <header>
-      <div class="container header_view">
-        <% if customer_signed_in? %>
-          <%= render partial: 'layouts/customer'%>
-        <% elsif admin_signed_in? %>
-          <%= render partial: "layouts/admin" %>
-        <% else %>
-          <%= render partial: "layouts/other" %>
-        <% end %>
-      </div>
+      <% if customer_signed_in? %>
+        <%= render partial: 'layouts/customer'%>
+      <% elsif admin_signed_in? %>
+        <%= render partial: "layouts/admin" %>
+      <% else %>
+        <%= render partial: "layouts/other" %>
+      <% end %>
     </header>
     <%= yield %>
      <footer>
