@@ -25,12 +25,12 @@
     <br>
     <div class="row">
       <div class="col-xl-1 col0"></div>
-      <div class="col-xl-3 col-12">
+      <div class="col-xl-3 col-5">
         <p class="text-white">ログイン中のユーザー</p>
         <p><%= image_tag current_customer.get_profile_image(50,50) %></p>
         <p class="text-white"><%= current_customer.account_name %></p>
       </div>
-      <div class="col-xl-2 col-0"></div>
+      <div class="col-xl-2 col-1"></div>
       <div class="col-xl-2 col-6">
         <p class="text-white">キーワード検索</p>
         <p class="text-center">
@@ -40,7 +40,7 @@
           <% end %>
         </p>
       </div>
-      <div class="col-xl-1 col-1"></div>
+      <div class="col-xl-1 col0"></div>
       <div class="col-xl-3 col-4">
         <p class="text-white">タグ選択</p>
         <%= form_with url: tags_select_path, method: :get, local: true do |f| %>
