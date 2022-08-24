@@ -37,7 +37,6 @@
           <%= form_with url: posts_search_path, method: :get, local: true do |f| %>
             <p><%= f.text_field :keyword, value: @keyword,size: "15x15" %></p>
             <p><%= f.submit "検索する" %></p>
-            
           <% end %>
         </p>
       </div>
