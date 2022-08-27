@@ -47,6 +47,7 @@
           <%#= f.text_field :keyword, value: @keyword2, size: "11x15" %>
           <p><%= f.collection_select :tag_id, Tag.all, :id, :tag_name, size: "11x15", include_blank: "選択して下さい" %></p>
           <p><%= f.submit "検索する" %></p>
+
         <% end %>
       </div>
     </div>
