@@ -22,7 +22,7 @@
   <body>
     <header>
       <% if customer_signed_in? %>
-        <%= render partial: 'layouts/customer'%>
+        <%= render partial: "layouts/customer" %>
       <% elsif admin_signed_in? %>
         <%= render partial: "layouts/admin" %>
       <% else %>
