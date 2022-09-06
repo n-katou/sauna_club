@@ -48,9 +48,9 @@ https://docs.google.com/spreadsheets/d/1mWsS3Yp8osmIIrzZ7W8EmFsDlabrbILo2fBEVb07
 
 ## 開発環境
 
-- OS：Linux(CentOS)
+- OS：Amazon Linux release 2 (Karoo)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
+- フレームワーク：Ruby on Rails,bootstrap
 - JSライブラリ：jQuery
 - IDE：Cloud9
 

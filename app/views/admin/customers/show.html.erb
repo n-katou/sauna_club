@@ -105,38 +105,45 @@
   </div>
   <br><br>
   <% @posts.each do |post| %>
-  <div class="border">
-    <div class="row">
-      <div class="col-2">
-        <%= image_tag post.customer.get_profile_image(100,100) %>
-      </div>
-      <div class="col-4">
-        <h4>タイトル     <%= link_to post.title,admin_post_path(post.id) %></h4>
-      </div>
-    </div>
-    <div class="row">
-      <br>
-      <div class="col-2">
-        <%= post.customer.account_name %>
-      </div>
-      <div class="col-6">
-        <% post.tags.each do |tag| %>
-          <p><%= tag.tag_name %></p>
-        <% end %>
+      <div class="border">
+        <div class="row">
+          <div class="col-xl-2 col-12">
+            <%= link_to admin_customer_path(post.customer.id) do %>
+              <p><%= image_tag post.customer.profile_image,size: "100x100" %></p>
+              <p><%= post.customer.account_name %></p>
+            <% end %>
+
+          </div>
+          <div class="col-xl-4 col-12">
+            <h4>タイトル</h4>
+            <p><%= link_to post.title,admin_post_path(post.id) %></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <br>
+          <div class="col-xl-2 col0"></div>
+          <div class="col-xl-4 col-8">
+            <% post.tags.each do |tag| %>
+              <p><%#= link_to tag.tag_name ,controller: 'posts', action: 'tags_select',tag_id: tag.id %></p>
+              <p><%= link_to tag.tag_name, admin_tags_select_path(tag_id: tag.id) %></p>
+            <% end %>
+          </div>
+          <br><br>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-5 col0"></div>
+          <div class="col-xl-3 col-12">投稿日 <%= post.created_at.strftime('%Y/%m/%d')%></div>
+          <div class="col-xl-2 col-12">コメント数 <%= post.comments.count %>件</div>
+          <div class="col-xl-2 col-12"><%= post.favorites.count %>いいね</div>
+        </div>
       </div>
       <br><br>
-    </div>
+    <% end %>
+
     <div class="row">
-      <div class="col-2"></div>
-      <div class="col-2"><%= post.created_at.strftime('%Y/%m/%d') %> </div>
-      <div class="col-2"><%= post.comments.count %>コメント </div>
-      <div class="col-2"><%= post.favorites.count %>いいね</div>
+      <div class="mx-auto"><%= paginate @posts %></div>
     </div>
-  </div>
-  <br><br>
-  <% end %>
-    <div class="row">
-        <div class="col text-center"><%= paginate @posts %></div>
-      </div>
     <br><br><br><br><br>
 </div>
