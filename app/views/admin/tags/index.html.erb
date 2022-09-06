@@ -14,16 +14,17 @@
 
   <%= form_with model: @tag,url: admin_tags_path,method: :post do |f| %>
     <div class="row">
-      <div class="col-2"></div>
-      <div class="col-2 d-flex align-items-center">
+      <div class="col-xl-2 col-1"></div>
+      <div class="col-xl-2 col-3 d-flex align-items-center">
         <h3>タグ名</h3>
       </div>
-      <div class="col-1"></div>
-      <div class="col-3 d-flex align-items-center">
-        <%= f.text_field :tag_name %>
+      <div class="col-xl-1 col-1"></div>
+      <div class="col-xl-3 col-3 d-flex align-items-center">
+        <p><%= f.text_field :tag_name %></p>
       </div>
-      <div class="col-2 d-flex align-items-center">
-        <%= f.submit "新規登録" ,class: "btn btn-success" %>
+      <div class="col-xl-1 col-1"></div>
+      <div class="col-xl-2 col-3 d-flex align-items-center">
+        <p><%= f.submit "新規登録" ,class: "btn btn-success" %></p>
       </div>
     </div>
   <% end %>
@@ -33,12 +34,12 @@
     <div class="border">
       <br>
       <div class="row">
-        <div class="col-2"></div>
-        <div class="col-3 d-flex align-items-center">
+        <div class="col-xl-2 col-1"></div>
+        <div class="col-xl-3 col-11 d-flex align-items-center">
           <%= tag.tag_name %>
         </div>
-        <div class="col-1"></div>
-        <div class="col-1 d-flex align-items-center">
+        <div class="col-xl-1 col-1"></div>
+        <div class="col-xl-3  col-11 d-flex align-items-center">
           <%= link_to "編集する", edit_admin_tag_path(tag.id),class: "btn btn-success"  %>
         </div>
       </div>
@@ -48,7 +49,7 @@
   <% end %>
 
   <div class="row">
-    <div class="col text-center"><%= paginate @tags %></div>
+    <div class="mx-auto"><%= paginate @tags %></div>
   </div>
 
 <br><br><br><br><br>

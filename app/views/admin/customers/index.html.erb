@@ -4,26 +4,27 @@
     <% @customers.each do |customer| %>
       <div class="border">
         <div class ="row">
-          <div class="col-2">
+          <div class="col-xl-2 col-3">
             <%= link_to admin_customer_path(customer.id) do %>
-              <%= image_tag customer.get_profile_image(100,100) %>
+              <p><%= image_tag customer.get_profile_image(100,100) %></p>
+              <p><%= customer.account_name %></p>
             <% end %>
           </div>
-          <div class="col-1">
+          <div class="col-xl-1 col-3">
             <h4 class="text-center">会員ID</h4>
             <p class="text-center"><%= customer.id %></p>
           </div>
-          <div class="col-2">
+          <div class="col-xl-2 col-6">
             <h4 class="text-center">アカウント名</h4>
             <p class="text-center"><%= customer.account_name %></p>
           </div>
-          <div class="col-1"></div>
-          <div class="col-3">
+          <div class="col-xl-1 col-2"></div>
+          <div class="col-xl-3 col-5">
             <h4 class="text-center">メールアドレス</h4>
             <p class="text-center"><%= customer.email %></p>
           </div>
-           <div class="col-1"></div>
-          <div class="col-2">
+           <div class="col-xl-1 col-1"></div>
+          <div class="col-xl-2 col-4">
             <h4 class="text-center">ステータス</h4>
             <% if customer.is_active == true %>
               <p class="text-center">有効</p>
@@ -32,21 +33,11 @@
             <% end %>
           </div>
         </div>
-        <br>
-
-        <div class="row">
-          <div class="col-2">
-            <%= link_to admin_customer_path(customer.id) do %>
-              <%= customer.account_name %>
-            <% end %>
-          </div>
-        </div>
-
       </div>
       <br><br>
     <% end %>
     <div class="row">
-      <div class="col text-center"><%= paginate @customers %></div>
+      <div class="mx-auto"><%= paginate @customers %></div>
     </div>
     <br><br><br><br><br>
   </div>
