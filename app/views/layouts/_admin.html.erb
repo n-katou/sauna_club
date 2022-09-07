@@ -22,8 +22,8 @@
     </div>
     <br>
     <div class="row">
-      <div class="col-xl-1 col-1"></div>
-      <div class="col-xl-3 col-5 d-flex align-items-center">
+      <div class="col-xl-1 col0"></div>
+      <div class="col-xl-3 col-3 d-flex align-items-center">
         <h5 class="text-white">管理者がログイン中</h5>
       </div>
       <div class="col-xl-1 col-1"></div>
@@ -31,17 +31,17 @@
         <p class="text-white">キーワード検索</p>
         <p class="text-center">
           <%= form_with url: admin_posts_search_path, method: :get, local: true do |f| %>
-            <%= f.text_field :keyword, value: @keyword %>
-            <%= f.submit "検索する" %>
+            <p><%= f.text_field :keyword, value: @keyword %></p>
+            <p><%= f.submit "検索する" %></p>
           <% end %>
         </p>
       </div>
-      <div class="col-3">
+      <div class="col-xl-3 col-">
         <p class="text-white">タグ選択</p>
         <%= form_with url: admin_tags_select_path, method: :get, local: true do |f| %>
           <%#= f.text_field :keyword, value: @keyword2 %>
-          <%= f.collection_select :tag_id, Tag.all, :id, :tag_name, include_blank: "選択して下さい" %>
-          <%= f.submit "検索する" %>
+          <p><%= f.collection_select :tag_id, Tag.all, :id, :tag_name, include_blank: "選択して下さい" %></p>
+          <p><%= f.submit "検索する" %></p>
         <% end %>
       </div>
     </div>

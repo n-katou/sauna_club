@@ -1,0 +1,82 @@
+ <div class="border">
+    <br>
+    <div class ="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="border rounded">
+          <h4 class="text-center">タイトル</h4>
+          <p class="text-center"><strong><%= post.title %></strong></p>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6 text-center">
+        <% if post.post_image.attached? %>
+          <%= image_tag post.post_image, size: "150x150" %>
+        <% end %>
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="border rounded">
+          <h4 class="text-center">本文</h4>
+          <br><br>
+          <strong><%= post.post_content %></strong>
+        </div>
+      </div>
+    </div>
+
+    <br><br>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="border rounded">
+          <h4 class="text-center">タグ</h4>
+          <% post.tags.each do |tag| %>
+            <strong><%= tag.tag_name %></strong>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <br><br>
+    <div class="row">
+      <div class="col text-center">
+        <%= link_to "編集する", edit_admin_post_path(post.id), class: "btn btn-success" %>
+      </div>
+    </div>
+
+    <br><br>
+    <div class="border rounded">
+      <br>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-6">
+          <p>投稿者</p>
+          <%= link_to admin_customer_path(post.customer.id) do %>
+            <p><%= image_tag post.customer.get_profile_image(100,100) %></p>
+            <p><%= post.customer.account_name %></p>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-5 col0"></div>
+        <div class="col-xl-3 col-12">
+          投稿日 <i class="fa-solid fa-calendar"></i> <%= post.created_at.strftime("%Y/%m/%d %H:%M")%>
+        </div>
+        <div class="col-xl-2 col-12">
+          コメント数 <i class="fa-solid fa-comments"></i> <%= post.comments.count %>件
+        </div>
+        <div class="col-xl-2 col-12">
+          いいね数 <i class="fa-solid fa-heart"></i> <%= post.favorites.count %>
+        </div>
+      </div>
+    </div>
+  </div>
