@@ -65,18 +65,15 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "devise"
-gem "search_cop"
-gem "cocoon"
 
-gem "jquery-rails"
-gem "select2-rails"
+gem "jquery-rails" #非同期通信で使用
 gem "kaminari", "~> 1.2.1"
 
+#deploy関連
 gem "dotenv-rails"
 group :production do
   gem "mysql2"
 end
-
 gem "net-smtp"
 gem "net-imap"
 gem "net-pop"
