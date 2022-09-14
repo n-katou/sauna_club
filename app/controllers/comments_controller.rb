@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    p params
     @post = Post.find(params[:post_id])
     @comment = current_customer.comments.new(comment_params)
     @comment.post_id = @post.id
